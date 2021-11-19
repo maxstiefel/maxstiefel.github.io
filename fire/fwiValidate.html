@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>ClimateCheck: Wildfire Validation</title>
+  <meta name="description" content="ClimateCheck: Wildfire Validation" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="ClimateCheck: Wildfire Validation" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ClimateCheck: Wildfire Validation" />
+  
+  
+  
+
+<meta name="author" content="Prepared by: Maximilian Stiefel" />
+
+
+<meta name="date" content="2021-11-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet" />
+<script src="libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
+<script src="libs/sparkline-binding-2.0/sparkline.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.7
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.7'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<script>
+document.write('<div class="btn-group pull-right" style="position: absolute; top: 20%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
+</script>
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over time</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#mc2-proportion-burned"><i class="fa fa-check"></i>mc2 proportion burned</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp45counts"><i class="fa fa-check"></i>fwi rcp45counts</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp45magnitude"><i class="fa fa-check"></i>fwi rcp45magnitude</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85counts"><i class="fa fa-check"></i>fwi rcp85counts</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85magnitude"><i class="fa fa-check"></i>fwi rcp85magnitude</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#spatial-distributions"><i class="fa fa-check"></i>Spatial distributions</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#mc2-proportion-burned-1"><i class="fa fa-check"></i>mc2 proportion burned</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#mc2-rating"><i class="fa fa-check"></i>mc2 rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-counts"><i class="fa fa-check"></i>fwi counts</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-magnitudes"><i class="fa fa-check"></i>fwi magnitudes</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rating"><i class="fa fa-check"></i>fwi rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#observed-and-modeled"><i class="fa fa-check"></i>Observed and Modeled</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#jan"><i class="fa fa-check"></i>Jan</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#feb"><i class="fa fa-check"></i>Feb</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#mar"><i class="fa fa-check"></i>Mar</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#apr"><i class="fa fa-check"></i>Apr</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#may"><i class="fa fa-check"></i>May</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#jun"><i class="fa fa-check"></i>Jun</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#jul"><i class="fa fa-check"></i>Jul</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#aug"><i class="fa fa-check"></i>Aug</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#sep"><i class="fa fa-check"></i>Sep</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#oct"><i class="fa fa-check"></i>Oct</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#nov"><i class="fa fa-check"></i>Nov</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#dec"><i class="fa fa-check"></i>Dec</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters"><i class="fa fa-check"></i>Fire Perimeters</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#portland"><i class="fa fa-check"></i>Portland</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#medford"><i class="fa fa-check"></i>Medford</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-1"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-1"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-1"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-1"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#seattle"><i class="fa fa-check"></i>Seattle</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-2"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-2"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-2"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-2"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#spokane"><i class="fa fa-check"></i>Spokane</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-3"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-3"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-3"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-3"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#missoula"><i class="fa fa-check"></i>Missoula</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-4"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-4"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-4"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-4"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#boise"><i class="fa fa-check"></i>Boise</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-5"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-5"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-5"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-5"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#kirkwood"><i class="fa fa-check"></i>Kirkwood</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-6"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-6"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-6"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-6"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#sf"><i class="fa fa-check"></i>SF</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-7"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-7"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-7"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-7"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#chico"><i class="fa fa-check"></i>Chico</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-8"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-8"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-8"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-8"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#santarosa"><i class="fa fa-check"></i>SantaRosa</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-9"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-9"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-9"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-9"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#la"><i class="fa fa-check"></i>LA</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-10"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-10"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-10"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-10"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#sacramento"><i class="fa fa-check"></i>Sacramento</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-11"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-11"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-11"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-11"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#slc"><i class="fa fa-check"></i>SLC</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-12"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-12"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-12"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-12"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ClimateCheck: Wildfire Validation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">ClimateCheck: Wildfire Validation</h1>
+<p class="author"><em>Prepared by: Maximilian Stiefel</em></p>
+<p class="date"><em>2021-11-19</em></p>
+</div>
+<style>
+  
+  .book .book-body .page-wrapper .page-inner {
+    max-width: 1400px;
+    margin-left: 100px;  
+    margin-right: 100px;  
+  }
+  .book .book-summary {
+    width: 300px;
+    position:absolute;
+    top:0;
+    left:-300px;
+  }
+  .book.with-summary .book-header.fixed {
+      left: 300px;
+  }
+  .book.with-summary .book-body {
+      left: 300px;
+  }
+  .book .book-body .page-wrapper .page-inner section.normal table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+  .book caption {
+      font-size: 20px;
+  }
+  .book p.caption {
+      font-size: 20px;
+  }
+  .book p {
+      line-height: 2;
+  }
+
+</style>
+<!-- # Risk Rating {-} -->
+<!-- ## Relative change {-} -->
+<!-- ## Normalized relative change {-} -->
+<!-- ## Weighted average {-} -->
+<!-- ## Risk rating {-} -->
+<div id="trends-over-time" class="section level1 unnumbered">
+<h1>Trends over time</h1>
+<div id="mc2-proportion-burned" class="section level2 unnumbered">
+<h2>mc2 proportion burned</h2>
+<p><img src="fwiValidate_files/figure-html/graphs-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-rcp45counts" class="section level2 unnumbered">
+<h2>fwi rcp45counts</h2>
+<p><img src="fwiValidate_files/figure-html/graphs-2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-rcp45magnitude" class="section level2 unnumbered">
+<h2>fwi rcp45magnitude</h2>
+<p><img src="fwiValidate_files/figure-html/graphs-3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-rcp85counts" class="section level2 unnumbered">
+<h2>fwi rcp85counts</h2>
+<p><img src="fwiValidate_files/figure-html/graphs-4.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-rcp85magnitude" class="section level2 unnumbered">
+<h2>fwi rcp85magnitude</h2>
+<p><img src="fwiValidate_files/figure-html/graphs-5.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="spatial-distributions" class="section level1 unnumbered">
+<h1>Spatial distributions</h1>
+<div id="mc2-proportion-burned-1" class="section level2 unnumbered">
+<h2>mc2 proportion burned</h2>
+<p><img src="fwiValidate_files/figure-html/maps-mc2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mc2-rating" class="section level2 unnumbered">
+<h2>mc2 rating</h2>
+<p><img src="fwiValidate_files/figure-html/maps-mc2-2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-counts" class="section level2 unnumbered">
+<h2>fwi counts</h2>
+<p><img src="fwiValidate_files/figure-html/maps-mc2-3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-magnitudes" class="section level2 unnumbered">
+<h2>fwi magnitudes</h2>
+<p><img src="fwiValidate_files/figure-html/maps-mc2-4.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-rating" class="section level2 unnumbered">
+<h2>fwi rating</h2>
+<p><img src="fwiValidate_files/figure-html/maps-mc2-5.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="observed-and-modeled" class="section level2 unnumbered">
+<h2>Observed and Modeled</h2>
+<div id="jan" class="section level3 unnumbered">
+<h3>Jan</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="feb" class="section level3 unnumbered">
+<h3>Feb</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mar" class="section level3 unnumbered">
+<h3>Mar</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="apr" class="section level3 unnumbered">
+<h3>Apr</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-4.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="may" class="section level3 unnumbered">
+<h3>May</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-5.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="jun" class="section level3 unnumbered">
+<h3>Jun</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-6.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="jul" class="section level3 unnumbered">
+<h3>Jul</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-7.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="aug" class="section level3 unnumbered">
+<h3>Aug</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-8.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sep" class="section level3 unnumbered">
+<h3>Sep</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-9.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="oct" class="section level3 unnumbered">
+<h3>Oct</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-10.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nov" class="section level3 unnumbered">
+<h3>Nov</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-11.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="dec" class="section level3 unnumbered">
+<h3>Dec</h3>
+<p><img src="fwiValidate_files/figure-html/maps-observed-12.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="fire-perimeters" class="section level1 unnumbered">
+<h1>Fire Perimeters</h1>
+<div id="portland" class="section level2 unnumbered">
+<h2>Portland</h2>
+<p><img src="fwiValidate_files/figure-html/cities-1.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-2.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-3.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.4856273</p>
+</div>
+<div id="false-discovery-rate" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.7145929</p>
+</div>
+<div id="critical-success-index" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.219156</p>
+</div>
+<div id="error-bias" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>2.363846</p>
+</div>
+</div>
+<div id="medford" class="section level2 unnumbered">
+<h2>Medford</h2>
+<p><img src="fwiValidate_files/figure-html/cities-5.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-6.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-7.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-8.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-1" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.6394484</p>
+</div>
+<div id="false-discovery-rate-1" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.6889289</p>
+</div>
+<div id="critical-success-index-1" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.264652</p>
+</div>
+<div id="error-bias-1" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>3.927833</p>
+</div>
+</div>
+<div id="seattle" class="section level2 unnumbered">
+<h2>Seattle</h2>
+<p><img src="fwiValidate_files/figure-html/cities-9.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-10.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-11.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-12.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-2" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5295766</p>
+</div>
+<div id="false-discovery-rate-2" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.6676122</p>
+</div>
+<div id="critical-success-index-2" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.2566185</p>
+</div>
+<div id="error-bias-2" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>2.261096</p>
+</div>
+</div>
+<div id="spokane" class="section level2 unnumbered">
+<h2>Spokane</h2>
+<p><img src="fwiValidate_files/figure-html/cities-13.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-14.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-15.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-16.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-3" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5083637</p>
+</div>
+<div id="false-discovery-rate-3" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.7969934</p>
+</div>
+<div id="critical-success-index-3" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1696916</p>
+</div>
+<div id="error-bias-3" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>4.059524</p>
+</div>
+</div>
+<div id="missoula" class="section level2 unnumbered">
+<h2>Missoula</h2>
+<p><img src="fwiValidate_files/figure-html/cities-17.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-18.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-19.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-20.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-4" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.7348149</p>
+</div>
+<div id="false-discovery-rate-4" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.8139587</p>
+</div>
+<div id="critical-success-index-4" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1743364</p>
+</div>
+<div id="error-bias-4" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>12.12333</p>
+</div>
+</div>
+<div id="boise" class="section level2 unnumbered">
+<h2>Boise</h2>
+<p><img src="fwiValidate_files/figure-html/cities-21.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-22.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-23.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-24.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-5" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.9153288</p>
+</div>
+<div id="false-discovery-rate-5" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.4920093</p>
+</div>
+<div id="critical-success-index-5" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.4851911</p>
+</div>
+<div id="error-bias-5" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>10.4703</p>
+</div>
+</div>
+<div id="kirkwood" class="section level2 unnumbered">
+<h2>Kirkwood</h2>
+<p><img src="fwiValidate_files/figure-html/cities-25.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-26.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-27.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-28.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-6" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.6378673</p>
+</div>
+<div id="false-discovery-rate-6" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.7015373</p>
+</div>
+<div id="critical-success-index-6" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.2552175</p>
+</div>
+<div id="error-bias-6" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>4.14022</p>
+</div>
+</div>
+<div id="sf" class="section level2 unnumbered">
+<h2>SF</h2>
+<p><img src="fwiValidate_files/figure-html/cities-29.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-30.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-31.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-32.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-7" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.533322</p>
+</div>
+<div id="false-discovery-rate-7" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.634921</p>
+</div>
+<div id="critical-success-index-7" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.2766885</p>
+</div>
+<div id="error-bias-7" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>1.98749</p>
+</div>
+</div>
+<div id="chico" class="section level2 unnumbered">
+<h2>Chico</h2>
+<p><img src="fwiValidate_files/figure-html/cities-33.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-34.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-35.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-36.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-8" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.8560169</p>
+</div>
+<div id="false-discovery-rate-8" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.6772626</p>
+</div>
+<div id="critical-success-index-8" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.3061197</p>
+</div>
+<div id="error-bias-8" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>12.4761</p>
+</div>
+</div>
+<div id="santarosa" class="section level2 unnumbered">
+<h2>SantaRosa</h2>
+<p><img src="fwiValidate_files/figure-html/cities-37.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-38.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-39.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-40.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-9" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.7469474</p>
+</div>
+<div id="false-discovery-rate-9" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.5336545</p>
+</div>
+<div id="critical-success-index-9" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.40272</p>
+</div>
+<div id="error-bias-9" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>3.377781</p>
+</div>
+</div>
+<div id="la" class="section level2 unnumbered">
+<h2>LA</h2>
+<p><img src="fwiValidate_files/figure-html/cities-41.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-42.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-43.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-44.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-10" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.6183267</p>
+</div>
+<div id="false-discovery-rate-10" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.4270327</p>
+</div>
+<div id="critical-success-index-10" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.4232682</p>
+</div>
+<div id="error-bias-10" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>1.207418</p>
+</div>
+</div>
+<div id="sacramento" class="section level2 unnumbered">
+<h2>Sacramento</h2>
+<p><img src="fwiValidate_files/figure-html/cities-45.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-46.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-47.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-48.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-11" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5436143</p>
+</div>
+<div id="false-discovery-rate-11" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.7679187</p>
+</div>
+<div id="critical-success-index-11" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.194236</p>
+</div>
+<div id="error-bias-11" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>3.94125</p>
+</div>
+</div>
+<div id="slc" class="section level2 unnumbered">
+<h2>SLC</h2>
+<p><img src="fwiValidate_files/figure-html/cities-49.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-50.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-51.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-52.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="hit-rate-12" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5336976</p>
+</div>
+<div id="false-discovery-rate-12" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.8104445</p>
+</div>
+<div id="critical-success-index-12" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1626223</p>
+</div>
+<div id="error-bias-12" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>4.893441</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>
