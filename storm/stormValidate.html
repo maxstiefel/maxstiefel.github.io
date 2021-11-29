@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>ClimateCheck storm validation</title>
-  <meta name="description" content="ClimateCheck storm validation" />
+  <title>STORM VALIDATION</title>
+  <meta name="description" content="STORM VALIDATION" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="ClimateCheck storm validation" />
+  <meta property="og:title" content="STORM VALIDATION" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ClimateCheck storm validation" />
+  <meta name="twitter:title" content="STORM VALIDATION" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Prepared by: Maximilian Stiefel" />
 
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-11-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,555 +59,6 @@
 <script src="libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
 <script src="libs/sparkline-binding-2.0/sparkline.js"></script>
 
-<script>
-/* ========================================================================
- * Bootstrap: transition.js v3.3.7
- * http://getbootstrap.com/javascript/#transitions
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
-  // ============================================================
-
-  function transitionEnd() {
-    var el = document.createElement('bootstrap')
-
-    var transEndEventNames = {
-      WebkitTransition : 'webkitTransitionEnd',
-      MozTransition    : 'transitionend',
-      OTransition      : 'oTransitionEnd otransitionend',
-      transition       : 'transitionend'
-    }
-
-    for (var name in transEndEventNames) {
-      if (el.style[name] !== undefined) {
-        return { end: transEndEventNames[name] }
-      }
-    }
-
-    return false // explicit for ie8 (  ._.)
-  }
-
-  // http://blog.alexmaccaw.com/css-transitions
-  $.fn.emulateTransitionEnd = function (duration) {
-    var called = false
-    var $el = this
-    $(this).one('bsTransitionEnd', function () { called = true })
-    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
-    setTimeout(callback, duration)
-    return this
-  }
-
-  $(function () {
-    $.support.transition = transitionEnd()
-
-    if (!$.support.transition) return
-
-    $.event.special.bsTransitionEnd = {
-      bindType: $.support.transition.end,
-      delegateType: $.support.transition.end,
-      handle: function (e) {
-        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
-      }
-    }
-  })
-
-}(jQuery);
-</script>
-<script>
-/* ========================================================================
- * Bootstrap: collapse.js v3.3.7
- * http://getbootstrap.com/javascript/#collapse
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-/* jshint latedef: false */
-
-+function ($) {
-  'use strict';
-
-  // COLLAPSE PUBLIC CLASS DEFINITION
-  // ================================
-
-  var Collapse = function (element, options) {
-    this.$element      = $(element)
-    this.options       = $.extend({}, Collapse.DEFAULTS, options)
-    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
-                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
-    this.transitioning = null
-
-    if (this.options.parent) {
-      this.$parent = this.getParent()
-    } else {
-      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
-    }
-
-    if (this.options.toggle) this.toggle()
-  }
-
-  Collapse.VERSION  = '3.3.7'
-
-  Collapse.TRANSITION_DURATION = 350
-
-  Collapse.DEFAULTS = {
-    toggle: true
-  }
-
-  Collapse.prototype.dimension = function () {
-    var hasWidth = this.$element.hasClass('width')
-    return hasWidth ? 'width' : 'height'
-  }
-
-  Collapse.prototype.show = function () {
-    if (this.transitioning || this.$element.hasClass('in')) return
-
-    var activesData
-    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
-
-    if (actives && actives.length) {
-      activesData = actives.data('bs.collapse')
-      if (activesData && activesData.transitioning) return
-    }
-
-    var startEvent = $.Event('show.bs.collapse')
-    this.$element.trigger(startEvent)
-    if (startEvent.isDefaultPrevented()) return
-
-    if (actives && actives.length) {
-      Plugin.call(actives, 'hide')
-      activesData || actives.data('bs.collapse', null)
-    }
-
-    var dimension = this.dimension()
-
-    this.$element
-      .removeClass('collapse')
-      .addClass('collapsing')[dimension](0)
-      .attr('aria-expanded', true)
-
-    this.$trigger
-      .removeClass('collapsed')
-      .attr('aria-expanded', true)
-
-    this.transitioning = 1
-
-    var complete = function () {
-      this.$element
-        .removeClass('collapsing')
-        .addClass('collapse in')[dimension]('')
-      this.transitioning = 0
-      this.$element
-        .trigger('shown.bs.collapse')
-    }
-
-    if (!$.support.transition) return complete.call(this)
-
-    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
-
-    this.$element
-      .one('bsTransitionEnd', $.proxy(complete, this))
-      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
-  }
-
-  Collapse.prototype.hide = function () {
-    if (this.transitioning || !this.$element.hasClass('in')) return
-
-    var startEvent = $.Event('hide.bs.collapse')
-    this.$element.trigger(startEvent)
-    if (startEvent.isDefaultPrevented()) return
-
-    var dimension = this.dimension()
-
-    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
-
-    this.$element
-      .addClass('collapsing')
-      .removeClass('collapse in')
-      .attr('aria-expanded', false)
-
-    this.$trigger
-      .addClass('collapsed')
-      .attr('aria-expanded', false)
-
-    this.transitioning = 1
-
-    var complete = function () {
-      this.transitioning = 0
-      this.$element
-        .removeClass('collapsing')
-        .addClass('collapse')
-        .trigger('hidden.bs.collapse')
-    }
-
-    if (!$.support.transition) return complete.call(this)
-
-    this.$element
-      [dimension](0)
-      .one('bsTransitionEnd', $.proxy(complete, this))
-      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
-  }
-
-  Collapse.prototype.toggle = function () {
-    this[this.$element.hasClass('in') ? 'hide' : 'show']()
-  }
-
-  Collapse.prototype.getParent = function () {
-    return $(this.options.parent)
-      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
-      .each($.proxy(function (i, element) {
-        var $element = $(element)
-        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
-      }, this))
-      .end()
-  }
-
-  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
-    var isOpen = $element.hasClass('in')
-
-    $element.attr('aria-expanded', isOpen)
-    $trigger
-      .toggleClass('collapsed', !isOpen)
-      .attr('aria-expanded', isOpen)
-  }
-
-  function getTargetFromTrigger($trigger) {
-    var href
-    var target = $trigger.attr('data-target')
-      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
-
-    return $(target)
-  }
-
-
-  // COLLAPSE PLUGIN DEFINITION
-  // ==========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.collapse')
-      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
-
-      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
-      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  var old = $.fn.collapse
-
-  $.fn.collapse             = Plugin
-  $.fn.collapse.Constructor = Collapse
-
-
-  // COLLAPSE NO CONFLICT
-  // ====================
-
-  $.fn.collapse.noConflict = function () {
-    $.fn.collapse = old
-    return this
-  }
-
-
-  // COLLAPSE DATA-API
-  // =================
-
-  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
-    var $this   = $(this)
-
-    if (!$this.attr('data-target')) e.preventDefault()
-
-    var $target = getTargetFromTrigger($this)
-    var data    = $target.data('bs.collapse')
-    var option  = data ? 'toggle' : $this.data()
-
-    Plugin.call($target, option)
-  })
-
-}(jQuery);
-</script>
-<script>
-window.initializeCodeFolding = function(show) {
-
-  // handlers for show-all and hide all
-  $("#rmd-show-all-code").click(function() {
-    $('div.r-code-collapse').each(function() {
-      $(this).collapse('show');
-    });
-  });
-  $("#rmd-hide-all-code").click(function() {
-    $('div.r-code-collapse').each(function() {
-      $(this).collapse('hide');
-    });
-  });
-
-  // index for unique code element ids
-  var currentIndex = 1;
-
-  // select all R code blocks
-  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
-  rCodeBlocks.each(function() {
-
-    // create a collapsable div to wrap the code in
-    var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show)
-      div.addClass('in');
-    var id = 'rcode-643E0F36' + currentIndex++;
-    div.attr('id', id);
-    $(this).before(div);
-    $(this).detach().appendTo(div);
-
-    // add a show code button right above
-    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
-    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
-    showCodeButton.append(showCodeText);
-    showCodeButton
-        .attr('data-toggle', 'collapse')
-        .attr('data-target', '#' + id)
-        .attr('aria-expanded', show)
-        .attr('aria-controls', id);
-
-    var buttonRow = $('<div class="row"></div>');
-    var buttonCol = $('<div class="col-md-12"></div>');
-
-    buttonCol.append(showCodeButton);
-    buttonRow.append(buttonCol);
-
-    div.before(buttonRow);
-
-    // update state of button on show/hide
-    div.on('hidden.bs.collapse', function () {
-      showCodeText.text('Code');
-    });
-    div.on('show.bs.collapse', function () {
-      showCodeText.text('Hide');
-    });
-  });
-
-}
-</script>
-<script>
-/* ========================================================================
- * Bootstrap: dropdown.js v3.3.7
- * http://getbootstrap.com/javascript/#dropdowns
- * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // DROPDOWN CLASS DEFINITION
-  // =========================
-
-  var backdrop = '.dropdown-backdrop'
-  var toggle   = '[data-toggle="dropdown"]'
-  var Dropdown = function (element) {
-    $(element).on('click.bs.dropdown', this.toggle)
-  }
-
-  Dropdown.VERSION = '3.3.7'
-
-  function getParent($this) {
-    var selector = $this.attr('data-target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-    }
-
-    var $parent = selector && $(selector)
-
-    return $parent && $parent.length ? $parent : $this.parent()
-  }
-
-  function clearMenus(e) {
-    if (e && e.which === 3) return
-    $(backdrop).remove()
-    $(toggle).each(function () {
-      var $this         = $(this)
-      var $parent       = getParent($this)
-      var relatedTarget = { relatedTarget: this }
-
-      if (!$parent.hasClass('open')) return
-
-      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
-
-      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this.attr('aria-expanded', 'false')
-      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
-    })
-  }
-
-  Dropdown.prototype.toggle = function (e) {
-    var $this = $(this)
-
-    if ($this.is('.disabled, :disabled')) return
-
-    var $parent  = getParent($this)
-    var isActive = $parent.hasClass('open')
-
-    clearMenus()
-
-    if (!isActive) {
-      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
-        // if mobile we use a backdrop because click events don't delegate
-        $(document.createElement('div'))
-          .addClass('dropdown-backdrop')
-          .insertAfter($(this))
-          .on('click', clearMenus)
-      }
-
-      var relatedTarget = { relatedTarget: this }
-      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this
-        .trigger('focus')
-        .attr('aria-expanded', 'true')
-
-      $parent
-        .toggleClass('open')
-        .trigger($.Event('shown.bs.dropdown', relatedTarget))
-    }
-
-    return false
-  }
-
-  Dropdown.prototype.keydown = function (e) {
-    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
-
-    var $this = $(this)
-
-    e.preventDefault()
-    e.stopPropagation()
-
-    if ($this.is('.disabled, :disabled')) return
-
-    var $parent  = getParent($this)
-    var isActive = $parent.hasClass('open')
-
-    if (!isActive && e.which != 27 || isActive && e.which == 27) {
-      if (e.which == 27) $parent.find(toggle).trigger('focus')
-      return $this.trigger('click')
-    }
-
-    var desc = ' li:not(.disabled):visible a'
-    var $items = $parent.find('.dropdown-menu' + desc)
-
-    if (!$items.length) return
-
-    var index = $items.index(e.target)
-
-    if (e.which == 38 && index > 0)                 index--         // up
-    if (e.which == 40 && index < $items.length - 1) index++         // down
-    if (!~index)                                    index = 0
-
-    $items.eq(index).trigger('focus')
-  }
-
-
-  // DROPDOWN PLUGIN DEFINITION
-  // ==========================
-
-  function Plugin(option) {
-    return this.each(function () {
-      var $this = $(this)
-      var data  = $this.data('bs.dropdown')
-
-      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
-      if (typeof option == 'string') data[option].call($this)
-    })
-  }
-
-  var old = $.fn.dropdown
-
-  $.fn.dropdown             = Plugin
-  $.fn.dropdown.Constructor = Dropdown
-
-
-  // DROPDOWN NO CONFLICT
-  // ====================
-
-  $.fn.dropdown.noConflict = function () {
-    $.fn.dropdown = old
-    return this
-  }
-
-
-  // APPLY TO STANDARD DROPDOWN ELEMENTS
-  // ===================================
-
-  $(document)
-    .on('click.bs.dropdown.data-api', clearMenus)
-    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
-    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
-    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
-
-}(jQuery);
-</script>
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-.row { display: flex; }
-.collapse { display: none; }
-.in { display:block }
-.pull-right > .dropdown-menu {
-    right: 0;
-    left: auto;
-}
-.open > .dropdown-menu {
-    display: block;
-}
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
-}
-</style>
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
-
-
-<script>
-document.write('<div class="btn-group pull-right" style="position: absolute; top: 20%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
-</script>
-
-
 
 
 
@@ -623,6 +74,7 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
       <nav role="navigation">
 
 <ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#risk-rating"><i class="fa fa-check"></i>Risk Rating</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over time</a>
 <ul>
 <li class="chapter" data-level="" data-path=""><a href="#old-counts"><i class="fa fa-check"></i>old counts</a></li>
@@ -645,20 +97,14 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 <li class="chapter" data-level="" data-path=""><a href="#rcp85average1d"><i class="fa fa-check"></i>rcp85average1d</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#rcp85average2d"><i class="fa fa-check"></i>rcp85average2d</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#rcp85annual"><i class="fa fa-check"></i>rcp85annual</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85counts2dscore"><i class="fa fa-check"></i>rcp85counts2dScore</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85average2dscore"><i class="fa fa-check"></i>rcp85average2dScore</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85score"><i class="fa fa-check"></i>rcp85score</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path=""><a href="#spatial-distributions"><i class="fa fa-check"></i>Spatial distributions</a>
 <ul>
 <li class="chapter" data-level="" data-path=""><a href="#old-counts-1"><i class="fa fa-check"></i>old counts</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#old-totals-1"><i class="fa fa-check"></i>old totals</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45magnitude1d-1"><i class="fa fa-check"></i>rcp45magnitude1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45magnitude2d-1"><i class="fa fa-check"></i>rcp45magnitude2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45counts1d-1"><i class="fa fa-check"></i>rcp45counts1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45counts2d-1"><i class="fa fa-check"></i>rcp45counts2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45totals1d-1"><i class="fa fa-check"></i>rcp45totals1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45totals2d-1"><i class="fa fa-check"></i>rcp45totals2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45average1d-1"><i class="fa fa-check"></i>rcp45average1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45average2d-1"><i class="fa fa-check"></i>rcp45average2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45annual-1"><i class="fa fa-check"></i>rcp45annual</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#rcp85magnitude1d-1"><i class="fa fa-check"></i>rcp85magnitude1d</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#rcp85magnitude2d-1"><i class="fa fa-check"></i>rcp85magnitude2d</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#rcp85counts1d-1"><i class="fa fa-check"></i>rcp85counts1d</a></li>
@@ -668,12 +114,15 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 <li class="chapter" data-level="" data-path=""><a href="#rcp85average1d-1"><i class="fa fa-check"></i>rcp85average1d</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#rcp85average2d-1"><i class="fa fa-check"></i>rcp85average2d</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#rcp85annual-1"><i class="fa fa-check"></i>rcp85annual</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#observed-and-modeled"><i class="fa fa-check"></i>Observed and Modeled</a>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85average2dscore-1"><i class="fa fa-check"></i>rcp85average2dScore</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85counts2dscore-1"><i class="fa fa-check"></i>rcp85counts2dScore</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#observed-to-modeled"><i class="fa fa-check"></i>Observed to modeled</a>
 <ul>
 <li class="chapter" data-level="" data-path=""><a href="#annual"><i class="fa fa-check"></i>annual</a></li>
 </ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path=""><a href="#statistics-by-city"><i class="fa fa-check"></i>Statistics by city</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#final-checks"><i class="fa fa-check"></i>Final Checks</a></li>
 </ul>
 
       </nav>
@@ -683,7 +132,7 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ClimateCheck storm validation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STORM VALIDATION</a>
           </h1>
         </div>
 
@@ -692,9 +141,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">ClimateCheck storm validation</h1>
+<h1 class="title">STORM VALIDATION</h1>
 <p class="author"><em>Prepared by: Maximilian Stiefel</em></p>
-<p class="date"><em>2021-11-19</em></p>
+<p class="date"><em>2021-11-29</em></p>
 </div>
 <style>
   
@@ -702,10 +151,6 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
     max-width: 1400px;
     margin-left: 100px;  
     margin-right: 100px;  
-  }
-  .book .book-body .page-wrapper .page-inner section.normal img {
-    width: 1200px;
-    height: auto; 
   }
   .book .book-summary {
     width: 300px;
@@ -724,186 +169,212 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
       overflow-x: auto;
       white-space: nowrap;
   }
-  
+  .book caption {
+      font-size: 20px;
+  }
+  .book p.caption {
+      font-size: 20px;
+  }
+  .book p {
+      line-height: 2;
+  }
+
 </style>
+<!-- .book .book-body .page-wrapper .page-inner section.normal img { -->
+<!--   width: 1200px; -->
+<!--   height: auto;  -->
+<!-- } -->
+<!-- .book .book-body .page-wrapper .page-inner { -->
+<!--   max-width: 1400px; -->
+<!--   margin-left: 100px;   -->
+<!--   margin-right: 100px;   -->
+<!-- } -->
+<!-- .book .book-body .page-wrapper .page-inner section.normal img { -->
+<!--   width: 1200px; -->
+<!--   height: auto;  -->
+<!-- } -->
+<!-- .book .book-summary { -->
+<!--   width: 300px; -->
+<!--   position:absolute; -->
+<!--   top:0; -->
+<!--   left:-300px; -->
+<!-- } -->
+<!-- .book.with-summary .book-header.fixed { -->
+<!--     left: 300px; -->
+<!-- } -->
+<!-- .book.with-summary .book-body { -->
+<!--     left: 300px; -->
+<!-- } -->
+<!-- .book .book-body .page-wrapper .page-inner section.normal table { -->
+<!--     display: block; -->
+<!--     overflow-x: auto; -->
+<!--     white-space: nowrap; -->
+<!-- } -->
 <!-- NEW SECTION $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
-<!-- # ClimateCheck Risk Rating {-} -->
+<div id="risk-rating" class="section level1 unnumbered" number="">
+<h1>Risk Rating</h1>
 <!-- ## Relative change {-} -->
 <!-- ## Norm. relative change {-} -->
 <!-- ## Weighted average {-} -->
 <!-- ## Risk rating {-} -->
+<p><img src="stormValidate_files/figure-html/risk-rating-1.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-2.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-3.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-4.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-5.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-6.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="trends-over-time" class="section level1 unnumbered" number="">
 <h1>Trends over time</h1>
-<div id="old-counts" class="section level2 unnumbered" number="">
-<h2>old counts</h2>
-<p><img src="stormValidate_files/figure-html/graphs-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="old-counts" class="section level3 unnumbered" number="">
+<h3>old counts</h3>
+<p><img src="stormValidate_files/figure-html/graphs-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="old-totals" class="section level2 unnumbered" number="">
-<h2>old totals</h2>
-<p><img src="stormValidate_files/figure-html/graphs-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="old-totals" class="section level3 unnumbered" number="">
+<h3>old totals</h3>
+<p><img src="stormValidate_files/figure-html/graphs-2.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45magnitude1d" class="section level2 unnumbered" number="">
-<h2>rcp45magnitude1d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45magnitude1d" class="section level3 unnumbered" number="">
+<h3>rcp45magnitude1d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-3.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45magnitude2d" class="section level2 unnumbered" number="">
-<h2>rcp45magnitude2d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45magnitude2d" class="section level3 unnumbered" number="">
+<h3>rcp45magnitude2d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-4.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45counts1d" class="section level2 unnumbered" number="">
-<h2>rcp45counts1d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-5.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45counts1d" class="section level3 unnumbered" number="">
+<h3>rcp45counts1d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-5.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45counts2d" class="section level2 unnumbered" number="">
-<h2>rcp45counts2d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-6.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45counts2d" class="section level3 unnumbered" number="">
+<h3>rcp45counts2d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-6.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45totals1d" class="section level2 unnumbered" number="">
-<h2>rcp45totals1d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-7.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45totals1d" class="section level3 unnumbered" number="">
+<h3>rcp45totals1d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-7.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45totals2d" class="section level2 unnumbered" number="">
-<h2>rcp45totals2d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-8.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45totals2d" class="section level3 unnumbered" number="">
+<h3>rcp45totals2d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-8.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45average1d" class="section level2 unnumbered" number="">
-<h2>rcp45average1d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-9.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45average1d" class="section level3 unnumbered" number="">
+<h3>rcp45average1d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-9.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45average2d" class="section level2 unnumbered" number="">
-<h2>rcp45average2d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-10.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45average2d" class="section level3 unnumbered" number="">
+<h3>rcp45average2d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-10.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45annual" class="section level2 unnumbered" number="">
-<h2>rcp45annual</h2>
-<p><img src="stormValidate_files/figure-html/graphs-11.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp45annual" class="section level3 unnumbered" number="">
+<h3>rcp45annual</h3>
+<p><img src="stormValidate_files/figure-html/graphs-11.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85magnitude1d" class="section level2 unnumbered" number="">
-<h2>rcp85magnitude1d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-12.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85magnitude1d" class="section level3 unnumbered" number="">
+<h3>rcp85magnitude1d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-12.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85magnitude2d" class="section level2 unnumbered" number="">
-<h2>rcp85magnitude2d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-13.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85magnitude2d" class="section level3 unnumbered" number="">
+<h3>rcp85magnitude2d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-13.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85counts1d" class="section level2 unnumbered" number="">
-<h2>rcp85counts1d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-14.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85counts1d" class="section level3 unnumbered" number="">
+<h3>rcp85counts1d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-14.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85counts2d" class="section level2 unnumbered" number="">
-<h2>rcp85counts2d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-15.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85counts2d" class="section level3 unnumbered" number="">
+<h3>rcp85counts2d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-15.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85totals1d" class="section level2 unnumbered" number="">
-<h2>rcp85totals1d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-16.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85totals1d" class="section level3 unnumbered" number="">
+<h3>rcp85totals1d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-16.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85totals2d" class="section level2 unnumbered" number="">
-<h2>rcp85totals2d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-17.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85totals2d" class="section level3 unnumbered" number="">
+<h3>rcp85totals2d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-17.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85average1d" class="section level2 unnumbered" number="">
-<h2>rcp85average1d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-18.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85average1d" class="section level3 unnumbered" number="">
+<h3>rcp85average1d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-18.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85average2d" class="section level2 unnumbered" number="">
-<h2>rcp85average2d</h2>
-<p><img src="stormValidate_files/figure-html/graphs-19.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85average2d" class="section level3 unnumbered" number="">
+<h3>rcp85average2d</h3>
+<p><img src="stormValidate_files/figure-html/graphs-19.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85annual" class="section level2 unnumbered" number="">
-<h2>rcp85annual</h2>
-<p><img src="stormValidate_files/figure-html/graphs-20.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85annual" class="section level3 unnumbered" number="">
+<h3>rcp85annual</h3>
+<p><img src="stormValidate_files/figure-html/graphs-20.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rcp85counts2dscore" class="section level3 unnumbered" number="">
+<h3>rcp85counts2dScore</h3>
+<p><img src="stormValidate_files/figure-html/graphs-21.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rcp85average2dscore" class="section level3 unnumbered" number="">
+<h3>rcp85average2dScore</h3>
+<p><img src="stormValidate_files/figure-html/graphs-22.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rcp85score" class="section level3 unnumbered" number="">
+<h3>rcp85score</h3>
+<p><img src="stormValidate_files/figure-html/graphs-23.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="spatial-distributions" class="section level1 unnumbered" number="">
 <h1>Spatial distributions</h1>
-<div id="old-counts-1" class="section level2 unnumbered" number="">
-<h2>old counts</h2>
-<p><img src="stormValidate_files/figure-html/maps-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="old-counts-1" class="section level3 unnumbered" number="">
+<h3>old counts</h3>
+<p><img src="stormValidate_files/figure-html/maps-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="old-totals-1" class="section level2 unnumbered" number="">
-<h2>old totals</h2>
-<p><img src="stormValidate_files/figure-html/maps-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="old-totals-1" class="section level3 unnumbered" number="">
+<h3>old totals</h3>
+<p><img src="stormValidate_files/figure-html/maps-2.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45magnitude1d-1" class="section level2 unnumbered" number="">
-<h2>rcp45magnitude1d</h2>
-<p><img src="stormValidate_files/figure-html/maps-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85magnitude1d-1" class="section level3 unnumbered" number="">
+<h3>rcp85magnitude1d</h3>
+<p><img src="stormValidate_files/figure-html/maps-3.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45magnitude2d-1" class="section level2 unnumbered" number="">
-<h2>rcp45magnitude2d</h2>
-<p><img src="stormValidate_files/figure-html/maps-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85magnitude2d-1" class="section level3 unnumbered" number="">
+<h3>rcp85magnitude2d</h3>
+<p><img src="stormValidate_files/figure-html/maps-4.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45counts1d-1" class="section level2 unnumbered" number="">
-<h2>rcp45counts1d</h2>
-<p><img src="stormValidate_files/figure-html/maps-5.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85counts1d-1" class="section level3 unnumbered" number="">
+<h3>rcp85counts1d</h3>
+<p><img src="stormValidate_files/figure-html/maps-5.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45counts2d-1" class="section level2 unnumbered" number="">
-<h2>rcp45counts2d</h2>
-<p><img src="stormValidate_files/figure-html/maps-6.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85counts2d-1" class="section level3 unnumbered" number="">
+<h3>rcp85counts2d</h3>
+<p><img src="stormValidate_files/figure-html/maps-6.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45totals1d-1" class="section level2 unnumbered" number="">
-<h2>rcp45totals1d</h2>
-<p><img src="stormValidate_files/figure-html/maps-7.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85totals1d-1" class="section level3 unnumbered" number="">
+<h3>rcp85totals1d</h3>
+<p><img src="stormValidate_files/figure-html/maps-7.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45totals2d-1" class="section level2 unnumbered" number="">
-<h2>rcp45totals2d</h2>
-<p><img src="stormValidate_files/figure-html/maps-8.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85totals2d-1" class="section level3 unnumbered" number="">
+<h3>rcp85totals2d</h3>
+<p><img src="stormValidate_files/figure-html/maps-8.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45average1d-1" class="section level2 unnumbered" number="">
-<h2>rcp45average1d</h2>
-<p><img src="stormValidate_files/figure-html/maps-9.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85average1d-1" class="section level3 unnumbered" number="">
+<h3>rcp85average1d</h3>
+<p><img src="stormValidate_files/figure-html/maps-9.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45average2d-1" class="section level2 unnumbered" number="">
-<h2>rcp45average2d</h2>
-<p><img src="stormValidate_files/figure-html/maps-10.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85average2d-1" class="section level3 unnumbered" number="">
+<h3>rcp85average2d</h3>
+<p><img src="stormValidate_files/figure-html/maps-10.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp45annual-1" class="section level2 unnumbered" number="">
-<h2>rcp45annual</h2>
-<p><img src="stormValidate_files/figure-html/maps-11.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85annual-1" class="section level3 unnumbered" number="">
+<h3>rcp85annual</h3>
+<p><img src="stormValidate_files/figure-html/maps-11.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85magnitude1d-1" class="section level2 unnumbered" number="">
-<h2>rcp85magnitude1d</h2>
-<p><img src="stormValidate_files/figure-html/maps-12.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85average2dscore-1" class="section level3 unnumbered" number="">
+<h3>rcp85average2dScore</h3>
+<p><img src="stormValidate_files/figure-html/maps-12.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85magnitude2d-1" class="section level2 unnumbered" number="">
-<h2>rcp85magnitude2d</h2>
-<p><img src="stormValidate_files/figure-html/maps-13.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85counts2dscore-1" class="section level3 unnumbered" number="">
+<h3>rcp85counts2dScore</h3>
+<p><img src="stormValidate_files/figure-html/maps-13.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="rcp85counts1d-1" class="section level2 unnumbered" number="">
-<h2>rcp85counts1d</h2>
-<p><img src="stormValidate_files/figure-html/maps-14.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85counts2d-1" class="section level2 unnumbered" number="">
-<h2>rcp85counts2d</h2>
-<p><img src="stormValidate_files/figure-html/maps-15.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85totals1d-1" class="section level2 unnumbered" number="">
-<h2>rcp85totals1d</h2>
-<p><img src="stormValidate_files/figure-html/maps-16.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85totals2d-1" class="section level2 unnumbered" number="">
-<h2>rcp85totals2d</h2>
-<p><img src="stormValidate_files/figure-html/maps-17.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85average1d-1" class="section level2 unnumbered" number="">
-<h2>rcp85average1d</h2>
-<p><img src="stormValidate_files/figure-html/maps-18.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85average2d-1" class="section level2 unnumbered" number="">
-<h2>rcp85average2d</h2>
-<p><img src="stormValidate_files/figure-html/maps-19.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85annual-1" class="section level2 unnumbered" number="">
-<h2>rcp85annual</h2>
-<p><img src="stormValidate_files/figure-html/maps-20.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="observed-and-modeled" class="section level1 unnumbered" number="">
-<h1>Observed and Modeled</h1>
+<div id="observed-to-modeled" class="section level2 unnumbered" number="">
+<h2>Observed to modeled</h2>
 <div id="annual" class="section level3 unnumbered" number="">
 <h3>annual</h3>
-<p><img src="stormValidate_files/figure-html/observed-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="stormValidate_files/figure-html/observed-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 </div>
 <div id="statistics-by-city" class="section level1 unnumbered" number="">
@@ -982,34 +453,34 @@ New York City
 1207.44
 </td>
 <td style="text-align:right;">
-1227.15
+1232.03
 </td>
 <td style="text-align:right;">
-41.45
+41.61
 </td>
 <td style="text-align:right;">
-62.04
+62.38
 </td>
 <td style="text-align:right;">
-4.60
+4.65
 </td>
 <td style="text-align:right;">
-12.94
+13.01
 </td>
 <td style="text-align:right;">
-237.18
+240.23
 </td>
 <td style="text-align:right;">
-748.23
+754.41
 </td>
 <td style="text-align:right;">
-51.52
+51.70
 </td>
 <td style="text-align:right;">
-57.83
+58.00
 </td>
 <td style="text-align:right;">
-66
+68
 </td>
 <td style="text-align:right;">
 21.00
@@ -1038,34 +509,34 @@ Los Angeles
 401.56
 </td>
 <td style="text-align:right;">
-395.18
+398.83
 </td>
 <td style="text-align:right;">
-26.83
+26.98
 </td>
 <td style="text-align:right;">
-49.01
+49.42
 </td>
 <td style="text-align:right;">
-4.08
+4.09
 </td>
 <td style="text-align:right;">
-9.26
+9.30
 </td>
 <td style="text-align:right;">
-182.30
+183.15
 </td>
 <td style="text-align:right;">
-486.89
+489.96
 </td>
 <td style="text-align:right;">
-44.67
+44.81
 </td>
 <td style="text-align:right;">
-52.57
+52.70
 </td>
 <td style="text-align:right;">
-52
+47
 </td>
 <td style="text-align:right;">
 13.00
@@ -1094,34 +565,34 @@ Chicago
 953.96
 </td>
 <td style="text-align:right;">
-959.21
+957.20
 </td>
 <td style="text-align:right;">
-28.72
+28.66
 </td>
 <td style="text-align:right;">
-48.65
+48.54
 </td>
 <td style="text-align:right;">
-4.81
+4.78
 </td>
 <td style="text-align:right;">
-16.18
+16.05
 </td>
 <td style="text-align:right;">
-183.89
+183.46
 </td>
 <td style="text-align:right;">
-668.60
+664.63
 </td>
 <td style="text-align:right;">
-38.26
+38.39
 </td>
 <td style="text-align:right;">
-41.31
+41.41
 </td>
 <td style="text-align:right;">
-62
+76
 </td>
 <td style="text-align:right;">
 21.50
@@ -1150,34 +621,34 @@ Houston
 1305.20
 </td>
 <td style="text-align:right;">
-1139.39
+1142.26
 </td>
 <td style="text-align:right;">
-37.81
+37.73
 </td>
 <td style="text-align:right;">
-63.63
+63.64
 </td>
 <td style="text-align:right;">
 4.38
 </td>
 <td style="text-align:right;">
-13.44
+13.47
 </td>
 <td style="text-align:right;">
-226.39
+225.99
 </td>
 <td style="text-align:right;">
-790.04
+790.47
 </td>
 <td style="text-align:right;">
-51.72
+51.66
 </td>
 <td style="text-align:right;">
-58.80
+58.70
 </td>
 <td style="text-align:right;">
-70
+57
 </td>
 <td style="text-align:right;">
 17.00
@@ -1206,34 +677,34 @@ Philadelphia
 1177.15
 </td>
 <td style="text-align:right;">
-1261.03
+1263.35
 </td>
 <td style="text-align:right;">
-39.23
+39.20
 </td>
 <td style="text-align:right;">
-63.46
+63.71
 </td>
 <td style="text-align:right;">
 5.07
 </td>
 <td style="text-align:right;">
-14.76
+14.79
 </td>
 <td style="text-align:right;">
-258.73
+258.86
 </td>
 <td style="text-align:right;">
-821.28
+823.10
 </td>
 <td style="text-align:right;">
-51.02
+51.04
 </td>
 <td style="text-align:right;">
-55.63
+55.65
 </td>
 <td style="text-align:right;">
-74
+92
 </td>
 <td style="text-align:right;">
 22.50
@@ -1262,34 +733,34 @@ Phoenix
 215.11
 </td>
 <td style="text-align:right;">
-196.43
+196.31
 </td>
 <td style="text-align:right;">
-12.03
+12.00
 </td>
 <td style="text-align:right;">
-20.36
+20.28
 </td>
 <td style="text-align:right;">
 3.91
 </td>
 <td style="text-align:right;">
-8.60
+8.62
 </td>
 <td style="text-align:right;">
-73.91
+73.46
 </td>
 <td style="text-align:right;">
-189.70
+188.90
 </td>
 <td style="text-align:right;">
-18.90
+18.79
 </td>
 <td style="text-align:right;">
-22.05
+21.92
 </td>
 <td style="text-align:right;">
-7
+8
 </td>
 <td style="text-align:right;">
 13.00
@@ -1318,31 +789,31 @@ San Antonio
 790.95
 </td>
 <td style="text-align:right;">
-733.76
+736.05
 </td>
 <td style="text-align:right;">
-27.30
+27.24
 </td>
 <td style="text-align:right;">
-49.61
+49.49
 </td>
 <td style="text-align:right;">
-4.24
+4.18
 </td>
 <td style="text-align:right;">
-13.37
+13.32
 </td>
 <td style="text-align:right;">
-175.07
+172.90
 </td>
 <td style="text-align:right;">
-612.10
+609.63
 </td>
 <td style="text-align:right;">
-41.27
+41.32
 </td>
 <td style="text-align:right;">
-45.78
+45.77
 </td>
 <td style="text-align:right;">
 53
@@ -1374,31 +845,31 @@ San Diego
 258.70
 </td>
 <td style="text-align:right;">
-237.10
+238.97
 </td>
 <td style="text-align:right;">
 16.53
 </td>
 <td style="text-align:right;">
-28.44
+28.42
 </td>
 <td style="text-align:right;">
-3.91
+3.93
 </td>
 <td style="text-align:right;">
-8.90
+8.98
 </td>
 <td style="text-align:right;">
-101.83
+102.12
 </td>
 <td style="text-align:right;">
-269.76
+271.15
 </td>
 <td style="text-align:right;">
-26.02
+25.96
 </td>
 <td style="text-align:right;">
-30.30
+30.18
 </td>
 <td style="text-align:right;">
 24
@@ -1430,34 +901,34 @@ Dallas
 973.37
 </td>
 <td style="text-align:right;">
-894.27
+896.06
 </td>
 <td style="text-align:right;">
-32.69
+32.75
 </td>
 <td style="text-align:right;">
-56.06
+56.17
 </td>
 <td style="text-align:right;">
-4.39
+4.42
 </td>
 <td style="text-align:right;">
-14.06
+14.13
 </td>
 <td style="text-align:right;">
-191.87
+192.71
 </td>
 <td style="text-align:right;">
-699.02
+701.74
 </td>
 <td style="text-align:right;">
-43.67
+43.64
 </td>
 <td style="text-align:right;">
-49.70
+49.67
 </td>
 <td style="text-align:right;">
-61
+53
 </td>
 <td style="text-align:right;">
 17.00
@@ -1486,34 +957,34 @@ San Jose
 394.17
 </td>
 <td style="text-align:right;">
-363.67
+365.71
 </td>
 <td style="text-align:right;">
-17.40
+17.45
 </td>
 <td style="text-align:right;">
-30.30
+30.39
 </td>
 <td style="text-align:right;">
-4.22
+4.31
 </td>
 <td style="text-align:right;">
-12.52
+12.70
 </td>
 <td style="text-align:right;">
-100.92
+102.46
 </td>
 <td style="text-align:right;">
-348.76
+352.55
 </td>
 <td style="text-align:right;">
-23.94
+23.78
 </td>
 <td style="text-align:right;">
-27.86
+27.77
 </td>
 <td style="text-align:right;">
-28
+27
 </td>
 <td style="text-align:right;">
 16.00
@@ -1542,34 +1013,34 @@ Tucson
 293.84
 </td>
 <td style="text-align:right;">
-275.07
+276.64
 </td>
 <td style="text-align:right;">
-13.11
+13.13
 </td>
 <td style="text-align:right;">
-21.84
+21.88
 </td>
 <td style="text-align:right;">
-4.33
+4.39
 </td>
 <td style="text-align:right;">
-11.51
+11.65
 </td>
 <td style="text-align:right;">
-83.49
+84.07
 </td>
 <td style="text-align:right;">
-244.68
+246.46
 </td>
 <td style="text-align:right;">
-19.27
+19.16
 </td>
 <td style="text-align:right;">
-21.26
+21.16
 </td>
 <td style="text-align:right;">
-11
+14
 </td>
 <td style="text-align:right;">
 16.00
@@ -1598,34 +1069,34 @@ Buffalo
 1014.07
 </td>
 <td style="text-align:right;">
-1032.47
+1033.22
 </td>
 <td style="text-align:right;">
-23.27
+23.26
 </td>
 <td style="text-align:right;">
-39.04
+39.02
 </td>
 <td style="text-align:right;">
-5.06
+5.08
 </td>
 <td style="text-align:right;">
-19.96
+20.05
 </td>
 <td style="text-align:right;">
-145.29
+145.62
 </td>
 <td style="text-align:right;">
-631.56
+632.70
 </td>
 <td style="text-align:right;">
-28.72
+28.68
 </td>
 <td style="text-align:right;">
-31.63
+31.56
 </td>
 <td style="text-align:right;">
-70
+71
 </td>
 <td style="text-align:right;">
 27.00
@@ -1654,34 +1125,34 @@ Atlanta
 1291.40
 </td>
 <td style="text-align:right;">
-1359.89
+1362.52
 </td>
 <td style="text-align:right;">
-37.43
+37.44
 </td>
 <td style="text-align:right;">
 61.08
 </td>
 <td style="text-align:right;">
-4.71
+4.69
 </td>
 <td style="text-align:right;">
-16.59
+16.52
 </td>
 <td style="text-align:right;">
-221.19
+220.71
 </td>
 <td style="text-align:right;">
-862.08
+861.09
 </td>
 <td style="text-align:right;">
-46.93
+47.05
 </td>
 <td style="text-align:right;">
-51.97
+52.11
 </td>
 <td style="text-align:right;">
-83
+78
 </td>
 <td style="text-align:right;">
 22.50
@@ -1710,34 +1181,34 @@ Minneapolis
 823.28
 </td>
 <td style="text-align:right;">
-804.82
+804.80
 </td>
 <td style="text-align:right;">
-27.04
+27.01
 </td>
 <td style="text-align:right;">
-43.76
+43.78
 </td>
 <td style="text-align:right;">
-4.59
+4.58
 </td>
 <td style="text-align:right;">
-14.15
+14.12
 </td>
 <td style="text-align:right;">
-159.67
+159.60
 </td>
 <td style="text-align:right;">
-543.55
+543.19
 </td>
 <td style="text-align:right;">
-34.76
+34.81
 </td>
 <td style="text-align:right;">
-38.43
+38.46
 </td>
 <td style="text-align:right;">
-48
+49
 </td>
 <td style="text-align:right;">
 20.00
@@ -1766,34 +1237,34 @@ Denver
 430.02
 </td>
 <td style="text-align:right;">
-393.44
+392.33
 </td>
 <td style="text-align:right;">
-13.39
+13.33
 </td>
 <td style="text-align:right;">
-24.18
+24.06
 </td>
 <td style="text-align:right;">
-4.75
+4.71
 </td>
 <td style="text-align:right;">
-13.04
+12.98
 </td>
 <td style="text-align:right;">
-97.04
+96.08
 </td>
 <td style="text-align:right;">
-287.63
+285.56
 </td>
 <td style="text-align:right;">
-20.45
+20.40
 </td>
 <td style="text-align:right;">
-22.05
+22.00
 </td>
 <td style="text-align:right;">
-20
+30
 </td>
 <td style="text-align:right;">
 17.25
@@ -1822,34 +1293,34 @@ Seattle
 933.31
 </td>
 <td style="text-align:right;">
-960.90
+959.27
 </td>
 <td style="text-align:right;">
-25.61
+25.54
 </td>
 <td style="text-align:right;">
-44.91
+44.77
 </td>
 <td style="text-align:right;">
-5.74
+5.71
 </td>
 <td style="text-align:right;">
-22.37
+22.27
 </td>
 <td style="text-align:right;">
-179.93
+178.86
 </td>
 <td style="text-align:right;">
-794.88
+790.41
 </td>
 <td style="text-align:right;">
-31.35
+31.34
 </td>
 <td style="text-align:right;">
-35.53
+35.50
 </td>
 <td style="text-align:right;">
-92
+96
 </td>
 <td style="text-align:right;">
 24.25
@@ -1878,34 +1349,34 @@ New Orleans
 1599.97
 </td>
 <td style="text-align:right;">
-1535.25
+1536.30
 </td>
 <td style="text-align:right;">
-44.99
+44.82
 </td>
 <td style="text-align:right;">
-75.65
+75.32
 </td>
 <td style="text-align:right;">
-4.25
+4.23
 </td>
 <td style="text-align:right;">
-14.42
+14.44
 </td>
 <td style="text-align:right;">
-277.13
+276.07
 </td>
 <td style="text-align:right;">
-981.39
+981.14
 </td>
 <td style="text-align:right;">
-65.28
+65.29
 </td>
 <td style="text-align:right;">
-68.08
+67.93
 </td>
 <td style="text-align:right;">
-92
+66
 </td>
 <td style="text-align:right;">
 20.00
@@ -1934,34 +1405,34 @@ Miami
 1505.98
 </td>
 <td style="text-align:right;">
-1391.57
+1391.38
 </td>
 <td style="text-align:right;">
-36.22
+36.12
 </td>
 <td style="text-align:right;">
-63.02
+62.78
 </td>
 <td style="text-align:right;">
-3.73
+3.71
 </td>
 <td style="text-align:right;">
-13.10
+13.04
 </td>
 <td style="text-align:right;">
-210.91
+209.27
 </td>
 <td style="text-align:right;">
-776.35
+771.53
 </td>
 <td style="text-align:right;">
-56.51
+56.46
 </td>
 <td style="text-align:right;">
-59.25
+59.18
 </td>
 <td style="text-align:right;">
-70
+48
 </td>
 <td style="text-align:right;">
 19.25
@@ -1990,34 +1461,34 @@ Detroit
 864.76
 </td>
 <td style="text-align:right;">
-865.06
+864.67
 </td>
 <td style="text-align:right;">
-24.19
+24.17
 </td>
 <td style="text-align:right;">
-38.77
+38.78
 </td>
 <td style="text-align:right;">
-5.35
+5.34
 </td>
 <td style="text-align:right;">
-17.59
+17.52
 </td>
 <td style="text-align:right;">
-154.38
+154.29
 </td>
 <td style="text-align:right;">
-571.61
+569.54
 </td>
 <td style="text-align:right;">
-28.86
+28.89
 </td>
 <td style="text-align:right;">
 32.50
 </td>
 <td style="text-align:right;">
-59
+70
 </td>
 <td style="text-align:right;">
 24.00
@@ -2046,34 +1517,34 @@ Las Vegas
 114.03
 </td>
 <td style="text-align:right;">
-109.99
+110.38
 </td>
 <td style="text-align:right;">
-7.77
+7.78
 </td>
 <td style="text-align:right;">
 13.17
 </td>
 <td style="text-align:right;">
-4.31
+4.36
 </td>
 <td style="text-align:right;">
-8.04
+8.10
 </td>
 <td style="text-align:right;">
-54.63
+54.92
 </td>
 <td style="text-align:right;">
-120.14
+120.46
 </td>
 <td style="text-align:right;">
-12.67
+12.59
 </td>
 <td style="text-align:right;">
-14.95
+14.88
 </td>
 <td style="text-align:right;">
-2
+1
 </td>
 <td style="text-align:right;">
 13.00
@@ -2102,34 +1573,34 @@ St Louis
 1074.04
 </td>
 <td style="text-align:right;">
-1033.31
+1029.56
 </td>
 <td style="text-align:right;">
-30.04
+29.90
 </td>
 <td style="text-align:right;">
-50.35
+50.11
 </td>
 <td style="text-align:right;">
-4.64
+4.61
 </td>
 <td style="text-align:right;">
-16.34
+16.26
 </td>
 <td style="text-align:right;">
-176.44
+175.18
 </td>
 <td style="text-align:right;">
-702.24
+697.62
 </td>
 <td style="text-align:right;">
-38.01
+38.00
 </td>
 <td style="text-align:right;">
-42.99
+42.91
 </td>
 <td style="text-align:right;">
-65
+76
 </td>
 <td style="text-align:right;">
 21.25
@@ -2158,34 +1629,34 @@ Boston
 1194.29
 </td>
 <td style="text-align:right;">
-1283.22
+1288.17
 </td>
 <td style="text-align:right;">
-41.55
+41.67
 </td>
 <td style="text-align:right;">
-67.08
+67.48
 </td>
 <td style="text-align:right;">
-5.15
+5.21
 </td>
 <td style="text-align:right;">
-15.05
+15.17
 </td>
 <td style="text-align:right;">
-274.76
+278.27
 </td>
 <td style="text-align:right;">
-891.25
+898.74
 </td>
 <td style="text-align:right;">
-53.40
+53.45
 </td>
 <td style="text-align:right;">
-59.20
+59.26
 </td>
 <td style="text-align:right;">
-83
+97
 </td>
 <td style="text-align:right;">
 22.25
@@ -2214,34 +1685,34 @@ Savannah
 1257.98
 </td>
 <td style="text-align:right;">
-1353.64
+1352.79
 </td>
 <td style="text-align:right;">
-45.97
+45.91
 </td>
 <td style="text-align:right;">
-77.66
+77.58
 </td>
 <td style="text-align:right;">
-4.53
+4.51
 </td>
 <td style="text-align:right;">
-13.52
+13.43
 </td>
 <td style="text-align:right;">
-296.11
+294.71
 </td>
 <td style="text-align:right;">
-952.89
+947.31
 </td>
 <td style="text-align:right;">
-65.33
+65.36
 </td>
 <td style="text-align:right;">
-70.48
+70.55
 </td>
 <td style="text-align:right;">
-88
+70
 </td>
 <td style="text-align:right;">
 19.75
@@ -2270,34 +1741,34 @@ Nashville
 1273.19
 </td>
 <td style="text-align:right;">
-1338.98
+1342.04
 </td>
 <td style="text-align:right;">
-40.64
+40.65
 </td>
 <td style="text-align:right;">
-65.61
+65.62
 </td>
 <td style="text-align:right;">
-4.83
+4.88
 </td>
 <td style="text-align:right;">
-15.50
+15.63
 </td>
 <td style="text-align:right;">
-244.64
+246.12
 </td>
 <td style="text-align:right;">
-880.63
+885.22
 </td>
 <td style="text-align:right;">
-50.66
+50.49
 </td>
 <td style="text-align:right;">
-56.81
+56.62
 </td>
 <td style="text-align:right;">
-83
+89
 </td>
 <td style="text-align:right;">
 21.50
@@ -2326,34 +1797,34 @@ Virginia Beach
 1113.90
 </td>
 <td style="text-align:right;">
-1160.93
+1162.88
 </td>
 <td style="text-align:right;">
-34.61
+34.55
 </td>
 <td style="text-align:right;">
-56.75
+56.73
 </td>
 <td style="text-align:right;">
-4.69
+4.68
 </td>
 <td style="text-align:right;">
 14.57
 </td>
 <td style="text-align:right;">
-218.14
+218.24
 </td>
 <td style="text-align:right;">
-736.84
+738.11
 </td>
 <td style="text-align:right;">
-46.48
+46.62
 </td>
 <td style="text-align:right;">
-50.56
+50.65
 </td>
 <td style="text-align:right;">
-65
+68
 </td>
 <td style="text-align:right;">
 20.50
@@ -2370,7 +1841,16 @@ Virginia Beach
 </tr>
 </tbody>
 </table>
-<!-- # Upload {-} -->
+</div>
+<div id="final-checks" class="section level1 unnumbered" number="">
+<h1>Final Checks</h1>
+<p><img src="stormValidate_files/figure-html/upload-1.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-2.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-3.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-4.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-5.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-6.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-7.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-8.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-9.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-10.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-11.png" width="80%" style="display: block; margin: auto;" />NULL
+List of 5
+$ nInserted : num 874593
+$ nMatched : num 0
+$ nRemoved : num 0
+$ nUpserted : num 0
+$ writeErrors: list()</p>
 </div>
             </section>
 
