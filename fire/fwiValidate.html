@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>ClimateCheck: Wildfire Validation</title>
-  <meta name="description" content="ClimateCheck: Wildfire Validation" />
+  <title>ClimateCheck: FWI Sample</title>
+  <meta name="description" content="ClimateCheck: FWI Sample" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="ClimateCheck: Wildfire Validation" />
+  <meta property="og:title" content="ClimateCheck: FWI Sample" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ClimateCheck: Wildfire Validation" />
+  <meta name="twitter:title" content="ClimateCheck: FWI Sample" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Prepared by: Maximilian Stiefel" />
 
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -617,20 +617,8 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over time</a><ul>
-<li class="chapter" data-level="" data-path=""><a href="#mc2-proportion-burned"><i class="fa fa-check"></i>mc2 proportion burned</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp45counts"><i class="fa fa-check"></i>fwi rcp45counts</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp45magnitude"><i class="fa fa-check"></i>fwi rcp45magnitude</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85counts"><i class="fa fa-check"></i>fwi rcp85counts</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85magnitude"><i class="fa fa-check"></i>fwi rcp85magnitude</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#spatial-distributions"><i class="fa fa-check"></i>Spatial distributions</a><ul>
-<li class="chapter" data-level="" data-path=""><a href="#mc2-proportion-burned-1"><i class="fa fa-check"></i>mc2 proportion burned</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#mc2-rating"><i class="fa fa-check"></i>mc2 rating</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#fwi-counts"><i class="fa fa-check"></i>fwi counts</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#fwi-magnitudes"><i class="fa fa-check"></i>fwi magnitudes</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#fwi-rating"><i class="fa fa-check"></i>fwi rating</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#observed-and-modeled"><i class="fa fa-check"></i>Observed and Modeled</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#risk-rating"><i class="fa fa-check"></i>Risk Rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#observed-to-modeled"><i class="fa fa-check"></i>Observed to modeled</a><ul>
 <li class="chapter" data-level="" data-path=""><a href="#jan"><i class="fa fa-check"></i>Jan</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#feb"><i class="fa fa-check"></i>Feb</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#mar"><i class="fa fa-check"></i>Mar</a></li>
@@ -644,85 +632,297 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 <li class="chapter" data-level="" data-path=""><a href="#nov"><i class="fa fa-check"></i>Nov</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#dec"><i class="fa fa-check"></i>Dec</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over time</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#mc2-proportion-burned"><i class="fa fa-check"></i>mc2 proportion burned</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85counts"><i class="fa fa-check"></i>fwi rcp85counts</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85magnitude"><i class="fa fa-check"></i>fwi rcp85magnitude</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters"><i class="fa fa-check"></i>Fire Perimeters</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#spatial-distributions"><i class="fa fa-check"></i>Spatial distributions</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#mc2-proportion-burned-1"><i class="fa fa-check"></i>mc2 proportion burned</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#mc2-rating"><i class="fa fa-check"></i>mc2 rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85counts"><i class="fa fa-check"></i>rcp85counts</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85magnitudes"><i class="fa fa-check"></i>rcp85magnitudes</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85counts-rating"><i class="fa fa-check"></i>rcp85counts rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85magnitude-rating"><i class="fa fa-check"></i>rcp85magnitude rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85fwi-rating"><i class="fa fa-check"></i>rcp85fwi rating</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#statistics-by-city"><i class="fa fa-check"></i>Statistics by city</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#city-samples"><i class="fa fa-check"></i>City Samples</a><ul>
 <li class="chapter" data-level="" data-path=""><a href="#portland"><i class="fa fa-check"></i>Portland</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path=""><a href="#medford"><i class="fa fa-check"></i>Medford</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-1"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-1"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-1"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-1"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-1"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-1"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-1"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#seattle"><i class="fa fa-check"></i>Seattle</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#seattle"><i class="fa fa-check"></i>Seattle</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#spokane"><i class="fa fa-check"></i>Spokane</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-2"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-2"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-2"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-2"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-2"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-2"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-2"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#spokane"><i class="fa fa-check"></i>Spokane</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#missoula"><i class="fa fa-check"></i>Missoula</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-3"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-3"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-3"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-3"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-3"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-3"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-3"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#missoula"><i class="fa fa-check"></i>Missoula</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#boise"><i class="fa fa-check"></i>Boise</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-4"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-4"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-4"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-4"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-4"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-4"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-4"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#boise"><i class="fa fa-check"></i>Boise</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#kirkwood"><i class="fa fa-check"></i>Kirkwood</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-5"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-5"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-5"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-5"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-5"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-5"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-5"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#kirkwood"><i class="fa fa-check"></i>Kirkwood</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#san-francisco"><i class="fa fa-check"></i>San Francisco</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-6"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-6"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-6"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-6"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-6"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-6"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-6"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#sf"><i class="fa fa-check"></i>SF</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#chico"><i class="fa fa-check"></i>Chico</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-7"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-7"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-7"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-7"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-7"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-7"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-7"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#chico"><i class="fa fa-check"></i>Chico</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#santa-rosa"><i class="fa fa-check"></i>Santa Rosa</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-8"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-8"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-8"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-8"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-8"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-8"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-8"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#santarosa"><i class="fa fa-check"></i>SantaRosa</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#los-angeles"><i class="fa fa-check"></i>Los Angeles</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-9"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-9"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-9"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-9"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-9"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-9"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-9"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#la"><i class="fa fa-check"></i>LA</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#sacramento"><i class="fa fa-check"></i>Sacramento</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-10"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-10"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-10"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-10"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-10"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-10"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-10"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#sacramento"><i class="fa fa-check"></i>Sacramento</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#salt-lake-city"><i class="fa fa-check"></i>Salt Lake City</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-11"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-11"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-11"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-11"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-11"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-11"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-11"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#slc"><i class="fa fa-check"></i>SLC</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#new-york-city"><i class="fa fa-check"></i>New York City</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#chicago"><i class="fa fa-check"></i>Chicago</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-12"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-12"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-12"><i class="fa fa-check"></i>Fire Perimeters</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#hit-rate-12"><i class="fa fa-check"></i>Hit Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-12"><i class="fa fa-check"></i>False Discovery Rate</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#critical-success-index-12"><i class="fa fa-check"></i>Critical Success Index</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#error-bias-12"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#houston"><i class="fa fa-check"></i>Houston</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-13"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-13"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-13"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#philadelphia"><i class="fa fa-check"></i>Philadelphia</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-14"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-14"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-14"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-13"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-13"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-13"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-13"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#phoenix"><i class="fa fa-check"></i>Phoenix</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-15"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-15"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-15"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-14"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-14"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-14"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-14"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#san-antonio"><i class="fa fa-check"></i>San Antonio</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-16"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-16"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-16"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#san-diego"><i class="fa fa-check"></i>San Diego</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-17"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-17"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-17"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-15"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-15"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-15"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-15"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#dallas"><i class="fa fa-check"></i>Dallas</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-18"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-18"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-18"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#san-jose"><i class="fa fa-check"></i>San Jose</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-19"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-19"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-19"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-16"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-16"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-16"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-16"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#tucson"><i class="fa fa-check"></i>Tucson</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-20"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-20"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-20"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-17"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-17"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-17"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-17"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#buffalo"><i class="fa fa-check"></i>Buffalo</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-21"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-21"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-21"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#atlanta"><i class="fa fa-check"></i>Atlanta</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-22"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-22"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-22"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-18"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-18"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-18"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-18"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#minneapolis"><i class="fa fa-check"></i>Minneapolis</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-23"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-23"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-23"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-19"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-19"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-19"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-19"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#denver"><i class="fa fa-check"></i>Denver</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-24"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-24"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-24"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-20"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-20"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-20"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-20"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#new-orleans"><i class="fa fa-check"></i>New Orleans</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-25"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-25"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-25"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-21"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-21"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-21"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-21"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#miami"><i class="fa fa-check"></i>Miami</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#detroit"><i class="fa fa-check"></i>Detroit</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#las-vegas"><i class="fa fa-check"></i>Las Vegas</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-26"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-26"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-26"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-22"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-22"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-22"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-22"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#st-louis"><i class="fa fa-check"></i>St Louis</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-27"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-27"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-27"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-23"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-23"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-23"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-23"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#boston"><i class="fa fa-check"></i>Boston</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-28"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-28"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-28"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-24"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-24"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-24"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-24"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#savannah"><i class="fa fa-check"></i>Savannah</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-29"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-29"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-29"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-25"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-25"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-25"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-25"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#nashville"><i class="fa fa-check"></i>Nashville</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-30"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-30"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-30"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-26"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-26"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-26"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-26"><i class="fa fa-check"></i>Error bias</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#virginia-beach"><i class="fa fa-check"></i>Virginia Beach</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#score2050-31"><i class="fa fa-check"></i>score2050</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minimum-thresholding-31"><i class="fa fa-check"></i>Minimum Thresholding</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fire-perimeters-31"><i class="fa fa-check"></i>Fire Perimeters</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hit-rate-27"><i class="fa fa-check"></i>Hit Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#false-discovery-rate-27"><i class="fa fa-check"></i>False Discovery Rate</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#critical-success-index-27"><i class="fa fa-check"></i>Critical Success Index</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#error-bias-27"><i class="fa fa-check"></i>Error bias</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -734,7 +934,7 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ClimateCheck: Wildfire Validation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ClimateCheck: FWI Sample</a>
           </h1>
         </div>
 
@@ -743,9 +943,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">ClimateCheck: Wildfire Validation</h1>
+<h1 class="title">ClimateCheck: FWI Sample</h1>
 <p class="author"><em>Prepared by: Maximilian Stiefel</em></p>
-<p class="date"><em>2021-11-19</em></p>
+<p class="date"><em>2021-12-08</em></p>
 </div>
 <style>
   
@@ -782,368 +982,2162 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
   }
 
 </style>
-<!-- # Risk Rating {-} -->
+<div id="risk-rating" class="section level1 unnumbered">
+<h1>Risk Rating</h1>
+<p>NULL</p>
+<p><img src="fwiValidate_files/figure-html/masking-1.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/masking-2.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/masking-3.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/masking-4.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/masking-5.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/masking-6.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/masking-7.png" width="100%" style="display: block; margin: auto;" /></p>
 <!-- ## Relative change {-} -->
 <!-- ## Normalized relative change {-} -->
 <!-- ## Weighted average {-} -->
 <!-- ## Risk rating {-} -->
+<p><img src="fwiValidate_files/figure-html/rating-1.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/rating-2.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/rating-3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="observed-to-modeled" class="section level1 unnumbered">
+<h1>Observed to modeled</h1>
+<div id="jan" class="section level3 unnumbered">
+<h3>Jan</h3>
+<p><img src="fwiValidate_files/figure-html/observed-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="feb" class="section level3 unnumbered">
+<h3>Feb</h3>
+<p><img src="fwiValidate_files/figure-html/observed-2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mar" class="section level3 unnumbered">
+<h3>Mar</h3>
+<p><img src="fwiValidate_files/figure-html/observed-3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="apr" class="section level3 unnumbered">
+<h3>Apr</h3>
+<p><img src="fwiValidate_files/figure-html/observed-4.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="may" class="section level3 unnumbered">
+<h3>May</h3>
+<p><img src="fwiValidate_files/figure-html/observed-5.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="jun" class="section level3 unnumbered">
+<h3>Jun</h3>
+<p><img src="fwiValidate_files/figure-html/observed-6.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="jul" class="section level3 unnumbered">
+<h3>Jul</h3>
+<p><img src="fwiValidate_files/figure-html/observed-7.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="aug" class="section level3 unnumbered">
+<h3>Aug</h3>
+<p><img src="fwiValidate_files/figure-html/observed-8.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sep" class="section level3 unnumbered">
+<h3>Sep</h3>
+<p><img src="fwiValidate_files/figure-html/observed-9.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="oct" class="section level3 unnumbered">
+<h3>Oct</h3>
+<p><img src="fwiValidate_files/figure-html/observed-10.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nov" class="section level3 unnumbered">
+<h3>Nov</h3>
+<p><img src="fwiValidate_files/figure-html/observed-11.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="dec" class="section level3 unnumbered">
+<h3>Dec</h3>
+<p><img src="fwiValidate_files/figure-html/observed-12.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
 <div id="trends-over-time" class="section level1 unnumbered">
 <h1>Trends over time</h1>
-<div id="mc2-proportion-burned" class="section level2 unnumbered">
-<h2>mc2 proportion burned</h2>
+<div id="mc2-proportion-burned" class="section level3 unnumbered">
+<h3>mc2 proportion burned</h3>
 <p><img src="fwiValidate_files/figure-html/graphs-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="fwi-rcp45counts" class="section level2 unnumbered">
-<h2>fwi rcp45counts</h2>
+<div id="fwi-rcp85counts" class="section level3 unnumbered">
+<h3>fwi rcp85counts</h3>
 <p><img src="fwiValidate_files/figure-html/graphs-2.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="fwi-rcp45magnitude" class="section level2 unnumbered">
-<h2>fwi rcp45magnitude</h2>
+<div id="fwi-rcp85magnitude" class="section level3 unnumbered">
+<h3>fwi rcp85magnitude</h3>
 <p><img src="fwiValidate_files/figure-html/graphs-3.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="fwi-rcp85counts" class="section level2 unnumbered">
-<h2>fwi rcp85counts</h2>
-<p><img src="fwiValidate_files/figure-html/graphs-4.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="fwi-rcp85magnitude" class="section level2 unnumbered">
-<h2>fwi rcp85magnitude</h2>
-<p><img src="fwiValidate_files/figure-html/graphs-5.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="spatial-distributions" class="section level1 unnumbered">
 <h1>Spatial distributions</h1>
-<div id="mc2-proportion-burned-1" class="section level2 unnumbered">
-<h2>mc2 proportion burned</h2>
-<p><img src="fwiValidate_files/figure-html/maps-mc2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="mc2-proportion-burned-1" class="section level3 unnumbered">
+<h3>mc2 proportion burned</h3>
+<p><img src="fwiValidate_files/figure-html/maps-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="mc2-rating" class="section level2 unnumbered">
-<h2>mc2 rating</h2>
-<p><img src="fwiValidate_files/figure-html/maps-mc2-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="mc2-rating" class="section level3 unnumbered">
+<h3>mc2 rating</h3>
+<p><img src="fwiValidate_files/figure-html/maps-2.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="fwi-counts" class="section level2 unnumbered">
-<h2>fwi counts</h2>
-<p><img src="fwiValidate_files/figure-html/maps-mc2-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85counts" class="section level3 unnumbered">
+<h3>rcp85counts</h3>
+<p><img src="fwiValidate_files/figure-html/maps-3.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="fwi-magnitudes" class="section level2 unnumbered">
-<h2>fwi magnitudes</h2>
-<p><img src="fwiValidate_files/figure-html/maps-mc2-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85magnitudes" class="section level3 unnumbered">
+<h3>rcp85magnitudes</h3>
+<p><img src="fwiValidate_files/figure-html/maps-4.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="fwi-rating" class="section level2 unnumbered">
-<h2>fwi rating</h2>
-<p><img src="fwiValidate_files/figure-html/maps-mc2-5.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85counts-rating" class="section level3 unnumbered">
+<h3>rcp85counts rating</h3>
+<p><img src="fwiValidate_files/figure-html/maps-5.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="observed-and-modeled" class="section level2 unnumbered">
-<h2>Observed and Modeled</h2>
-<div id="jan" class="section level3 unnumbered">
-<h3>Jan</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85magnitude-rating" class="section level3 unnumbered">
+<h3>rcp85magnitude rating</h3>
+<p><img src="fwiValidate_files/figure-html/maps-6.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="feb" class="section level3 unnumbered">
-<h3>Feb</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-2.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="mar" class="section level3 unnumbered">
-<h3>Mar</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-3.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="apr" class="section level3 unnumbered">
-<h3>Apr</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-4.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="may" class="section level3 unnumbered">
-<h3>May</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-5.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="jun" class="section level3 unnumbered">
-<h3>Jun</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-6.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="jul" class="section level3 unnumbered">
-<h3>Jul</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-7.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="aug" class="section level3 unnumbered">
-<h3>Aug</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-8.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="sep" class="section level3 unnumbered">
-<h3>Sep</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-9.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="oct" class="section level3 unnumbered">
-<h3>Oct</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-10.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="nov" class="section level3 unnumbered">
-<h3>Nov</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-11.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="dec" class="section level3 unnumbered">
-<h3>Dec</h3>
-<p><img src="fwiValidate_files/figure-html/maps-observed-12.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="rcp85fwi-rating" class="section level3 unnumbered">
+<h3>rcp85fwi rating</h3>
+<p><img src="fwiValidate_files/figure-html/maps-7.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
+<div id="statistics-by-city" class="section level1 unnumbered">
+<h1>Statistics by city</h1>
+<table class=" lightable-paper table" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 11px; margin-left: auto; margin-right: auto;'>
+<thead>
+<tr>
+<th style="text-align:right;">
+lon
+</th>
+<th style="text-align:right;">
+lat
+</th>
+<th style="text-align:left;">
+cities
+</th>
+<th style="text-align:right;">
+rcp85counts1990
+</th>
+<th style="text-align:right;">
+rcp85magnitude1990
+</th>
+<th style="text-align:right;">
+rcp85counts2050
+</th>
+<th style="text-align:right;">
+rcp85magnitude2050
+</th>
+<th style="text-align:right;">
+rcp85countsDelta2050
+</th>
+<th style="text-align:right;">
+rcp85magnitudeDelta2050
+</th>
+<th style="text-align:right;">
+rcp85countsScore2050
+</th>
+<th style="text-align:right;">
+rcp85magnitudeScore2050
+</th>
+<th style="text-align:right;">
+rcp85score2050
+</th>
+<th style="text-align:left;">
+cities
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+-74.03
+</td>
+<td style="text-align:right;">
+40.72
+</td>
+<td style="text-align:left;">
+New York City
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+26.41
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+30.86
+</td>
+<td style="text-align:right;">
+4.89
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+New York City
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-118.22
+</td>
+<td style="text-align:right;">
+34.03
+</td>
+<td style="text-align:left;">
+Los Angeles
+</td>
+<td style="text-align:right;">
+5.74
+</td>
+<td style="text-align:right;">
+63.45
+</td>
+<td style="text-align:right;">
+8.68
+</td>
+<td style="text-align:right;">
+65.97
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+75
+</td>
+<td style="text-align:left;">
+Los Angeles
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-87.66
+</td>
+<td style="text-align:right;">
+41.91
+</td>
+<td style="text-align:left;">
+Chicago
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+26.51
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+32.11
+</td>
+<td style="text-align:right;">
+6.04
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+Chicago
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-95.34
+</td>
+<td style="text-align:right;">
+29.78
+</td>
+<td style="text-align:left;">
+Houston
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+30.70
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+35.55
+</td>
+<td style="text-align:right;">
+6.42
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+Houston
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-75.16
+</td>
+<td style="text-align:right;">
+39.97
+</td>
+<td style="text-align:left;">
+Philadelphia
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+25.98
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+30.46
+</td>
+<td style="text-align:right;">
+7.38
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Philadelphia
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-112.09
+</td>
+<td style="text-align:right;">
+33.47
+</td>
+<td style="text-align:left;">
+Phoenix
+</td>
+<td style="text-align:right;">
+12.78
+</td>
+<td style="text-align:right;">
+72.07
+</td>
+<td style="text-align:right;">
+21.62
+</td>
+<td style="text-align:right;">
+75.83
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+99
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+96
+</td>
+<td style="text-align:left;">
+Phoenix
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-98.47
+</td>
+<td style="text-align:right;">
+29.41
+</td>
+<td style="text-align:left;">
+San Antonio
+</td>
+<td style="text-align:right;">
+1.05
+</td>
+<td style="text-align:right;">
+45.17
+</td>
+<td style="text-align:right;">
+4.09
+</td>
+<td style="text-align:right;">
+51.51
+</td>
+<td style="text-align:right;">
+2.88
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+San Antonio
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-117.16
+</td>
+<td style="text-align:right;">
+32.72
+</td>
+<td style="text-align:left;">
+San Diego
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+<td style="text-align:right;">
+52.82
+</td>
+<td style="text-align:right;">
+3.87
+</td>
+<td style="text-align:right;">
+55.33
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+San Diego
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-96.78
+</td>
+<td style="text-align:right;">
+32.78
+</td>
+<td style="text-align:left;">
+Dallas
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+45.34
+</td>
+<td style="text-align:right;">
+4.39
+</td>
+<td style="text-align:right;">
+51.74
+</td>
+<td style="text-align:right;">
+2.83
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+Dallas
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-121.91
+</td>
+<td style="text-align:right;">
+37.34
+</td>
+<td style="text-align:left;">
+San Jose
+</td>
+<td style="text-align:right;">
+5.47
+</td>
+<td style="text-align:right;">
+62.07
+</td>
+<td style="text-align:right;">
+7.95
+</td>
+<td style="text-align:right;">
+63.62
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:left;">
+San Jose
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-110.97
+</td>
+<td style="text-align:right;">
+32.22
+</td>
+<td style="text-align:left;">
+Tucson
+</td>
+<td style="text-align:right;">
+10.84
+</td>
+<td style="text-align:right;">
+70.75
+</td>
+<td style="text-align:right;">
+17.89
+</td>
+<td style="text-align:right;">
+75.11
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+97
+</td>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:right;">
+96
+</td>
+<td style="text-align:left;">
+Tucson
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-78.91
+</td>
+<td style="text-align:right;">
+42.91
+</td>
+<td style="text-align:left;">
+Buffalo
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+22.52
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+27.03
+</td>
+<td style="text-align:right;">
+13.87
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Buffalo
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-84.41
+</td>
+<td style="text-align:right;">
+33.72
+</td>
+<td style="text-align:left;">
+Atlanta
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+24.76
+</td>
+<td style="text-align:right;">
+0.58
+</td>
+<td style="text-align:right;">
+29.82
+</td>
+<td style="text-align:right;">
+10.60
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-93.28
+</td>
+<td style="text-align:right;">
+44.97
+</td>
+<td style="text-align:left;">
+Minneapolis
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+<td style="text-align:right;">
+29.37
+</td>
+<td style="text-align:right;">
+1.49
+</td>
+<td style="text-align:right;">
+36.55
+</td>
+<td style="text-align:right;">
+4.50
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+Minneapolis
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-104.97
+</td>
+<td style="text-align:right;">
+39.72
+</td>
+<td style="text-align:left;">
+Denver
+</td>
+<td style="text-align:right;">
+0.90
+</td>
+<td style="text-align:right;">
+42.24
+</td>
+<td style="text-align:right;">
+2.57
+</td>
+<td style="text-align:right;">
+47.16
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+Denver
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-122.34
+</td>
+<td style="text-align:right;">
+47.59
+</td>
+<td style="text-align:left;">
+Seattle
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+32.91
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:right;">
+39.13
+</td>
+<td style="text-align:right;">
+6.22
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+Seattle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-90.09
+</td>
+<td style="text-align:right;">
+29.97
+</td>
+<td style="text-align:left;">
+New Orleans
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+30.63
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+<td style="text-align:right;">
+33.90
+</td>
+<td style="text-align:right;">
+1.42
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+New Orleans
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-80.22
+</td>
+<td style="text-align:right;">
+25.78
+</td>
+<td style="text-align:left;">
+Miami
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+24.85
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+26.36
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Miami
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-83.03
+</td>
+<td style="text-align:right;">
+42.34
+</td>
+<td style="text-align:left;">
+Detroit
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+25.33
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+30.96
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Detroit
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-115.16
+</td>
+<td style="text-align:right;">
+36.16
+</td>
+<td style="text-align:left;">
+Las Vegas
+</td>
+<td style="text-align:right;">
+21.17
+</td>
+<td style="text-align:right;">
+81.12
+</td>
+<td style="text-align:right;">
+30.44
+</td>
+<td style="text-align:right;">
+84.86
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+Las Vegas
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-90.22
+</td>
+<td style="text-align:right;">
+38.66
+</td>
+<td style="text-align:left;">
+St Louis
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+30.20
+</td>
+<td style="text-align:right;">
+2.10
+</td>
+<td style="text-align:right;">
+38.96
+</td>
+<td style="text-align:right;">
+11.35
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:left;">
+St Louis
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-71.03
+</td>
+<td style="text-align:right;">
+42.34
+</td>
+<td style="text-align:left;">
+Boston
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+30.81
+</td>
+<td style="text-align:right;">
+1.03
+</td>
+<td style="text-align:right;">
+35.84
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+Boston
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-81.09
+</td>
+<td style="text-align:right;">
+32.09
+</td>
+<td style="text-align:left;">
+Savannah
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+36.16
+</td>
+<td style="text-align:right;">
+1.23
+</td>
+<td style="text-align:right;">
+39.79
+</td>
+<td style="text-align:right;">
+1.40
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+Savannah
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-86.78
+</td>
+<td style="text-align:right;">
+36.16
+</td>
+<td style="text-align:left;">
+Nashville
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:right;">
+30.08
+</td>
+<td style="text-align:right;">
+2.24
+</td>
+<td style="text-align:right;">
+37.12
+</td>
+<td style="text-align:right;">
+11.14
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+Nashville
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-75.97
+</td>
+<td style="text-align:right;">
+36.84
+</td>
+<td style="text-align:left;">
+Virginia Beach
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+26.39
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+30.53
+</td>
+<td style="text-align:right;">
+4.40
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Virginia Beach
+</td>
+</tr>
+</tbody>
+</table>
+<!-- # Fire Perimeters {-} -->
 </div>
-<div id="fire-perimeters" class="section level1 unnumbered">
-<h1>Fire Perimeters</h1>
+<div id="city-samples" class="section level1 unnumbered">
+<h1>City Samples</h1>
 <div id="portland" class="section level2 unnumbered">
 <h2>Portland</h2>
-<p><img src="fwiValidate_files/figure-html/cities-1.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-2.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-3.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="fwiValidate_files/figure-html/thresholding-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-3.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-4.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-5.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-6.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-7.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-8.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-9.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-10.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-11.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-12.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-13.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-14.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="hit-rate" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.4856273</p>
+<p>0.4856522</p>
 </div>
 <div id="false-discovery-rate" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.7145929</p>
+<p>0.7141671</p>
 </div>
 <div id="critical-success-index" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.219156</p>
+<p>0.2194121</p>
 </div>
 <div id="error-bias" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>2.363846</p>
+<p>2.359154</p>
 </div>
 </div>
 <div id="medford" class="section level2 unnumbered">
 <h2>Medford</h2>
-<p><img src="fwiValidate_files/figure-html/cities-5.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-6.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-7.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-8.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="fwiValidate_files/figure-html/thresholding-15.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-1" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-16.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-1" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-17.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-18.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-19.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-20.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-21.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-22.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-23.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-24.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-25.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-26.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-1" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-27.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-28.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="hit-rate-1" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.6394484</p>
+<p>0.6394428</p>
 </div>
 <div id="false-discovery-rate-1" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.6889289</p>
+<p>0.6889225</p>
 </div>
 <div id="critical-success-index-1" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.264652</p>
+<p>0.2646557</p>
 </div>
 <div id="error-bias-1" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>3.927833</p>
+<p>3.927618</p>
 </div>
 </div>
 <div id="seattle" class="section level2 unnumbered">
 <h2>Seattle</h2>
-<p><img src="fwiValidate_files/figure-html/cities-9.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-10.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-11.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-12.png" width="100%" style="display: block; margin: auto;" /></p>
-<div id="hit-rate-2" class="section level3 unnumbered">
-<h3>Hit Rate</h3>
-<p>0.5295766</p>
-</div>
-<div id="false-discovery-rate-2" class="section level3 unnumbered">
-<h3>False Discovery Rate</h3>
-<p>0.6676122</p>
-</div>
-<div id="critical-success-index-2" class="section level3 unnumbered">
-<h3>Critical Success Index</h3>
-<p>0.2566185</p>
-</div>
-<div id="error-bias-2" class="section level3 unnumbered">
-<h3>Error bias</h3>
-<p>2.261096</p>
-</div>
 </div>
 <div id="spokane" class="section level2 unnumbered">
 <h2>Spokane</h2>
-<p><img src="fwiValidate_files/figure-html/cities-13.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-14.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-15.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-16.png" width="100%" style="display: block; margin: auto;" /></p>
-<div id="hit-rate-3" class="section level3 unnumbered">
+<p><img src="fwiValidate_files/figure-html/thresholding-29.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-2" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-30.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-2" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-31.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-32.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-33.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-34.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-35.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-36.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-37.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-38.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-39.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-40.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-2" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-41.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-42.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-2" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.5083637</p>
+<p>0.5083678</p>
 </div>
-<div id="false-discovery-rate-3" class="section level3 unnumbered">
+<div id="false-discovery-rate-2" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.7969934</p>
+<p>0.7970713</p>
 </div>
-<div id="critical-success-index-3" class="section level3 unnumbered">
+<div id="critical-success-index-2" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.1696916</p>
+<p>0.1696376</p>
 </div>
-<div id="error-bias-3" class="section level3 unnumbered">
+<div id="error-bias-2" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>4.059524</p>
+<p>4.061546</p>
 </div>
 </div>
 <div id="missoula" class="section level2 unnumbered">
 <h2>Missoula</h2>
-<p><img src="fwiValidate_files/figure-html/cities-17.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-18.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-19.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-20.png" width="100%" style="display: block; margin: auto;" /></p>
-<div id="hit-rate-4" class="section level3 unnumbered">
+<p><img src="fwiValidate_files/figure-html/thresholding-43.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-3" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-44.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-3" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-45.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-46.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-47.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-48.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-49.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-50.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-51.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-52.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-53.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-54.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-3" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-55.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-56.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-3" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.7348149</p>
+<p>0.734896</p>
 </div>
-<div id="false-discovery-rate-4" class="section level3 unnumbered">
+<div id="false-discovery-rate-3" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.8139587</p>
+<p>0.8139943</p>
 </div>
-<div id="critical-success-index-4" class="section level3 unnumbered">
+<div id="critical-success-index-3" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.1743364</p>
+<p>0.1743097</p>
 </div>
-<div id="error-bias-4" class="section level3 unnumbered">
+<div id="error-bias-3" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>12.12333</p>
+<p>12.13123</p>
 </div>
 </div>
 <div id="boise" class="section level2 unnumbered">
 <h2>Boise</h2>
-<p><img src="fwiValidate_files/figure-html/cities-21.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-22.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-23.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-24.png" width="100%" style="display: block; margin: auto;" /></p>
-<div id="hit-rate-5" class="section level3 unnumbered">
+<p><img src="fwiValidate_files/figure-html/thresholding-57.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-4" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-58.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-4" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-59.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-60.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-61.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-62.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-63.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-64.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-65.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-66.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-67.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-68.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-4" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-69.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-70.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-4" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.9153288</p>
+<p>0.9152286</p>
 </div>
-<div id="false-discovery-rate-5" class="section level3 unnumbered">
+<div id="false-discovery-rate-4" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.4920093</p>
+<p>0.4919765</p>
 </div>
-<div id="critical-success-index-5" class="section level3 unnumbered">
+<div id="critical-success-index-4" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.4851911</p>
+<p>0.4851929</p>
 </div>
-<div id="error-bias-5" class="section level3 unnumbered">
+<div id="error-bias-4" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>10.4703</p>
+<p>10.4554</p>
 </div>
 </div>
 <div id="kirkwood" class="section level2 unnumbered">
 <h2>Kirkwood</h2>
-<p><img src="fwiValidate_files/figure-html/cities-25.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-26.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-27.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-28.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="fwiValidate_files/figure-html/thresholding-71.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-5" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-72.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-5" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-73.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-74.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-75.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-76.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-77.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-78.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-79.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-80.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-81.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-82.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-5" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-83.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-84.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-5" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.637758</p>
+</div>
+<div id="false-discovery-rate-5" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.7014081</p>
+</div>
+<div id="critical-success-index-5" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.2552945</p>
+</div>
+<div id="error-bias-5" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>4.135708</p>
+</div>
+</div>
+<div id="san-francisco" class="section level2 unnumbered">
+<h2>San Francisco</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-85.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-6" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-86.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-6" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-87.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-88.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-89.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-90.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-91.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-92.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-93.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-94.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-95.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-96.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-6" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-97.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-98.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="hit-rate-6" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.6378673</p>
+<p>0.5332907</p>
 </div>
 <div id="false-discovery-rate-6" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.7015373</p>
+<p>0.6347293</p>
 </div>
 <div id="critical-success-index-6" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.2552175</p>
+<p>0.2767902</p>
 </div>
 <div id="error-bias-6" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>4.14022</p>
-</div>
-</div>
-<div id="sf" class="section level2 unnumbered">
-<h2>SF</h2>
-<p><img src="fwiValidate_files/figure-html/cities-29.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-30.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-31.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-32.png" width="100%" style="display: block; margin: auto;" /></p>
-<div id="hit-rate-7" class="section level3 unnumbered">
-<h3>Hit Rate</h3>
-<p>0.533322</p>
-</div>
-<div id="false-discovery-rate-7" class="section level3 unnumbered">
-<h3>False Discovery Rate</h3>
-<p>0.634921</p>
-</div>
-<div id="critical-success-index-7" class="section level3 unnumbered">
-<h3>Critical Success Index</h3>
-<p>0.2766885</p>
-</div>
-<div id="error-bias-7" class="section level3 unnumbered">
-<h3>Error bias</h3>
-<p>1.98749</p>
+<p>1.985597</p>
 </div>
 </div>
 <div id="chico" class="section level2 unnumbered">
 <h2>Chico</h2>
-<p><img src="fwiValidate_files/figure-html/cities-33.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-34.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-35.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-36.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="fwiValidate_files/figure-html/thresholding-99.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-7" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-100.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-7" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-101.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-102.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-103.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-104.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-105.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-106.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-107.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-108.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-109.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-110.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-7" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-111.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-112.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-7" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.8557786</p>
+</div>
+<div id="false-discovery-rate-7" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.6771774</p>
+</div>
+<div id="critical-success-index-7" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.3061659</p>
+</div>
+<div id="error-bias-7" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>12.44716</p>
+</div>
+</div>
+<div id="santa-rosa" class="section level2 unnumbered">
+<h2>Santa Rosa</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-113.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-8" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-114.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-8" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-115.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-116.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-117.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-118.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-119.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-120.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-121.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-122.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-123.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-124.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-8" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-125.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-126.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="hit-rate-8" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.8560169</p>
+<p>0.7468974</p>
 </div>
 <div id="false-discovery-rate-8" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.6772626</p>
+<p>0.5336208</p>
 </div>
 <div id="critical-success-index-8" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.3061197</p>
+<p>0.4027305</p>
 </div>
 <div id="error-bias-8" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>12.4761</p>
+<p>3.376432</p>
 </div>
 </div>
-<div id="santarosa" class="section level2 unnumbered">
-<h2>SantaRosa</h2>
-<p><img src="fwiValidate_files/figure-html/cities-37.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-38.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-39.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-40.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="los-angeles" class="section level2 unnumbered">
+<h2>Los Angeles</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-127.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-9" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-128.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-9" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-129.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-130.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-131.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-132.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-133.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-134.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-135.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-136.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-137.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-138.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-9" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-139.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-140.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="hit-rate-9" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.7469474</p>
+<p>0.6182906</p>
 </div>
 <div id="false-discovery-rate-9" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.5336545</p>
+<p>0.426986</p>
 </div>
 <div id="critical-success-index-9" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.40272</p>
+<p>0.4232768</p>
 </div>
 <div id="error-bias-9" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>3.377781</p>
-</div>
-</div>
-<div id="la" class="section level2 unnumbered">
-<h2>LA</h2>
-<p><img src="fwiValidate_files/figure-html/cities-41.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-42.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-43.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-44.png" width="100%" style="display: block; margin: auto;" /></p>
-<div id="hit-rate-10" class="section level3 unnumbered">
-<h3>Hit Rate</h3>
-<p>0.6183267</p>
-</div>
-<div id="false-discovery-rate-10" class="section level3 unnumbered">
-<h3>False Discovery Rate</h3>
-<p>0.4270327</p>
-</div>
-<div id="critical-success-index-10" class="section level3 unnumbered">
-<h3>Critical Success Index</h3>
-<p>0.4232682</p>
-</div>
-<div id="error-bias-10" class="section level3 unnumbered">
-<h3>Error bias</h3>
-<p>1.207418</p>
+<p>1.207002</p>
 </div>
 </div>
 <div id="sacramento" class="section level2 unnumbered">
 <h2>Sacramento</h2>
-<p><img src="fwiValidate_files/figure-html/cities-45.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-46.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-47.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-48.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="fwiValidate_files/figure-html/thresholding-141.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-10" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-142.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-10" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-143.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-144.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-145.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-146.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-147.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-148.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-149.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-150.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-151.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-152.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-10" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-153.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-154.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-10" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5435643</p>
+</div>
+<div id="false-discovery-rate-10" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.7677321</p>
+</div>
+<div id="critical-success-index-10" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1943604</p>
+</div>
+<div id="error-bias-10" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>3.936332</p>
+</div>
+</div>
+<div id="salt-lake-city" class="section level2 unnumbered">
+<h2>Salt Lake City</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-155.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-11" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-156.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-11" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-157.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-158.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-159.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-160.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-161.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-162.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-163.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-164.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-165.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-166.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-11" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-167.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-168.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="hit-rate-11" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.5436143</p>
+<p>0.5336429</p>
 </div>
 <div id="false-discovery-rate-11" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.7679187</p>
+<p>0.8102106</p>
 </div>
 <div id="critical-success-index-11" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.194236</p>
+<p>0.1627893</p>
 </div>
 <div id="error-bias-11" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>3.94125</p>
+<p>4.884928</p>
 </div>
 </div>
-<div id="slc" class="section level2 unnumbered">
-<h2>SLC</h2>
-<p><img src="fwiValidate_files/figure-html/cities-49.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-50.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-51.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/cities-52.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="new-york-city" class="section level2 unnumbered">
+<h2>New York City</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-169.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="chicago" class="section level2 unnumbered">
+<h2>Chicago</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-170.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-12" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-171.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-12" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-172.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-173.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-174.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-175.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-176.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-177.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-178.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-179.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-180.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-181.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-12" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-182.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-183.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
 <div id="hit-rate-12" class="section level3 unnumbered">
 <h3>Hit Rate</h3>
-<p>0.5336976</p>
+<p>0.4996315</p>
 </div>
 <div id="false-discovery-rate-12" class="section level3 unnumbered">
 <h3>False Discovery Rate</h3>
-<p>0.8104445</p>
+<p>0.5344896</p>
 </div>
 <div id="critical-success-index-12" class="section level3 unnumbered">
 <h3>Critical Success Index</h3>
-<p>0.1626223</p>
+<p>0.3174951</p>
 </div>
 <div id="error-bias-12" class="section level3 unnumbered">
 <h3>Error bias</h3>
-<p>4.893441</p>
+<p>1.146489</p>
+</div>
+</div>
+<div id="houston" class="section level2 unnumbered">
+<h2>Houston</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-184.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-13" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-185.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-13" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-186.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-187.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-188.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-189.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-190.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-191.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-192.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-193.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-194.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-195.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-13" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+</div>
+</div>
+<div id="philadelphia" class="section level2 unnumbered">
+<h2>Philadelphia</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-196.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-14" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-197.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-14" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-198.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-199.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-200.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-201.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-202.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-203.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-204.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-205.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-206.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-207.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-14" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-208.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-209.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-13" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5000001</p>
+</div>
+<div id="false-discovery-rate-13" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.5932771</p>
+</div>
+<div id="critical-success-index-13" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.289128</p>
+</div>
+<div id="error-bias-13" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>1.458677</p>
+</div>
+</div>
+<div id="phoenix" class="section level2 unnumbered">
+<h2>Phoenix</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-210.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-15" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-211.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-15" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-212.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-213.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-214.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-215.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-216.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-217.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-218.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-219.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-220.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-221.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-15" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-222.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-223.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-14" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5509772</p>
+</div>
+<div id="false-discovery-rate-14" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.8382271</p>
+</div>
+<div id="critical-success-index-14" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1429293</p>
+</div>
+<div id="error-bias-14" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>6.358012</p>
+</div>
+</div>
+<div id="san-antonio" class="section level2 unnumbered">
+<h2>San Antonio</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-224.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-16" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-225.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-16" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-226.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-227.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-228.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-229.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-230.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-231.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-232.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-233.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-234.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-235.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-16" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+</div>
+</div>
+<div id="san-diego" class="section level2 unnumbered">
+<h2>San Diego</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-236.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-17" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-237.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-17" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-238.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-239.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-240.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-241.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-242.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-243.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-244.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-245.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-246.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-247.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-17" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-248.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-249.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-15" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5728023</p>
+</div>
+<div id="false-discovery-rate-15" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.4510242</p>
+</div>
+<div id="critical-success-index-15" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.3895026</p>
+</div>
+<div id="error-bias-15" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>1.101596</p>
+</div>
+</div>
+<div id="dallas" class="section level2 unnumbered">
+<h2>Dallas</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-250.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-18" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-251.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-18" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-252.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-253.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-254.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-255.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-256.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-257.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-258.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-259.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-260.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-261.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-18" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+</div>
+</div>
+<div id="san-jose" class="section level2 unnumbered">
+<h2>San Jose</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-262.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-19" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-263.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-19" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-264.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-265.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-266.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-267.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-268.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-269.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-270.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-271.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-272.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-273.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-19" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-274.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-275.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-16" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.6250303</p>
+</div>
+<div id="false-discovery-rate-16" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.6324239</p>
+</div>
+<div id="critical-success-index-16" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.3011643</p>
+</div>
+<div id="error-bias-16" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>2.867913</p>
+</div>
+</div>
+<div id="tucson" class="section level2 unnumbered">
+<h2>Tucson</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-276.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-20" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-277.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-20" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-278.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-279.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-280.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-281.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-282.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-283.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-284.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-285.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-286.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-287.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-20" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-288.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-289.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-17" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.8283099</p>
+</div>
+<div id="false-discovery-rate-17" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.8860225</p>
+</div>
+<div id="critical-success-index-17" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.111347</p>
+</div>
+<div id="error-bias-17" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>37.50362</p>
+</div>
+</div>
+<div id="buffalo" class="section level2 unnumbered">
+<h2>Buffalo</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-290.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-21" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-291.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-21" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-292.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-293.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-294.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-295.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-296.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-297.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-298.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-299.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-300.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-301.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-21" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+</div>
+</div>
+<div id="atlanta" class="section level2 unnumbered">
+<h2>Atlanta</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-302.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-22" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-303.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-22" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-304.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-305.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-306.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-307.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-308.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-309.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-310.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-311.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-312.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-313.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-22" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-314.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-315.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-18" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.4999978</p>
+</div>
+<div id="false-discovery-rate-18" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.8330541</p>
+</div>
+<div id="critical-success-index-18" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1430621</p>
+</div>
+<div id="error-bias-18" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>4.989922</p>
+</div>
+</div>
+<div id="minneapolis" class="section level2 unnumbered">
+<h2>Minneapolis</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-316.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-23" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-317.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-23" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-318.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-319.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-320.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-321.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-322.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-323.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-324.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-325.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-326.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-327.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-23" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-328.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-329.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-19" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5000423</p>
+</div>
+<div id="false-discovery-rate-19" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.7961251</p>
+</div>
+<div id="critical-success-index-19" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1693538</p>
+</div>
+<div id="error-bias-19" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>3.905629</p>
+</div>
+</div>
+<div id="denver" class="section level2 unnumbered">
+<h2>Denver</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-330.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-24" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-331.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-24" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-332.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-333.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-334.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-335.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-336.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-337.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-338.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-339.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-340.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-341.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-24" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-342.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-343.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-20" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5661678</p>
+</div>
+<div id="false-discovery-rate-20" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.8776285</p>
+</div>
+<div id="critical-success-index-20" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1118806</p>
+</div>
+<div id="error-bias-20" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>9.359526</p>
+</div>
+</div>
+<div id="new-orleans" class="section level2 unnumbered">
+<h2>New Orleans</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-344.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-25" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-345.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-25" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-346.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-347.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-348.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-349.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-350.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-351.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-352.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-353.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-354.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-355.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-25" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-356.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-357.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-21" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5004915</p>
+</div>
+<div id="false-discovery-rate-21" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.6924337</p>
+</div>
+<div id="critical-success-index-21" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.2353291</p>
+</div>
+<div id="error-bias-21" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>2.255761</p>
+</div>
+</div>
+<div id="miami" class="section level2 unnumbered">
+<h2>Miami</h2>
+</div>
+<div id="detroit" class="section level2 unnumbered">
+<h2>Detroit</h2>
+</div>
+<div id="las-vegas" class="section level2 unnumbered">
+<h2>Las Vegas</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-358.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-26" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-359.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-26" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-360.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-361.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-362.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-363.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-364.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-365.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-366.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-367.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-368.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-369.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-26" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-370.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-371.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-22" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.564934</p>
+</div>
+<div id="false-discovery-rate-22" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.8209401</p>
+</div>
+<div id="critical-success-index-22" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.1573603</p>
+</div>
+<div id="error-bias-22" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>5.953272</p>
+</div>
+</div>
+<div id="st-louis" class="section level2 unnumbered">
+<h2>St Louis</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-372.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-27" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-373.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-27" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-374.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-375.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-376.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-377.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-378.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-379.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-380.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-381.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-382.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-383.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-27" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-384.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-385.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-23" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.4999948</p>
+</div>
+<div id="false-discovery-rate-23" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.5649556</p>
+</div>
+<div id="critical-success-index-23" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.3031555</p>
+</div>
+<div id="error-bias-23" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>1.298589</p>
+</div>
+</div>
+<div id="boston" class="section level2 unnumbered">
+<h2>Boston</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-386.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-28" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-387.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-28" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-388.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-389.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-390.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-391.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-392.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-393.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-394.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-395.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-396.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-397.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-28" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-398.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-399.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-24" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5</p>
+</div>
+<div id="false-discovery-rate-24" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.6687168</p>
+</div>
+<div id="critical-success-index-24" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.248845</p>
+</div>
+<div id="error-bias-24" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>2.018566</p>
+</div>
+</div>
+<div id="savannah" class="section level2 unnumbered">
+<h2>Savannah</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-400.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-29" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-401.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-29" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-402.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-403.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-404.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-405.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-406.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-407.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-408.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-409.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-410.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-411.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-29" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-412.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-413.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-25" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.4998138</p>
+</div>
+<div id="false-discovery-rate-25" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.6512323</p>
+</div>
+<div id="critical-success-index-25" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.2585327</p>
+</div>
+<div id="error-bias-25" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>1.865847</p>
+</div>
+</div>
+<div id="nashville" class="section level2 unnumbered">
+<h2>Nashville</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-414.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-30" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-415.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-30" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-416.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-417.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-418.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-419.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-420.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-421.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-422.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-423.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-424.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-425.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-30" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-426.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-427.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-26" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.5000223</p>
+</div>
+<div id="false-discovery-rate-26" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.9469274</p>
+</div>
+<div id="critical-success-index-26" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.05039812</p>
+</div>
+<div id="error-bias-26" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>17.84369</p>
+</div>
+</div>
+<div id="virginia-beach" class="section level2 unnumbered">
+<h2>Virginia Beach</h2>
+<p><img src="fwiValidate_files/figure-html/thresholding-428.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="score2050-31" class="section level3 unnumbered">
+<h3>score2050</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-429.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="minimum-thresholding-31" class="section level3 unnumbered">
+<h3>Minimum Thresholding</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-430.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-431.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-432.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-433.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-434.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-435.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-436.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-437.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-438.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-439.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fire-perimeters-31" class="section level3 unnumbered">
+<h3>Fire Perimeters</h3>
+<p><img src="fwiValidate_files/figure-html/thresholding-440.png" width="100%" style="display: block; margin: auto;" /><img src="fwiValidate_files/figure-html/thresholding-441.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hit-rate-27" class="section level3 unnumbered">
+<h3>Hit Rate</h3>
+<p>0.500005</p>
+</div>
+<div id="false-discovery-rate-27" class="section level3 unnumbered">
+<h3>False Discovery Rate</h3>
+<p>0.5490401</p>
+</div>
+<div id="critical-success-index-27" class="section level3 unnumbered">
+<h3>Critical Success Index</h3>
+<p>0.310803</p>
+</div>
+<div id="error-bias-27" class="section level3 unnumbered">
+<h3>Error bias</h3>
+<p>1.217517</p>
+<!-- # Processing {-} -->
+<!-- # City Samples {-} -->
+<!-- # USFS Products {-} -->
+<!-- # Upload {-} -->
 </div>
 </div>
 </div>
