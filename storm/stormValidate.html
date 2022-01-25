@@ -24,7 +24,7 @@
 <meta name="author" content="Prepared by: Maximilian Stiefel" />
 
 
-<meta name="date" content="2021-11-29" />
+<meta name="date" content="2022-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,6 +58,8 @@
 <link href="libs/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet" />
 <script src="libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
 <script src="libs/sparkline-binding-2.0/sparkline.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -75,51 +77,10 @@
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path=""><a href="#risk-rating"><i class="fa fa-check"></i>Risk Rating</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over time</a>
-<ul>
-<li class="chapter" data-level="" data-path=""><a href="#old-counts"><i class="fa fa-check"></i>old counts</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#old-totals"><i class="fa fa-check"></i>old totals</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45magnitude1d"><i class="fa fa-check"></i>rcp45magnitude1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45magnitude2d"><i class="fa fa-check"></i>rcp45magnitude2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45counts1d"><i class="fa fa-check"></i>rcp45counts1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45counts2d"><i class="fa fa-check"></i>rcp45counts2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45totals1d"><i class="fa fa-check"></i>rcp45totals1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45totals2d"><i class="fa fa-check"></i>rcp45totals2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45average1d"><i class="fa fa-check"></i>rcp45average1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45average2d"><i class="fa fa-check"></i>rcp45average2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp45annual"><i class="fa fa-check"></i>rcp45annual</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85magnitude1d"><i class="fa fa-check"></i>rcp85magnitude1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85magnitude2d"><i class="fa fa-check"></i>rcp85magnitude2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85counts1d"><i class="fa fa-check"></i>rcp85counts1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85counts2d"><i class="fa fa-check"></i>rcp85counts2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85totals1d"><i class="fa fa-check"></i>rcp85totals1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85totals2d"><i class="fa fa-check"></i>rcp85totals2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85average1d"><i class="fa fa-check"></i>rcp85average1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85average2d"><i class="fa fa-check"></i>rcp85average2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85annual"><i class="fa fa-check"></i>rcp85annual</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85counts2dscore"><i class="fa fa-check"></i>rcp85counts2dScore</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85average2dscore"><i class="fa fa-check"></i>rcp85average2dScore</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85score"><i class="fa fa-check"></i>rcp85score</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over time</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#spatial-distributions"><i class="fa fa-check"></i>Spatial distributions</a>
 <ul>
-<li class="chapter" data-level="" data-path=""><a href="#old-counts-1"><i class="fa fa-check"></i>old counts</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#old-totals-1"><i class="fa fa-check"></i>old totals</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85magnitude1d-1"><i class="fa fa-check"></i>rcp85magnitude1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85magnitude2d-1"><i class="fa fa-check"></i>rcp85magnitude2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85counts1d-1"><i class="fa fa-check"></i>rcp85counts1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85counts2d-1"><i class="fa fa-check"></i>rcp85counts2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85totals1d-1"><i class="fa fa-check"></i>rcp85totals1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85totals2d-1"><i class="fa fa-check"></i>rcp85totals2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85average1d-1"><i class="fa fa-check"></i>rcp85average1d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85average2d-1"><i class="fa fa-check"></i>rcp85average2d</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85annual-1"><i class="fa fa-check"></i>rcp85annual</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85average2dscore-1"><i class="fa fa-check"></i>rcp85average2dScore</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#rcp85counts2dscore-1"><i class="fa fa-check"></i>rcp85counts2dScore</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#observed-to-modeled"><i class="fa fa-check"></i>Observed to modeled</a>
-<ul>
-<li class="chapter" data-level="" data-path=""><a href="#annual"><i class="fa fa-check"></i>annual</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#observed-to-modeled"><i class="fa fa-check"></i>Observed to modeled</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path=""><a href="#statistics-by-city"><i class="fa fa-check"></i>Statistics by city</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#final-checks"><i class="fa fa-check"></i>Final Checks</a></li>
@@ -143,7 +104,7 @@
 <div id="header">
 <h1 class="title">STORM VALIDATION</h1>
 <p class="author"><em>Prepared by: Maximilian Stiefel</em></p>
-<p class="date"><em>2021-11-29</em></p>
+<p class="date"><em>2022-01-20</em></p>
 </div>
 <style>
   
@@ -218,1635 +179,4071 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
 <!-- ## Norm. relative change {-} -->
 <!-- ## Weighted average {-} -->
 <!-- ## Risk rating {-} -->
-<p><img src="stormValidate_files/figure-html/risk-rating-1.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-2.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-3.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-4.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-5.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-6.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="stormValidate_files/figure-html/risk-rating-1.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-2.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-3.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-4.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-5.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/risk-rating-6.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="trends-over-time" class="section level1 unnumbered" number="">
 <h1>Trends over time</h1>
-<div id="old-counts" class="section level3 unnumbered" number="">
-<h3>old counts</h3>
-<p><img src="stormValidate_files/figure-html/graphs-1.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="old-totals" class="section level3 unnumbered" number="">
-<h3>old totals</h3>
-<p><img src="stormValidate_files/figure-html/graphs-2.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45magnitude1d" class="section level3 unnumbered" number="">
-<h3>rcp45magnitude1d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-3.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45magnitude2d" class="section level3 unnumbered" number="">
-<h3>rcp45magnitude2d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-4.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45counts1d" class="section level3 unnumbered" number="">
-<h3>rcp45counts1d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-5.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45counts2d" class="section level3 unnumbered" number="">
-<h3>rcp45counts2d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-6.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45totals1d" class="section level3 unnumbered" number="">
-<h3>rcp45totals1d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-7.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45totals2d" class="section level3 unnumbered" number="">
-<h3>rcp45totals2d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-8.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45average1d" class="section level3 unnumbered" number="">
-<h3>rcp45average1d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-9.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45average2d" class="section level3 unnumbered" number="">
-<h3>rcp45average2d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-10.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp45annual" class="section level3 unnumbered" number="">
-<h3>rcp45annual</h3>
-<p><img src="stormValidate_files/figure-html/graphs-11.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85magnitude1d" class="section level3 unnumbered" number="">
-<h3>rcp85magnitude1d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-12.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85magnitude2d" class="section level3 unnumbered" number="">
-<h3>rcp85magnitude2d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-13.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85counts1d" class="section level3 unnumbered" number="">
-<h3>rcp85counts1d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-14.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85counts2d" class="section level3 unnumbered" number="">
-<h3>rcp85counts2d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-15.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85totals1d" class="section level3 unnumbered" number="">
-<h3>rcp85totals1d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-16.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85totals2d" class="section level3 unnumbered" number="">
-<h3>rcp85totals2d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-17.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85average1d" class="section level3 unnumbered" number="">
-<h3>rcp85average1d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-18.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85average2d" class="section level3 unnumbered" number="">
-<h3>rcp85average2d</h3>
-<p><img src="stormValidate_files/figure-html/graphs-19.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85annual" class="section level3 unnumbered" number="">
-<h3>rcp85annual</h3>
-<p><img src="stormValidate_files/figure-html/graphs-20.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85counts2dscore" class="section level3 unnumbered" number="">
-<h3>rcp85counts2dScore</h3>
-<p><img src="stormValidate_files/figure-html/graphs-21.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85average2dscore" class="section level3 unnumbered" number="">
-<h3>rcp85average2dScore</h3>
-<p><img src="stormValidate_files/figure-html/graphs-22.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85score" class="section level3 unnumbered" number="">
-<h3>rcp85score</h3>
-<p><img src="stormValidate_files/figure-html/graphs-23.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
 </div>
 <div id="spatial-distributions" class="section level1 unnumbered" number="">
 <h1>Spatial distributions</h1>
-<div id="old-counts-1" class="section level3 unnumbered" number="">
-<h3>old counts</h3>
-<p><img src="stormValidate_files/figure-html/maps-1.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="old-totals-1" class="section level3 unnumbered" number="">
-<h3>old totals</h3>
-<p><img src="stormValidate_files/figure-html/maps-2.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85magnitude1d-1" class="section level3 unnumbered" number="">
-<h3>rcp85magnitude1d</h3>
-<p><img src="stormValidate_files/figure-html/maps-3.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85magnitude2d-1" class="section level3 unnumbered" number="">
-<h3>rcp85magnitude2d</h3>
-<p><img src="stormValidate_files/figure-html/maps-4.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85counts1d-1" class="section level3 unnumbered" number="">
-<h3>rcp85counts1d</h3>
-<p><img src="stormValidate_files/figure-html/maps-5.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85counts2d-1" class="section level3 unnumbered" number="">
-<h3>rcp85counts2d</h3>
-<p><img src="stormValidate_files/figure-html/maps-6.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85totals1d-1" class="section level3 unnumbered" number="">
-<h3>rcp85totals1d</h3>
-<p><img src="stormValidate_files/figure-html/maps-7.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85totals2d-1" class="section level3 unnumbered" number="">
-<h3>rcp85totals2d</h3>
-<p><img src="stormValidate_files/figure-html/maps-8.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85average1d-1" class="section level3 unnumbered" number="">
-<h3>rcp85average1d</h3>
-<p><img src="stormValidate_files/figure-html/maps-9.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85average2d-1" class="section level3 unnumbered" number="">
-<h3>rcp85average2d</h3>
-<p><img src="stormValidate_files/figure-html/maps-10.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85annual-1" class="section level3 unnumbered" number="">
-<h3>rcp85annual</h3>
-<p><img src="stormValidate_files/figure-html/maps-11.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85average2dscore-1" class="section level3 unnumbered" number="">
-<h3>rcp85average2dScore</h3>
-<p><img src="stormValidate_files/figure-html/maps-12.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="rcp85counts2dscore-1" class="section level3 unnumbered" number="">
-<h3>rcp85counts2dScore</h3>
-<p><img src="stormValidate_files/figure-html/maps-13.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
 <div id="observed-to-modeled" class="section level2 unnumbered" number="">
 <h2>Observed to modeled</h2>
-<div id="annual" class="section level3 unnumbered" number="">
-<h3>annual</h3>
-<p><img src="stormValidate_files/figure-html/observed-1.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
 </div>
 </div>
 <div id="statistics-by-city" class="section level1 unnumbered" number="">
 <h1>Statistics by city</h1>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 11px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="final-checks" class="section level1 unnumbered" number="">
+<h1>Final Checks</h1>
+<img src="stormValidate_files/figure-html/clean-1.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-2.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-3.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-4.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-5.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-6.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-7.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-8.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-9.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-10.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-11.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-12.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-13.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-14.png" width="90%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/clean-15.png" width="90%" style="display: block; margin: auto;" />
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:right;">
-lon
-</th>
-<th style="text-align:right;">
-lat
-</th>
 <th style="text-align:left;">
-cities
+variable
 </th>
 <th style="text-align:right;">
-prism.annual
+mean
 </th>
 <th style="text-align:right;">
-rcp85annual2050
+sd
 </th>
 <th style="text-align:right;">
-rcp85magnitude1d2050
+median
 </th>
 <th style="text-align:right;">
-rcp85magnitude2d2050
+min
 </th>
 <th style="text-align:right;">
-rcp85counts1d2050
-</th>
-<th style="text-align:right;">
-rcp85counts2d2050
-</th>
-<th style="text-align:right;">
-rcp85totals1d2050
-</th>
-<th style="text-align:right;">
-rcp85totals2d2050
-</th>
-<th style="text-align:right;">
-rcp85average1d2050
-</th>
-<th style="text-align:right;">
-rcp85average2d2050
-</th>
-<th style="text-align:right;">
-rcp85score2050
-</th>
-<th style="text-align:right;">
-old.counts2050
-</th>
-<th style="text-align:right;">
-old.totals2050
-</th>
-<th style="text-align:right;">
-old.score_2050
-</th>
-<th style="text-align:left;">
-cities
+max
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right;">
--74.03
-</td>
-<td style="text-align:right;">
-40.72
-</td>
 <td style="text-align:left;">
-New York City
+baseline_avg_magnitude_rcp45
 </td>
 <td style="text-align:right;">
-1207.44
+17.23
 </td>
 <td style="text-align:right;">
-1232.03
+8.30
 </td>
 <td style="text-align:right;">
-41.61
+16.71
 </td>
 <td style="text-align:right;">
-62.38
+1.84
 </td>
 <td style="text-align:right;">
-4.65
-</td>
-<td style="text-align:right;">
-13.01
-</td>
-<td style="text-align:right;">
-240.23
-</td>
-<td style="text-align:right;">
-754.41
-</td>
-<td style="text-align:right;">
-51.70
-</td>
-<td style="text-align:right;">
-58.00
-</td>
-<td style="text-align:right;">
-68
-</td>
-<td style="text-align:right;">
-21.00
-</td>
-<td style="text-align:right;">
-1474.00
-</td>
-<td style="text-align:right;">
-70.00
-</td>
-<td style="text-align:left;">
-New York City
+101.18
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--118.22
-</td>
-<td style="text-align:right;">
-34.03
-</td>
 <td style="text-align:left;">
-Los Angeles
+threshold_rcp45
 </td>
 <td style="text-align:right;">
-401.56
+17.23
 </td>
 <td style="text-align:right;">
-398.83
+8.30
 </td>
 <td style="text-align:right;">
-26.98
+16.71
 </td>
 <td style="text-align:right;">
-49.42
+1.84
 </td>
 <td style="text-align:right;">
-4.09
-</td>
-<td style="text-align:right;">
-9.30
-</td>
-<td style="text-align:right;">
-183.15
-</td>
-<td style="text-align:right;">
-489.96
-</td>
-<td style="text-align:right;">
-44.81
-</td>
-<td style="text-align:right;">
-52.70
-</td>
-<td style="text-align:right;">
-47
-</td>
-<td style="text-align:right;">
-13.00
-</td>
-<td style="text-align:right;">
-820.00
-</td>
-<td style="text-align:right;">
-20.25
-</td>
-<td style="text-align:left;">
-Los Angeles
+101.18
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--87.66
-</td>
-<td style="text-align:right;">
-41.91
-</td>
 <td style="text-align:left;">
-Chicago
+baseline_avg_counts1d_rcp45
 </td>
 <td style="text-align:right;">
-953.96
+7.40
 </td>
 <td style="text-align:right;">
-957.20
+0.00
 </td>
 <td style="text-align:right;">
-28.66
+7.40
 </td>
 <td style="text-align:right;">
-48.54
+7.38
 </td>
 <td style="text-align:right;">
-4.78
-</td>
-<td style="text-align:right;">
-16.05
-</td>
-<td style="text-align:right;">
-183.46
-</td>
-<td style="text-align:right;">
-664.63
-</td>
-<td style="text-align:right;">
-38.39
-</td>
-<td style="text-align:right;">
-41.41
-</td>
-<td style="text-align:right;">
-76
-</td>
-<td style="text-align:right;">
-21.50
-</td>
-<td style="text-align:right;">
-1165.50
-</td>
-<td style="text-align:right;">
-67.50
-</td>
-<td style="text-align:left;">
-Chicago
+7.40
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--95.34
-</td>
-<td style="text-align:right;">
-29.78
-</td>
 <td style="text-align:left;">
-Houston
+baseline_avg_annual_rcp45
 </td>
 <td style="text-align:right;">
-1305.20
+763.25
 </td>
 <td style="text-align:right;">
-1142.26
+444.63
 </td>
 <td style="text-align:right;">
-37.73
+714.58
 </td>
 <td style="text-align:right;">
-63.64
+44.39
 </td>
 <td style="text-align:right;">
-4.38
-</td>
-<td style="text-align:right;">
-13.47
-</td>
-<td style="text-align:right;">
-225.99
-</td>
-<td style="text-align:right;">
-790.47
-</td>
-<td style="text-align:right;">
-51.66
-</td>
-<td style="text-align:right;">
-58.70
-</td>
-<td style="text-align:right;">
-57
-</td>
-<td style="text-align:right;">
-17.00
-</td>
-<td style="text-align:right;">
-1326.00
-</td>
-<td style="text-align:right;">
-46.00
-</td>
-<td style="text-align:left;">
-Houston
+5950.59
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--75.16
-</td>
-<td style="text-align:right;">
-39.97
-</td>
 <td style="text-align:left;">
-Philadelphia
+baseline_avg_totals1d_rcp45
 </td>
 <td style="text-align:right;">
-1177.15
+189.21
 </td>
 <td style="text-align:right;">
-1263.35
+85.97
 </td>
 <td style="text-align:right;">
-39.20
+181.12
 </td>
 <td style="text-align:right;">
-63.71
+27.10
 </td>
 <td style="text-align:right;">
-5.07
-</td>
-<td style="text-align:right;">
-14.79
-</td>
-<td style="text-align:right;">
-258.86
-</td>
-<td style="text-align:right;">
-823.10
-</td>
-<td style="text-align:right;">
-51.04
-</td>
-<td style="text-align:right;">
-55.65
-</td>
-<td style="text-align:right;">
-92
-</td>
-<td style="text-align:right;">
-22.50
-</td>
-<td style="text-align:right;">
-1510.50
-</td>
-<td style="text-align:right;">
-74.75
-</td>
-<td style="text-align:left;">
-Philadelphia
+990.11
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--112.09
-</td>
-<td style="text-align:right;">
-33.47
-</td>
 <td style="text-align:left;">
-Phoenix
+baseline_avg_magnitude2d_rcp45
 </td>
 <td style="text-align:right;">
-215.11
+29.70
 </td>
 <td style="text-align:right;">
-196.31
+14.47
 </td>
 <td style="text-align:right;">
-12.00
+28.63
 </td>
 <td style="text-align:right;">
-20.28
+3.43
 </td>
 <td style="text-align:right;">
-3.91
-</td>
-<td style="text-align:right;">
-8.62
-</td>
-<td style="text-align:right;">
-73.46
-</td>
-<td style="text-align:right;">
-188.90
-</td>
-<td style="text-align:right;">
-18.79
-</td>
-<td style="text-align:right;">
-21.92
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-13.00
-</td>
-<td style="text-align:right;">
-343.00
-</td>
-<td style="text-align:right;">
-7.50
-</td>
-<td style="text-align:left;">
-Phoenix
+183.76
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--98.47
-</td>
-<td style="text-align:right;">
-29.41
-</td>
 <td style="text-align:left;">
-San Antonio
+baseline_avg_totals_rcp45
 </td>
 <td style="text-align:right;">
-790.95
+332.15
 </td>
 <td style="text-align:right;">
-736.05
+181.76
 </td>
 <td style="text-align:right;">
-27.24
+313.14
 </td>
 <td style="text-align:right;">
-49.49
+31.89
 </td>
 <td style="text-align:right;">
-4.18
-</td>
-<td style="text-align:right;">
-13.32
-</td>
-<td style="text-align:right;">
-172.90
-</td>
-<td style="text-align:right;">
-609.63
-</td>
-<td style="text-align:right;">
-41.32
-</td>
-<td style="text-align:right;">
-45.77
-</td>
-<td style="text-align:right;">
-53
-</td>
-<td style="text-align:right;">
-16.00
-</td>
-<td style="text-align:right;">
-985.00
-</td>
-<td style="text-align:right;">
-37.50
-</td>
-<td style="text-align:left;">
-San Antonio
+2621.14
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--117.16
-</td>
-<td style="text-align:right;">
-32.72
-</td>
 <td style="text-align:left;">
-San Diego
+baseline_avg_counts_rcp45
 </td>
 <td style="text-align:right;">
-258.70
+10.92
 </td>
 <td style="text-align:right;">
-238.97
+0.97
 </td>
 <td style="text-align:right;">
-16.53
+10.86
 </td>
 <td style="text-align:right;">
-28.42
+7.86
 </td>
 <td style="text-align:right;">
-3.93
-</td>
-<td style="text-align:right;">
-8.98
-</td>
-<td style="text-align:right;">
-102.12
-</td>
-<td style="text-align:right;">
-271.15
-</td>
-<td style="text-align:right;">
-25.96
-</td>
-<td style="text-align:right;">
-30.18
-</td>
-<td style="text-align:right;">
-24
-</td>
-<td style="text-align:right;">
-13.00
-</td>
-<td style="text-align:right;">
-459.00
-</td>
-<td style="text-align:right;">
-13.50
-</td>
-<td style="text-align:left;">
-San Diego
+16.08
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--96.78
-</td>
-<td style="text-align:right;">
-32.78
-</td>
 <td style="text-align:left;">
-Dallas
+future_avg_2020_magnitude_rcp45
 </td>
 <td style="text-align:right;">
-973.37
+17.83
 </td>
 <td style="text-align:right;">
-896.06
+8.55
 </td>
 <td style="text-align:right;">
-32.75
+17.46
 </td>
 <td style="text-align:right;">
-56.17
+1.69
 </td>
 <td style="text-align:right;">
-4.42
-</td>
-<td style="text-align:right;">
-14.13
-</td>
-<td style="text-align:right;">
-192.71
-</td>
-<td style="text-align:right;">
-701.74
-</td>
-<td style="text-align:right;">
-43.64
-</td>
-<td style="text-align:right;">
-49.67
-</td>
-<td style="text-align:right;">
-53
-</td>
-<td style="text-align:right;">
-17.00
-</td>
-<td style="text-align:right;">
-1136.75
-</td>
-<td style="text-align:right;">
-43.00
-</td>
-<td style="text-align:left;">
-Dallas
+104.92
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--121.91
-</td>
-<td style="text-align:right;">
-37.34
-</td>
 <td style="text-align:left;">
-San Jose
+future_avg_2020_counts1d_rcp45
 </td>
 <td style="text-align:right;">
-394.17
+8.03
 </td>
 <td style="text-align:right;">
-365.71
+0.38
 </td>
 <td style="text-align:right;">
-17.45
+8.03
 </td>
 <td style="text-align:right;">
-30.39
+6.75
 </td>
 <td style="text-align:right;">
-4.31
-</td>
-<td style="text-align:right;">
-12.70
-</td>
-<td style="text-align:right;">
-102.46
-</td>
-<td style="text-align:right;">
-352.55
-</td>
-<td style="text-align:right;">
-23.78
-</td>
-<td style="text-align:right;">
-27.77
-</td>
-<td style="text-align:right;">
-27
-</td>
-<td style="text-align:right;">
-16.00
-</td>
-<td style="text-align:right;">
-609.75
-</td>
-<td style="text-align:right;">
-28.75
-</td>
-<td style="text-align:left;">
-San Jose
+9.34
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--110.97
-</td>
-<td style="text-align:right;">
-32.22
-</td>
 <td style="text-align:left;">
-Tucson
+future_avg_2020_annual_rcp45
 </td>
 <td style="text-align:right;">
-293.84
+787.53
 </td>
 <td style="text-align:right;">
-276.64
+458.29
 </td>
 <td style="text-align:right;">
-13.13
+737.05
 </td>
 <td style="text-align:right;">
-21.88
+44.75
 </td>
 <td style="text-align:right;">
-4.39
-</td>
-<td style="text-align:right;">
-11.65
-</td>
-<td style="text-align:right;">
-84.07
-</td>
-<td style="text-align:right;">
-246.46
-</td>
-<td style="text-align:right;">
-19.16
-</td>
-<td style="text-align:right;">
-21.16
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-16.00
-</td>
-<td style="text-align:right;">
-425.00
-</td>
-<td style="text-align:right;">
-19.50
-</td>
-<td style="text-align:left;">
-Tucson
+6126.11
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--78.91
-</td>
-<td style="text-align:right;">
-42.91
-</td>
 <td style="text-align:left;">
-Buffalo
+future_avg_2020_totals1d_rcp45
 </td>
 <td style="text-align:right;">
-1014.07
+208.52
 </td>
 <td style="text-align:right;">
-1033.22
+94.85
 </td>
 <td style="text-align:right;">
-23.26
+205.03
 </td>
 <td style="text-align:right;">
-39.02
+27.98
 </td>
 <td style="text-align:right;">
-5.08
-</td>
-<td style="text-align:right;">
-20.05
-</td>
-<td style="text-align:right;">
-145.62
-</td>
-<td style="text-align:right;">
-632.70
-</td>
-<td style="text-align:right;">
-28.68
-</td>
-<td style="text-align:right;">
-31.56
-</td>
-<td style="text-align:right;">
-71
-</td>
-<td style="text-align:right;">
-27.00
-</td>
-<td style="text-align:right;">
-1135.00
-</td>
-<td style="text-align:right;">
-85.50
-</td>
-<td style="text-align:left;">
-Buffalo
+1130.44
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--84.41
-</td>
-<td style="text-align:right;">
-33.72
-</td>
 <td style="text-align:left;">
-Atlanta
+future_avg_2020_magnitude2d_rcp45
 </td>
 <td style="text-align:right;">
-1291.40
+30.80
 </td>
 <td style="text-align:right;">
-1362.52
+14.93
 </td>
 <td style="text-align:right;">
-37.44
+29.99
 </td>
 <td style="text-align:right;">
-61.08
+3.41
 </td>
 <td style="text-align:right;">
-4.69
-</td>
-<td style="text-align:right;">
-16.52
-</td>
-<td style="text-align:right;">
-220.71
-</td>
-<td style="text-align:right;">
-861.09
-</td>
-<td style="text-align:right;">
-47.05
-</td>
-<td style="text-align:right;">
-52.11
-</td>
-<td style="text-align:right;">
-78
-</td>
-<td style="text-align:right;">
-22.50
-</td>
-<td style="text-align:right;">
-1532.00
-</td>
-<td style="text-align:right;">
-76.75
-</td>
-<td style="text-align:left;">
-Atlanta
+190.66
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--93.28
-</td>
-<td style="text-align:right;">
-44.97
-</td>
 <td style="text-align:left;">
-Minneapolis
+future_avg_2020_totals_rcp45
 </td>
 <td style="text-align:right;">
-823.28
+357.43
 </td>
 <td style="text-align:right;">
-804.80
+195.77
 </td>
 <td style="text-align:right;">
-27.01
+340.08
 </td>
 <td style="text-align:right;">
-43.78
+32.86
 </td>
 <td style="text-align:right;">
-4.58
-</td>
-<td style="text-align:right;">
-14.12
-</td>
-<td style="text-align:right;">
-159.60
-</td>
-<td style="text-align:right;">
-543.19
-</td>
-<td style="text-align:right;">
-34.81
-</td>
-<td style="text-align:right;">
-38.46
-</td>
-<td style="text-align:right;">
-49
-</td>
-<td style="text-align:right;">
-20.00
-</td>
-<td style="text-align:right;">
-983.00
-</td>
-<td style="text-align:right;">
-54.50
-</td>
-<td style="text-align:left;">
-Minneapolis
+2869.22
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--104.97
-</td>
-<td style="text-align:right;">
-39.72
-</td>
 <td style="text-align:left;">
-Denver
+future_avg_2020_counts_rcp45
 </td>
 <td style="text-align:right;">
-430.02
+11.70
 </td>
 <td style="text-align:right;">
-392.33
+1.33
 </td>
 <td style="text-align:right;">
-13.33
+11.59
 </td>
 <td style="text-align:right;">
-24.06
+7.30
 </td>
 <td style="text-align:right;">
-4.71
-</td>
-<td style="text-align:right;">
-12.98
-</td>
-<td style="text-align:right;">
-96.08
-</td>
-<td style="text-align:right;">
-285.56
-</td>
-<td style="text-align:right;">
-20.40
-</td>
-<td style="text-align:right;">
-22.00
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-17.25
-</td>
-<td style="text-align:right;">
-505.00
-</td>
-<td style="text-align:right;">
-29.75
-</td>
-<td style="text-align:left;">
-Denver
+17.61
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--122.34
-</td>
-<td style="text-align:right;">
-47.59
-</td>
 <td style="text-align:left;">
-Seattle
+future_avg_2025_magnitude_rcp45
 </td>
 <td style="text-align:right;">
-933.31
+17.81
 </td>
 <td style="text-align:right;">
-959.27
+8.54
 </td>
 <td style="text-align:right;">
-25.54
+17.44
 </td>
 <td style="text-align:right;">
-44.77
+1.78
 </td>
 <td style="text-align:right;">
-5.71
-</td>
-<td style="text-align:right;">
-22.27
-</td>
-<td style="text-align:right;">
-178.86
-</td>
-<td style="text-align:right;">
-790.41
-</td>
-<td style="text-align:right;">
-31.34
-</td>
-<td style="text-align:right;">
-35.50
-</td>
-<td style="text-align:right;">
-96
-</td>
-<td style="text-align:right;">
-24.25
-</td>
-<td style="text-align:right;">
-1225.75
-</td>
-<td style="text-align:right;">
-77.50
-</td>
-<td style="text-align:left;">
-Seattle
+105.46
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+future_avg_2025_counts1d_rcp45
+</td>
 <td style="text-align:right;">
--90.09
+8.02
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:right;">
+8.02
+</td>
+<td style="text-align:right;">
+6.85
+</td>
+<td style="text-align:right;">
+9.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_annual_rcp45
+</td>
+<td style="text-align:right;">
+783.89
+</td>
+<td style="text-align:right;">
+455.91
+</td>
+<td style="text-align:right;">
+738.16
+</td>
+<td style="text-align:right;">
+44.53
+</td>
+<td style="text-align:right;">
+6163.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_totals1d_rcp45
+</td>
+<td style="text-align:right;">
+208.23
+</td>
+<td style="text-align:right;">
+94.66
+</td>
+<td style="text-align:right;">
+204.16
+</td>
+<td style="text-align:right;">
+28.27
+</td>
+<td style="text-align:right;">
+1161.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_magnitude2d_rcp45
+</td>
+<td style="text-align:right;">
+30.77
+</td>
+<td style="text-align:right;">
+14.92
 </td>
 <td style="text-align:right;">
 29.97
 </td>
-<td style="text-align:left;">
-New Orleans
+<td style="text-align:right;">
+3.43
 </td>
 <td style="text-align:right;">
-1599.97
-</td>
-<td style="text-align:right;">
-1536.30
-</td>
-<td style="text-align:right;">
-44.82
-</td>
-<td style="text-align:right;">
-75.32
-</td>
-<td style="text-align:right;">
-4.23
-</td>
-<td style="text-align:right;">
-14.44
-</td>
-<td style="text-align:right;">
-276.07
-</td>
-<td style="text-align:right;">
-981.14
-</td>
-<td style="text-align:right;">
-65.29
-</td>
-<td style="text-align:right;">
-67.93
-</td>
-<td style="text-align:right;">
-66
-</td>
-<td style="text-align:right;">
-20.00
-</td>
-<td style="text-align:right;">
-1761.50
-</td>
-<td style="text-align:right;">
-70.50
-</td>
-<td style="text-align:left;">
-New Orleans
+191.63
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--80.22
-</td>
-<td style="text-align:right;">
-25.78
-</td>
 <td style="text-align:left;">
-Miami
+future_avg_2025_totals_rcp45
 </td>
 <td style="text-align:right;">
-1505.98
+355.97
 </td>
 <td style="text-align:right;">
-1391.38
+194.96
 </td>
 <td style="text-align:right;">
-36.12
+341.45
 </td>
 <td style="text-align:right;">
-62.78
+32.96
 </td>
 <td style="text-align:right;">
-3.71
-</td>
-<td style="text-align:right;">
-13.04
-</td>
-<td style="text-align:right;">
-209.27
-</td>
-<td style="text-align:right;">
-771.53
-</td>
-<td style="text-align:right;">
-56.46
-</td>
-<td style="text-align:right;">
-59.18
-</td>
-<td style="text-align:right;">
-48
-</td>
-<td style="text-align:right;">
-19.25
-</td>
-<td style="text-align:right;">
-1429.50
-</td>
-<td style="text-align:right;">
-60.00
-</td>
-<td style="text-align:left;">
-Miami
+2894.25
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--83.03
-</td>
-<td style="text-align:right;">
-42.34
-</td>
 <td style="text-align:left;">
-Detroit
+future_avg_2025_counts_rcp45
 </td>
 <td style="text-align:right;">
-864.76
+11.66
 </td>
 <td style="text-align:right;">
-864.67
+1.32
 </td>
 <td style="text-align:right;">
-24.17
+11.56
 </td>
 <td style="text-align:right;">
-38.78
+7.72
 </td>
 <td style="text-align:right;">
-5.34
-</td>
-<td style="text-align:right;">
-17.52
-</td>
-<td style="text-align:right;">
-154.29
-</td>
-<td style="text-align:right;">
-569.54
-</td>
-<td style="text-align:right;">
-28.89
-</td>
-<td style="text-align:right;">
-32.50
-</td>
-<td style="text-align:right;">
-70
-</td>
-<td style="text-align:right;">
-24.00
-</td>
-<td style="text-align:right;">
-1013.25
-</td>
-<td style="text-align:right;">
-71.50
-</td>
-<td style="text-align:left;">
-Detroit
+17.82
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--115.16
-</td>
-<td style="text-align:right;">
-36.16
-</td>
 <td style="text-align:left;">
-Las Vegas
+future_avg_2030_magnitude_rcp45
 </td>
 <td style="text-align:right;">
-114.03
+17.89
 </td>
 <td style="text-align:right;">
-110.38
+8.58
 </td>
 <td style="text-align:right;">
-7.78
+17.48
 </td>
 <td style="text-align:right;">
-13.17
+1.85
 </td>
 <td style="text-align:right;">
-4.36
+105.98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_counts1d_rcp45
+</td>
+<td style="text-align:right;">
+8.09
+</td>
+<td style="text-align:right;">
+0.41
 </td>
 <td style="text-align:right;">
 8.10
 </td>
 <td style="text-align:right;">
-54.92
+6.74
 </td>
 <td style="text-align:right;">
-120.46
-</td>
-<td style="text-align:right;">
-12.59
-</td>
-<td style="text-align:right;">
-14.88
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-13.00
-</td>
-<td style="text-align:right;">
-222.00
-</td>
-<td style="text-align:right;">
-6.00
-</td>
-<td style="text-align:left;">
-Las Vegas
+9.41
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--90.22
-</td>
-<td style="text-align:right;">
-38.66
-</td>
 <td style="text-align:left;">
-St Louis
+future_avg_2030_annual_rcp45
 </td>
 <td style="text-align:right;">
-1074.04
+783.71
 </td>
 <td style="text-align:right;">
-1029.56
+454.46
 </td>
 <td style="text-align:right;">
-29.90
+735.82
 </td>
 <td style="text-align:right;">
-50.11
+44.76
 </td>
 <td style="text-align:right;">
-4.61
-</td>
-<td style="text-align:right;">
-16.26
-</td>
-<td style="text-align:right;">
-175.18
-</td>
-<td style="text-align:right;">
-697.62
-</td>
-<td style="text-align:right;">
-38.00
-</td>
-<td style="text-align:right;">
-42.91
-</td>
-<td style="text-align:right;">
-76
-</td>
-<td style="text-align:right;">
-21.25
-</td>
-<td style="text-align:right;">
-1215.00
-</td>
-<td style="text-align:right;">
-68.50
-</td>
-<td style="text-align:left;">
-St Louis
+6141.62
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--71.03
-</td>
-<td style="text-align:right;">
-42.34
-</td>
 <td style="text-align:left;">
-Boston
+future_avg_2030_totals1d_rcp45
 </td>
 <td style="text-align:right;">
-1194.29
+210.78
 </td>
 <td style="text-align:right;">
-1288.17
+95.96
 </td>
 <td style="text-align:right;">
-41.67
+206.28
 </td>
 <td style="text-align:right;">
-67.48
+28.39
 </td>
 <td style="text-align:right;">
-5.21
-</td>
-<td style="text-align:right;">
-15.17
-</td>
-<td style="text-align:right;">
-278.27
-</td>
-<td style="text-align:right;">
-898.74
-</td>
-<td style="text-align:right;">
-53.45
-</td>
-<td style="text-align:right;">
-59.26
-</td>
-<td style="text-align:right;">
-97
-</td>
-<td style="text-align:right;">
-22.25
-</td>
-<td style="text-align:right;">
-1576.75
-</td>
-<td style="text-align:right;">
-75.00
-</td>
-<td style="text-align:left;">
-Boston
+1181.57
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+future_avg_2030_magnitude2d_rcp45
+</td>
 <td style="text-align:right;">
--81.09
+30.93
+</td>
+<td style="text-align:right;">
+15.00
+</td>
+<td style="text-align:right;">
+30.09
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+<td style="text-align:right;">
+192.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_totals_rcp45
+</td>
+<td style="text-align:right;">
+358.54
+</td>
+<td style="text-align:right;">
+195.61
+</td>
+<td style="text-align:right;">
+341.79
+</td>
+<td style="text-align:right;">
+32.91
+</td>
+<td style="text-align:right;">
+2910.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_counts_rcp45
+</td>
+<td style="text-align:right;">
+11.73
+</td>
+<td style="text-align:right;">
+1.33
+</td>
+<td style="text-align:right;">
+11.68
+</td>
+<td style="text-align:right;">
+7.69
+</td>
+<td style="text-align:right;">
+17.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_magnitude_rcp45
+</td>
+<td style="text-align:right;">
+17.94
+</td>
+<td style="text-align:right;">
+8.59
+</td>
+<td style="text-align:right;">
+17.61
+</td>
+<td style="text-align:right;">
+1.74
+</td>
+<td style="text-align:right;">
+104.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_counts1d_rcp45
+</td>
+<td style="text-align:right;">
+8.14
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+8.12
+</td>
+<td style="text-align:right;">
+6.78
+</td>
+<td style="text-align:right;">
+9.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_annual_rcp45
+</td>
+<td style="text-align:right;">
+785.66
+</td>
+<td style="text-align:right;">
+455.72
+</td>
+<td style="text-align:right;">
+737.20
+</td>
+<td style="text-align:right;">
+44.78
+</td>
+<td style="text-align:right;">
+6073.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_totals1d_rcp45
+</td>
+<td style="text-align:right;">
+212.28
+</td>
+<td style="text-align:right;">
+96.19
+</td>
+<td style="text-align:right;">
+210.70
+</td>
+<td style="text-align:right;">
+28.09
+</td>
+<td style="text-align:right;">
+1130.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_magnitude2d_rcp45
+</td>
+<td style="text-align:right;">
+31.03
+</td>
+<td style="text-align:right;">
+15.01
+</td>
+<td style="text-align:right;">
+30.33
+</td>
+<td style="text-align:right;">
+3.43
+</td>
+<td style="text-align:right;">
+189.74
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_totals_rcp45
+</td>
+<td style="text-align:right;">
+360.58
+</td>
+<td style="text-align:right;">
+195.99
+</td>
+<td style="text-align:right;">
+345.05
+</td>
+<td style="text-align:right;">
+32.66
+</td>
+<td style="text-align:right;">
+2843.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_counts_rcp45
+</td>
+<td style="text-align:right;">
+11.79
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+<td style="text-align:right;">
+11.68
+</td>
+<td style="text-align:right;">
+7.64
+</td>
+<td style="text-align:right;">
+17.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_magnitude_rcp45
+</td>
+<td style="text-align:right;">
+18.01
+</td>
+<td style="text-align:right;">
+8.60
+</td>
+<td style="text-align:right;">
+17.72
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+104.78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_counts1d_rcp45
+</td>
+<td style="text-align:right;">
+8.20
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+8.16
+</td>
+<td style="text-align:right;">
+6.99
+</td>
+<td style="text-align:right;">
+9.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_annual_rcp45
+</td>
+<td style="text-align:right;">
+787.01
+</td>
+<td style="text-align:right;">
+454.63
+</td>
+<td style="text-align:right;">
+740.11
+</td>
+<td style="text-align:right;">
+45.88
+</td>
+<td style="text-align:right;">
+6078.89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_totals1d_rcp45
+</td>
+<td style="text-align:right;">
+214.22
+</td>
+<td style="text-align:right;">
+96.45
+</td>
+<td style="text-align:right;">
+213.23
+</td>
+<td style="text-align:right;">
+29.40
+</td>
+<td style="text-align:right;">
+1144.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_magnitude2d_rcp45
+</td>
+<td style="text-align:right;">
+31.14
+</td>
+<td style="text-align:right;">
+15.03
+</td>
+<td style="text-align:right;">
+30.50
+</td>
+<td style="text-align:right;">
+3.52
+</td>
+<td style="text-align:right;">
+190.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_totals_rcp45
+</td>
+<td style="text-align:right;">
+362.60
+</td>
+<td style="text-align:right;">
+195.86
+</td>
+<td style="text-align:right;">
+349.03
+</td>
+<td style="text-align:right;">
+34.01
+</td>
+<td style="text-align:right;">
+2868.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_counts_rcp45
+</td>
+<td style="text-align:right;">
+11.85
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+11.75
+</td>
+<td style="text-align:right;">
+7.78
+</td>
+<td style="text-align:right;">
+17.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_magnitude_rcp45
+</td>
+<td style="text-align:right;">
+18.05
+</td>
+<td style="text-align:right;">
+8.71
+</td>
+<td style="text-align:right;">
+17.66
+</td>
+<td style="text-align:right;">
+1.80
+</td>
+<td style="text-align:right;">
+106.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_counts1d_rcp45
+</td>
+<td style="text-align:right;">
+8.23
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+<td style="text-align:right;">
+8.21
+</td>
+<td style="text-align:right;">
+6.65
+</td>
+<td style="text-align:right;">
+10.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_annual_rcp45
+</td>
+<td style="text-align:right;">
+788.00
+</td>
+<td style="text-align:right;">
+458.72
+</td>
+<td style="text-align:right;">
+737.82
+</td>
+<td style="text-align:right;">
+44.24
+</td>
+<td style="text-align:right;">
+6182.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_totals1d_rcp45
+</td>
+<td style="text-align:right;">
+216.25
+</td>
+<td style="text-align:right;">
+99.97
+</td>
+<td style="text-align:right;">
+212.47
+</td>
+<td style="text-align:right;">
+28.19
+</td>
+<td style="text-align:right;">
+1200.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_magnitude2d_rcp45
+</td>
+<td style="text-align:right;">
+31.22
+</td>
+<td style="text-align:right;">
+15.26
+</td>
+<td style="text-align:right;">
+30.41
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+<td style="text-align:right;">
+194.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_totals_rcp45
+</td>
+<td style="text-align:right;">
+364.82
+</td>
+<td style="text-align:right;">
+201.12
+</td>
+<td style="text-align:right;">
+347.74
+</td>
+<td style="text-align:right;">
+32.74
+</td>
+<td style="text-align:right;">
+2985.84
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_counts_rcp45
+</td>
+<td style="text-align:right;">
+11.88
+</td>
+<td style="text-align:right;">
+1.45
+</td>
+<td style="text-align:right;">
+11.83
+</td>
+<td style="text-align:right;">
+7.65
+</td>
+<td style="text-align:right;">
+17.88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_magnitude_rcp45
+</td>
+<td style="text-align:right;">
+18.16
+</td>
+<td style="text-align:right;">
+8.75
+</td>
+<td style="text-align:right;">
+17.75
+</td>
+<td style="text-align:right;">
+1.82
+</td>
+<td style="text-align:right;">
+107.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_counts1d_rcp45
+</td>
+<td style="text-align:right;">
+8.35
+</td>
+<td style="text-align:right;">
+0.54
+</td>
+<td style="text-align:right;">
+8.31
+</td>
+<td style="text-align:right;">
+6.53
+</td>
+<td style="text-align:right;">
+10.46
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_annual_rcp45
+</td>
+<td style="text-align:right;">
+792.78
+</td>
+<td style="text-align:right;">
+460.64
+</td>
+<td style="text-align:right;">
+742.06
+</td>
+<td style="text-align:right;">
+45.15
+</td>
+<td style="text-align:right;">
+6212.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_totals1d_rcp45
+</td>
+<td style="text-align:right;">
+219.72
+</td>
+<td style="text-align:right;">
+101.32
+</td>
+<td style="text-align:right;">
+215.52
+</td>
+<td style="text-align:right;">
+29.15
+</td>
+<td style="text-align:right;">
+1234.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_magnitude2d_rcp45
+</td>
+<td style="text-align:right;">
+31.44
+</td>
+<td style="text-align:right;">
+15.33
+</td>
+<td style="text-align:right;">
+30.56
+</td>
+<td style="text-align:right;">
+3.47
+</td>
+<td style="text-align:right;">
+196.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_totals_rcp45
+</td>
+<td style="text-align:right;">
+369.48
+</td>
+<td style="text-align:right;">
+203.54
+</td>
+<td style="text-align:right;">
+350.66
+</td>
+<td style="text-align:right;">
+33.86
+</td>
+<td style="text-align:right;">
+3052.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_counts_rcp45
+</td>
+<td style="text-align:right;">
+12.03
+</td>
+<td style="text-align:right;">
+1.52
+</td>
+<td style="text-align:right;">
+11.93
+</td>
+<td style="text-align:right;">
+7.32
+</td>
+<td style="text-align:right;">
+18.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_magnitude_rcp45
+</td>
+<td style="text-align:right;">
+18.24
+</td>
+<td style="text-align:right;">
+8.70
+</td>
+<td style="text-align:right;">
+17.97
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+108.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_counts1d_rcp45
+</td>
+<td style="text-align:right;">
+8.44
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+8.38
+</td>
+<td style="text-align:right;">
+6.49
+</td>
+<td style="text-align:right;">
+10.58
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_annual_rcp45
+</td>
+<td style="text-align:right;">
+792.93
+</td>
+<td style="text-align:right;">
+456.08
+</td>
+<td style="text-align:right;">
+745.92
+</td>
+<td style="text-align:right;">
+46.43
+</td>
+<td style="text-align:right;">
+6173.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_totals1d_rcp45
+</td>
+<td style="text-align:right;">
+221.84
+</td>
+<td style="text-align:right;">
+100.40
+</td>
+<td style="text-align:right;">
+221.35
+</td>
+<td style="text-align:right;">
+30.57
+</td>
+<td style="text-align:right;">
+1268.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_magnitude2d_rcp45
+</td>
+<td style="text-align:right;">
+31.58
+</td>
+<td style="text-align:right;">
+15.26
+</td>
+<td style="text-align:right;">
+30.97
+</td>
+<td style="text-align:right;">
+3.63
+</td>
+<td style="text-align:right;">
+197.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_totals_rcp45
+</td>
+<td style="text-align:right;">
+371.58
+</td>
+<td style="text-align:right;">
+201.80
+</td>
+<td style="text-align:right;">
+357.29
+</td>
+<td style="text-align:right;">
+35.08
+</td>
+<td style="text-align:right;">
+3061.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_counts_rcp45
+</td>
+<td style="text-align:right;">
+12.14
+</td>
+<td style="text-align:right;">
+1.47
+</td>
+<td style="text-align:right;">
+11.96
+</td>
+<td style="text-align:right;">
+7.40
+</td>
+<td style="text-align:right;">
+18.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_magnitude_rcp45
+</td>
+<td style="text-align:right;">
+18.30
+</td>
+<td style="text-align:right;">
+8.77
+</td>
+<td style="text-align:right;">
+18.04
+</td>
+<td style="text-align:right;">
+1.70
+</td>
+<td style="text-align:right;">
+107.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_counts1d_rcp45
+</td>
+<td style="text-align:right;">
+8.50
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+8.49
+</td>
+<td style="text-align:right;">
+6.49
+</td>
+<td style="text-align:right;">
+10.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_annual_rcp45
+</td>
+<td style="text-align:right;">
+796.63
+</td>
+<td style="text-align:right;">
+459.85
+</td>
+<td style="text-align:right;">
+747.72
+</td>
+<td style="text-align:right;">
+43.92
+</td>
+<td style="text-align:right;">
+6161.96
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_totals1d_rcp45
+</td>
+<td style="text-align:right;">
+223.96
+</td>
+<td style="text-align:right;">
+102.48
+</td>
+<td style="text-align:right;">
+223.82
+</td>
+<td style="text-align:right;">
+28.18
+</td>
+<td style="text-align:right;">
+1270.34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_magnitude2d_rcp45
+</td>
+<td style="text-align:right;">
+31.69
+</td>
+<td style="text-align:right;">
+15.37
+</td>
+<td style="text-align:right;">
+31.12
+</td>
+<td style="text-align:right;">
+3.38
+</td>
+<td style="text-align:right;">
+197.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_totals_rcp45
+</td>
+<td style="text-align:right;">
+374.63
+</td>
+<td style="text-align:right;">
+204.85
+</td>
+<td style="text-align:right;">
+360.24
+</td>
+<td style="text-align:right;">
+32.55
+</td>
+<td style="text-align:right;">
+3037.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_counts_rcp45
+</td>
+<td style="text-align:right;">
+12.22
+</td>
+<td style="text-align:right;">
+1.56
+</td>
+<td style="text-align:right;">
+12.09
+</td>
+<td style="text-align:right;">
+7.34
+</td>
+<td style="text-align:right;">
+18.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_average1d_rcp45
+</td>
+<td style="text-align:right;">
+25.57
+</td>
+<td style="text-align:right;">
+11.62
+</td>
+<td style="text-align:right;">
+24.48
+</td>
+<td style="text-align:right;">
+3.66
+</td>
+<td style="text-align:right;">
+133.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_average_rcp45
+</td>
+<td style="text-align:right;">
+29.73
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+28.59
+</td>
+<td style="text-align:right;">
+3.71
+</td>
+<td style="text-align:right;">
+187.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_average1d_rcp45
+</td>
+<td style="text-align:right;">
+25.94
+</td>
+<td style="text-align:right;">
+11.78
+</td>
+<td style="text-align:right;">
+24.83
+</td>
+<td style="text-align:right;">
+3.71
+</td>
+<td style="text-align:right;">
+134.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_average_rcp45
+</td>
+<td style="text-align:right;">
+29.85
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+28.74
+</td>
+<td style="text-align:right;">
+3.75
+</td>
+<td style="text-align:right;">
+186.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_average1d_rcp45
+</td>
+<td style="text-align:right;">
+25.99
+</td>
+<td style="text-align:right;">
+11.81
+</td>
+<td style="text-align:right;">
+24.84
+</td>
+<td style="text-align:right;">
+3.70
+</td>
+<td style="text-align:right;">
+135.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_average_rcp45
+</td>
+<td style="text-align:right;">
+29.87
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+3.74
+</td>
+<td style="text-align:right;">
+186.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_average1d_rcp45
+</td>
+<td style="text-align:right;">
+26.05
+</td>
+<td style="text-align:right;">
+11.85
+</td>
+<td style="text-align:right;">
+24.89
+</td>
+<td style="text-align:right;">
+3.72
+</td>
+<td style="text-align:right;">
+136.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_average_rcp45
+</td>
+<td style="text-align:right;">
+29.89
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+28.73
+</td>
+<td style="text-align:right;">
+3.75
+</td>
+<td style="text-align:right;">
+185.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_average1d_rcp45
+</td>
+<td style="text-align:right;">
+26.08
+</td>
+<td style="text-align:right;">
+11.85
+</td>
+<td style="text-align:right;">
+24.97
+</td>
+<td style="text-align:right;">
+3.76
+</td>
+<td style="text-align:right;">
+135.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_average_rcp45
+</td>
+<td style="text-align:right;">
+29.91
+</td>
+<td style="text-align:right;">
+14.51
+</td>
+<td style="text-align:right;">
+28.77
+</td>
+<td style="text-align:right;">
+3.78
+</td>
+<td style="text-align:right;">
+186.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_average1d_rcp45
+</td>
+<td style="text-align:right;">
+26.12
+</td>
+<td style="text-align:right;">
+11.83
+</td>
+<td style="text-align:right;">
+25.01
+</td>
+<td style="text-align:right;">
+3.83
+</td>
+<td style="text-align:right;">
+134.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_average_rcp45
+</td>
+<td style="text-align:right;">
+29.92
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+28.79
+</td>
+<td style="text-align:right;">
+3.84
+</td>
+<td style="text-align:right;">
+185.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_average1d_rcp45
+</td>
+<td style="text-align:right;">
+26.18
+</td>
+<td style="text-align:right;">
+11.88
+</td>
+<td style="text-align:right;">
+25.03
+</td>
+<td style="text-align:right;">
+3.78
+</td>
+<td style="text-align:right;">
+134.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_average_rcp45
+</td>
+<td style="text-align:right;">
+29.92
+</td>
+<td style="text-align:right;">
+14.49
+</td>
+<td style="text-align:right;">
+28.80
+</td>
+<td style="text-align:right;">
+3.80
+</td>
+<td style="text-align:right;">
+185.44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_average1d_rcp45
+</td>
+<td style="text-align:right;">
+26.26
+</td>
+<td style="text-align:right;">
+11.90
+</td>
+<td style="text-align:right;">
+25.09
+</td>
+<td style="text-align:right;">
+3.79
+</td>
+<td style="text-align:right;">
+134.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_average_rcp45
+</td>
+<td style="text-align:right;">
+29.97
+</td>
+<td style="text-align:right;">
+14.49
+</td>
+<td style="text-align:right;">
+28.81
+</td>
+<td style="text-align:right;">
+3.81
+</td>
+<td style="text-align:right;">
+185.68
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_average1d_rcp45
+</td>
+<td style="text-align:right;">
+26.30
+</td>
+<td style="text-align:right;">
+11.91
+</td>
+<td style="text-align:right;">
+25.16
+</td>
+<td style="text-align:right;">
+3.86
+</td>
+<td style="text-align:right;">
+136.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_average_rcp45
+</td>
+<td style="text-align:right;">
+29.99
+</td>
+<td style="text-align:right;">
+14.49
+</td>
+<td style="text-align:right;">
+28.82
+</td>
+<td style="text-align:right;">
+3.89
+</td>
+<td style="text-align:right;">
+185.87
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_average1d_rcp45
+</td>
+<td style="text-align:right;">
+26.32
+</td>
+<td style="text-align:right;">
+11.93
+</td>
+<td style="text-align:right;">
+25.20
+</td>
+<td style="text-align:right;">
+3.83
+</td>
+<td style="text-align:right;">
+136.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_average_rcp45
+</td>
+<td style="text-align:right;">
+29.98
+</td>
+<td style="text-align:right;">
+14.49
+</td>
+<td style="text-align:right;">
+28.86
+</td>
+<td style="text-align:right;">
+3.86
+</td>
+<td style="text-align:right;">
+185.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_magnitude
+</td>
+<td style="text-align:right;">
+17.23
+</td>
+<td style="text-align:right;">
+8.30
+</td>
+<td style="text-align:right;">
+16.71
+</td>
+<td style="text-align:right;">
+1.84
+</td>
+<td style="text-align:right;">
+101.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+threshold
+</td>
+<td style="text-align:right;">
+17.23
+</td>
+<td style="text-align:right;">
+8.30
+</td>
+<td style="text-align:right;">
+16.71
+</td>
+<td style="text-align:right;">
+1.84
+</td>
+<td style="text-align:right;">
+101.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_counts1d
+</td>
+<td style="text-align:right;">
+7.40
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+7.40
+</td>
+<td style="text-align:right;">
+7.38
+</td>
+<td style="text-align:right;">
+7.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_annual
+</td>
+<td style="text-align:right;">
+763.25
+</td>
+<td style="text-align:right;">
+444.63
+</td>
+<td style="text-align:right;">
+714.58
+</td>
+<td style="text-align:right;">
+44.39
+</td>
+<td style="text-align:right;">
+5950.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_totals1d
+</td>
+<td style="text-align:right;">
+189.21
+</td>
+<td style="text-align:right;">
+85.97
+</td>
+<td style="text-align:right;">
+181.12
+</td>
+<td style="text-align:right;">
+27.10
+</td>
+<td style="text-align:right;">
+990.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_magnitude2d
+</td>
+<td style="text-align:right;">
+29.70
+</td>
+<td style="text-align:right;">
+14.47
+</td>
+<td style="text-align:right;">
+28.63
+</td>
+<td style="text-align:right;">
+3.43
+</td>
+<td style="text-align:right;">
+183.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_totals
+</td>
+<td style="text-align:right;">
+332.15
+</td>
+<td style="text-align:right;">
+181.76
+</td>
+<td style="text-align:right;">
+313.14
+</td>
+<td style="text-align:right;">
+31.89
+</td>
+<td style="text-align:right;">
+2621.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_counts
+</td>
+<td style="text-align:right;">
+10.92
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+10.86
+</td>
+<td style="text-align:right;">
+7.86
+</td>
+<td style="text-align:right;">
+16.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_magnitude
+</td>
+<td style="text-align:right;">
+17.87
+</td>
+<td style="text-align:right;">
+8.61
+</td>
+<td style="text-align:right;">
+17.41
+</td>
+<td style="text-align:right;">
+1.81
+</td>
+<td style="text-align:right;">
+103.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_counts1d
+</td>
+<td style="text-align:right;">
+8.05
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+<td style="text-align:right;">
+8.02
+</td>
+<td style="text-align:right;">
+6.94
+</td>
+<td style="text-align:right;">
+9.52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_annual
+</td>
+<td style="text-align:right;">
+783.40
+</td>
+<td style="text-align:right;">
+454.80
+</td>
+<td style="text-align:right;">
+727.69
+</td>
+<td style="text-align:right;">
+47.53
+</td>
+<td style="text-align:right;">
+6084.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_totals1d
+</td>
+<td style="text-align:right;">
+209.53
+</td>
+<td style="text-align:right;">
+96.48
+</td>
+<td style="text-align:right;">
+203.86
+</td>
+<td style="text-align:right;">
+30.51
+</td>
+<td style="text-align:right;">
+1110.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_magnitude2d
+</td>
+<td style="text-align:right;">
+30.86
+</td>
+<td style="text-align:right;">
+15.02
+</td>
+<td style="text-align:right;">
+29.97
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+189.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_totals
+</td>
+<td style="text-align:right;">
+357.04
+</td>
+<td style="text-align:right;">
+195.37
+</td>
+<td style="text-align:right;">
+335.32
+</td>
+<td style="text-align:right;">
+35.44
+</td>
+<td style="text-align:right;">
+2839.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_counts
+</td>
+<td style="text-align:right;">
+11.68
+</td>
+<td style="text-align:right;">
+1.25
+</td>
+<td style="text-align:right;">
+11.59
+</td>
+<td style="text-align:right;">
+7.91
+</td>
+<td style="text-align:right;">
+17.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_magnitude
+</td>
+<td style="text-align:right;">
+17.92
+</td>
+<td style="text-align:right;">
+8.62
+</td>
+<td style="text-align:right;">
+17.46
+</td>
+<td style="text-align:right;">
+1.87
+</td>
+<td style="text-align:right;">
+104.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_counts1d
+</td>
+<td style="text-align:right;">
+8.10
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+<td style="text-align:right;">
+8.09
+</td>
+<td style="text-align:right;">
+6.85
+</td>
+<td style="text-align:right;">
+9.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_annual
+</td>
+<td style="text-align:right;">
+785.60
+</td>
+<td style="text-align:right;">
+454.97
+</td>
+<td style="text-align:right;">
+732.94
+</td>
+<td style="text-align:right;">
+47.96
+</td>
+<td style="text-align:right;">
+6071.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_totals1d
+</td>
+<td style="text-align:right;">
+211.02
+</td>
+<td style="text-align:right;">
+97.35
+</td>
+<td style="text-align:right;">
+205.57
+</td>
+<td style="text-align:right;">
+30.73
+</td>
+<td style="text-align:right;">
+1123.96
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_magnitude2d
+</td>
+<td style="text-align:right;">
+30.95
+</td>
+<td style="text-align:right;">
+15.07
+</td>
+<td style="text-align:right;">
+30.05
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+189.66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_totals
+</td>
+<td style="text-align:right;">
+359.07
+</td>
+<td style="text-align:right;">
+196.38
+</td>
+<td style="text-align:right;">
+337.35
+</td>
+<td style="text-align:right;">
+35.70
+</td>
+<td style="text-align:right;">
+2843.34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_counts
+</td>
+<td style="text-align:right;">
+11.75
+</td>
+<td style="text-align:right;">
+1.27
+</td>
+<td style="text-align:right;">
+11.65
+</td>
+<td style="text-align:right;">
+8.11
+</td>
+<td style="text-align:right;">
+17.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_magnitude
+</td>
+<td style="text-align:right;">
+18.04
+</td>
+<td style="text-align:right;">
+8.67
+</td>
+<td style="text-align:right;">
+17.58
+</td>
+<td style="text-align:right;">
+1.90
+</td>
+<td style="text-align:right;">
+103.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_counts1d
+</td>
+<td style="text-align:right;">
+8.22
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+8.22
+</td>
+<td style="text-align:right;">
+7.02
+</td>
+<td style="text-align:right;">
+9.74
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_annual
+</td>
+<td style="text-align:right;">
+788.46
+</td>
+<td style="text-align:right;">
+455.44
+</td>
+<td style="text-align:right;">
+740.12
+</td>
+<td style="text-align:right;">
+46.32
+</td>
+<td style="text-align:right;">
+6055.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_totals1d
+</td>
+<td style="text-align:right;">
+215.25
+</td>
+<td style="text-align:right;">
+98.83
+</td>
+<td style="text-align:right;">
+209.71
+</td>
+<td style="text-align:right;">
+29.07
+</td>
+<td style="text-align:right;">
+1113.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_magnitude2d
+</td>
+<td style="text-align:right;">
+31.20
+</td>
+<td style="text-align:right;">
+15.16
+</td>
+<td style="text-align:right;">
+30.26
+</td>
+<td style="text-align:right;">
+3.49
+</td>
+<td style="text-align:right;">
+189.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_totals
+</td>
+<td style="text-align:right;">
+364.09
+</td>
+<td style="text-align:right;">
+198.54
+</td>
+<td style="text-align:right;">
+343.81
+</td>
+<td style="text-align:right;">
+34.21
+</td>
+<td style="text-align:right;">
+2841.78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_counts
+</td>
+<td style="text-align:right;">
+11.89
+</td>
+<td style="text-align:right;">
+1.34
+</td>
+<td style="text-align:right;">
+11.80
+</td>
+<td style="text-align:right;">
+7.94
+</td>
+<td style="text-align:right;">
+17.46
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_magnitude
+</td>
+<td style="text-align:right;">
+18.09
+</td>
+<td style="text-align:right;">
+8.73
+</td>
+<td style="text-align:right;">
+17.61
+</td>
+<td style="text-align:right;">
+1.76
+</td>
+<td style="text-align:right;">
+105.66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_counts1d
+</td>
+<td style="text-align:right;">
+8.25
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+8.26
+</td>
+<td style="text-align:right;">
+6.74
+</td>
+<td style="text-align:right;">
+9.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_annual
+</td>
+<td style="text-align:right;">
+787.04
+</td>
+<td style="text-align:right;">
+456.96
+</td>
+<td style="text-align:right;">
+737.15
+</td>
+<td style="text-align:right;">
+45.38
+</td>
+<td style="text-align:right;">
+6114.69
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_totals1d
+</td>
+<td style="text-align:right;">
+217.07
+</td>
+<td style="text-align:right;">
+100.86
+</td>
+<td style="text-align:right;">
+211.06
+</td>
+<td style="text-align:right;">
+28.67
+</td>
+<td style="text-align:right;">
+1173.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_magnitude2d
+</td>
+<td style="text-align:right;">
+31.28
+</td>
+<td style="text-align:right;">
+15.27
+</td>
+<td style="text-align:right;">
+30.29
+</td>
+<td style="text-align:right;">
+3.42
+</td>
+<td style="text-align:right;">
+192.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_totals
+</td>
+<td style="text-align:right;">
+365.27
+</td>
+<td style="text-align:right;">
+201.23
+</td>
+<td style="text-align:right;">
+345.77
+</td>
+<td style="text-align:right;">
+33.44
+</td>
+<td style="text-align:right;">
+2908.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_counts
+</td>
+<td style="text-align:right;">
+11.90
+</td>
+<td style="text-align:right;">
+1.39
+</td>
+<td style="text-align:right;">
+11.87
+</td>
+<td style="text-align:right;">
+7.63
+</td>
+<td style="text-align:right;">
+17.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_magnitude
+</td>
+<td style="text-align:right;">
+18.23
+</td>
+<td style="text-align:right;">
+8.78
+</td>
+<td style="text-align:right;">
+17.80
+</td>
+<td style="text-align:right;">
+1.70
+</td>
+<td style="text-align:right;">
+107.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_counts1d
+</td>
+<td style="text-align:right;">
+8.40
+</td>
+<td style="text-align:right;">
+0.48
+</td>
+<td style="text-align:right;">
+8.38
+</td>
+<td style="text-align:right;">
+6.89
+</td>
+<td style="text-align:right;">
+10.13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_annual
+</td>
+<td style="text-align:right;">
+794.40
+</td>
+<td style="text-align:right;">
+461.11
+</td>
+<td style="text-align:right;">
+744.25
+</td>
+<td style="text-align:right;">
+44.27
+</td>
+<td style="text-align:right;">
+6218.29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_totals1d
+</td>
+<td style="text-align:right;">
+221.14
+</td>
+<td style="text-align:right;">
+102.26
+</td>
+<td style="text-align:right;">
+216.72
+</td>
+<td style="text-align:right;">
+28.13
+</td>
+<td style="text-align:right;">
+1213.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_magnitude2d
+</td>
+<td style="text-align:right;">
+31.52
+</td>
+<td style="text-align:right;">
+15.35
+</td>
+<td style="text-align:right;">
+30.65
+</td>
+<td style="text-align:right;">
+3.41
+</td>
+<td style="text-align:right;">
+194.29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_totals
+</td>
+<td style="text-align:right;">
+371.13
+</td>
+<td style="text-align:right;">
+204.33
+</td>
+<td style="text-align:right;">
+352.98
+</td>
+<td style="text-align:right;">
+32.64
+</td>
+<td style="text-align:right;">
+3013.87
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_counts
+</td>
+<td style="text-align:right;">
+12.09
+</td>
+<td style="text-align:right;">
+1.45
+</td>
+<td style="text-align:right;">
+12.04
+</td>
+<td style="text-align:right;">
+7.50
+</td>
+<td style="text-align:right;">
+17.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_magnitude
+</td>
+<td style="text-align:right;">
+18.36
+</td>
+<td style="text-align:right;">
+8.84
+</td>
+<td style="text-align:right;">
+17.97
+</td>
+<td style="text-align:right;">
+1.77
+</td>
+<td style="text-align:right;">
+108.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_counts1d
+</td>
+<td style="text-align:right;">
+8.53
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+8.51
+</td>
+<td style="text-align:right;">
+6.88
+</td>
+<td style="text-align:right;">
+10.78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_annual
+</td>
+<td style="text-align:right;">
+798.04
+</td>
+<td style="text-align:right;">
+463.31
+</td>
+<td style="text-align:right;">
+746.97
+</td>
+<td style="text-align:right;">
+44.85
+</td>
+<td style="text-align:right;">
+6271.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_totals1d
+</td>
+<td style="text-align:right;">
+225.51
+</td>
+<td style="text-align:right;">
+104.31
+</td>
+<td style="text-align:right;">
+221.63
+</td>
+<td style="text-align:right;">
+28.85
+</td>
+<td style="text-align:right;">
+1283.83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_magnitude2d
+</td>
+<td style="text-align:right;">
+31.75
+</td>
+<td style="text-align:right;">
+15.46
+</td>
+<td style="text-align:right;">
+30.97
+</td>
+<td style="text-align:right;">
+3.50
+</td>
+<td style="text-align:right;">
+197.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_totals
+</td>
+<td style="text-align:right;">
+376.07
+</td>
+<td style="text-align:right;">
+206.97
+</td>
+<td style="text-align:right;">
+356.88
+</td>
+<td style="text-align:right;">
+33.49
+</td>
+<td style="text-align:right;">
+3085.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_counts
+</td>
+<td style="text-align:right;">
+12.24
+</td>
+<td style="text-align:right;">
+1.55
+</td>
+<td style="text-align:right;">
+12.18
+</td>
+<td style="text-align:right;">
+7.41
+</td>
+<td style="text-align:right;">
+18.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_magnitude
+</td>
+<td style="text-align:right;">
+18.44
+</td>
+<td style="text-align:right;">
+8.93
+</td>
+<td style="text-align:right;">
+17.98
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+109.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_counts1d
+</td>
+<td style="text-align:right;">
+8.60
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:right;">
+8.56
+</td>
+<td style="text-align:right;">
+6.74
+</td>
+<td style="text-align:right;">
+11.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_annual
+</td>
+<td style="text-align:right;">
+797.43
+</td>
+<td style="text-align:right;">
+464.33
+</td>
+<td style="text-align:right;">
+742.63
+</td>
+<td style="text-align:right;">
+45.34
+</td>
+<td style="text-align:right;">
+6262.98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_totals1d
+</td>
+<td style="text-align:right;">
+228.58
+</td>
+<td style="text-align:right;">
+107.17
+</td>
+<td style="text-align:right;">
+223.67
+</td>
+<td style="text-align:right;">
+29.40
+</td>
+<td style="text-align:right;">
+1326.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_magnitude2d
+</td>
+<td style="text-align:right;">
+31.91
+</td>
+<td style="text-align:right;">
+15.61
+</td>
+<td style="text-align:right;">
+31.02
+</td>
+<td style="text-align:right;">
+3.50
+</td>
+<td style="text-align:right;">
+198.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_totals
+</td>
+<td style="text-align:right;">
+378.57
+</td>
+<td style="text-align:right;">
+209.88
+</td>
+<td style="text-align:right;">
+357.20
+</td>
+<td style="text-align:right;">
+34.03
+</td>
+<td style="text-align:right;">
+3117.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_counts
+</td>
+<td style="text-align:right;">
+12.30
+</td>
+<td style="text-align:right;">
+1.67
+</td>
+<td style="text-align:right;">
+12.21
+</td>
+<td style="text-align:right;">
+7.32
+</td>
+<td style="text-align:right;">
+18.87
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_magnitude
+</td>
+<td style="text-align:right;">
+18.53
+</td>
+<td style="text-align:right;">
+8.96
+</td>
+<td style="text-align:right;">
+18.13
+</td>
+<td style="text-align:right;">
+1.58
+</td>
+<td style="text-align:right;">
+109.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_counts1d
+</td>
+<td style="text-align:right;">
+8.69
+</td>
+<td style="text-align:right;">
+0.73
+</td>
+<td style="text-align:right;">
+8.63
+</td>
+<td style="text-align:right;">
+6.56
+</td>
+<td style="text-align:right;">
+11.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_annual
+</td>
+<td style="text-align:right;">
+799.49
+</td>
+<td style="text-align:right;">
+464.57
+</td>
+<td style="text-align:right;">
+746.99
+</td>
+<td style="text-align:right;">
+45.20
+</td>
+<td style="text-align:right;">
+6275.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_totals1d
+</td>
+<td style="text-align:right;">
+231.67
+</td>
+<td style="text-align:right;">
+108.48
+</td>
+<td style="text-align:right;">
+228.16
+</td>
+<td style="text-align:right;">
+29.69
+</td>
+<td style="text-align:right;">
+1319.22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_magnitude2d
 </td>
 <td style="text-align:right;">
 32.09
 </td>
-<td style="text-align:left;">
-Savannah
+<td style="text-align:right;">
+15.69
 </td>
 <td style="text-align:right;">
-1257.98
+31.25
 </td>
 <td style="text-align:right;">
-1352.79
+3.51
 </td>
 <td style="text-align:right;">
-45.91
-</td>
-<td style="text-align:right;">
-77.58
-</td>
-<td style="text-align:right;">
-4.51
-</td>
-<td style="text-align:right;">
-13.43
-</td>
-<td style="text-align:right;">
-294.71
-</td>
-<td style="text-align:right;">
-947.31
-</td>
-<td style="text-align:right;">
-65.36
-</td>
-<td style="text-align:right;">
-70.55
-</td>
-<td style="text-align:right;">
-70
-</td>
-<td style="text-align:right;">
-19.75
-</td>
-<td style="text-align:right;">
-1675.75
-</td>
-<td style="text-align:right;">
-62.75
-</td>
-<td style="text-align:left;">
-Savannah
+198.51
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--86.78
-</td>
-<td style="text-align:right;">
-36.16
-</td>
 <td style="text-align:left;">
-Nashville
+future_avg_2055_totals
 </td>
 <td style="text-align:right;">
-1273.19
+382.49
 </td>
 <td style="text-align:right;">
-1342.04
+212.06
 </td>
 <td style="text-align:right;">
-40.65
+364.49
 </td>
 <td style="text-align:right;">
-65.62
+34.01
 </td>
 <td style="text-align:right;">
-4.88
-</td>
-<td style="text-align:right;">
-15.63
-</td>
-<td style="text-align:right;">
-246.12
-</td>
-<td style="text-align:right;">
-885.22
-</td>
-<td style="text-align:right;">
-50.49
-</td>
-<td style="text-align:right;">
-56.62
-</td>
-<td style="text-align:right;">
-89
-</td>
-<td style="text-align:right;">
-21.50
-</td>
-<td style="text-align:right;">
-1564.50
-</td>
-<td style="text-align:right;">
-71.50
-</td>
-<td style="text-align:left;">
-Nashville
+3151.64
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--75.97
-</td>
-<td style="text-align:right;">
-36.84
-</td>
 <td style="text-align:left;">
-Virginia Beach
+future_avg_2055_counts
 </td>
 <td style="text-align:right;">
-1113.90
+12.40
 </td>
 <td style="text-align:right;">
-1162.88
+1.75
 </td>
 <td style="text-align:right;">
-34.55
+12.25
 </td>
 <td style="text-align:right;">
-56.73
+7.18
 </td>
 <td style="text-align:right;">
-4.68
+19.01
 </td>
-<td style="text-align:right;">
-14.57
-</td>
-<td style="text-align:right;">
-218.24
-</td>
-<td style="text-align:right;">
-738.11
-</td>
-<td style="text-align:right;">
-46.62
-</td>
-<td style="text-align:right;">
-50.65
-</td>
-<td style="text-align:right;">
-68
-</td>
-<td style="text-align:right;">
-20.50
-</td>
-<td style="text-align:right;">
-1328.00
-</td>
-<td style="text-align:right;">
-64.50
-</td>
+</tr>
+<tr>
 <td style="text-align:left;">
-Virginia Beach
+future_avg_2060_magnitude
+</td>
+<td style="text-align:right;">
+18.60
+</td>
+<td style="text-align:right;">
+8.97
+</td>
+<td style="text-align:right;">
+18.28
+</td>
+<td style="text-align:right;">
+1.57
+</td>
+<td style="text-align:right;">
+109.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_counts1d
+</td>
+<td style="text-align:right;">
+8.77
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+8.71
+</td>
+<td style="text-align:right;">
+6.29
+</td>
+<td style="text-align:right;">
+11.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_annual
+</td>
+<td style="text-align:right;">
+799.12
+</td>
+<td style="text-align:right;">
+462.33
+</td>
+<td style="text-align:right;">
+748.14
+</td>
+<td style="text-align:right;">
+45.49
+</td>
+<td style="text-align:right;">
+6245.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_totals1d
+</td>
+<td style="text-align:right;">
+234.42
+</td>
+<td style="text-align:right;">
+109.44
+</td>
+<td style="text-align:right;">
+232.00
+</td>
+<td style="text-align:right;">
+29.94
+</td>
+<td style="text-align:right;">
+1339.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_magnitude2d
+</td>
+<td style="text-align:right;">
+32.21
+</td>
+<td style="text-align:right;">
+15.72
+</td>
+<td style="text-align:right;">
+31.52
+</td>
+<td style="text-align:right;">
+3.50
+</td>
+<td style="text-align:right;">
+199.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_totals
+</td>
+<td style="text-align:right;">
+384.75
+</td>
+<td style="text-align:right;">
+212.05
+</td>
+<td style="text-align:right;">
+369.04
+</td>
+<td style="text-align:right;">
+34.40
+</td>
+<td style="text-align:right;">
+3139.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_counts
+</td>
+<td style="text-align:right;">
+12.48
+</td>
+<td style="text-align:right;">
+1.77
+</td>
+<td style="text-align:right;">
+12.34
+</td>
+<td style="text-align:right;">
+7.26
+</td>
+<td style="text-align:right;">
+18.98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_average1d
+</td>
+<td style="text-align:right;">
+25.57
+</td>
+<td style="text-align:right;">
+11.62
+</td>
+<td style="text-align:right;">
+24.48
+</td>
+<td style="text-align:right;">
+3.66
+</td>
+<td style="text-align:right;">
+133.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+baseline_avg_average
+</td>
+<td style="text-align:right;">
+29.73
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+28.59
+</td>
+<td style="text-align:right;">
+3.71
+</td>
+<td style="text-align:right;">
+187.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_average1d
+</td>
+<td style="text-align:right;">
+25.98
+</td>
+<td style="text-align:right;">
+11.82
+</td>
+<td style="text-align:right;">
+24.86
+</td>
+<td style="text-align:right;">
+3.82
+</td>
+<td style="text-align:right;">
+135.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2020_average
+</td>
+<td style="text-align:right;">
+29.85
+</td>
+<td style="text-align:right;">
+14.49
+</td>
+<td style="text-align:right;">
+28.71
+</td>
+<td style="text-align:right;">
+3.86
+</td>
+<td style="text-align:right;">
+186.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_average1d
+</td>
+<td style="text-align:right;">
+26.02
+</td>
+<td style="text-align:right;">
+11.84
+</td>
+<td style="text-align:right;">
+24.90
+</td>
+<td style="text-align:right;">
+3.74
+</td>
+<td style="text-align:right;">
+135.74
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2025_average
+</td>
+<td style="text-align:right;">
+29.86
+</td>
+<td style="text-align:right;">
+14.49
+</td>
+<td style="text-align:right;">
+28.75
+</td>
+<td style="text-align:right;">
+3.79
+</td>
+<td style="text-align:right;">
+186.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_average1d
+</td>
+<td style="text-align:right;">
+26.14
+</td>
+<td style="text-align:right;">
+11.90
+</td>
+<td style="text-align:right;">
+24.93
+</td>
+<td style="text-align:right;">
+3.72
+</td>
+<td style="text-align:right;">
+135.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2030_average
+</td>
+<td style="text-align:right;">
+29.92
+</td>
+<td style="text-align:right;">
+14.51
+</td>
+<td style="text-align:right;">
+28.76
+</td>
+<td style="text-align:right;">
+3.75
+</td>
+<td style="text-align:right;">
+187.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_average1d
+</td>
+<td style="text-align:right;">
+26.19
+</td>
+<td style="text-align:right;">
+11.91
+</td>
+<td style="text-align:right;">
+24.97
+</td>
+<td style="text-align:right;">
+3.74
+</td>
+<td style="text-align:right;">
+134.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2035_average
+</td>
+<td style="text-align:right;">
+29.92
+</td>
+<td style="text-align:right;">
+14.48
+</td>
+<td style="text-align:right;">
+28.76
+</td>
+<td style="text-align:right;">
+3.76
+</td>
+<td style="text-align:right;">
+185.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_average1d
+</td>
+<td style="text-align:right;">
+26.23
+</td>
+<td style="text-align:right;">
+11.91
+</td>
+<td style="text-align:right;">
+25.05
+</td>
+<td style="text-align:right;">
+3.77
+</td>
+<td style="text-align:right;">
+134.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2040_average
+</td>
+<td style="text-align:right;">
+29.93
+</td>
+<td style="text-align:right;">
+14.48
+</td>
+<td style="text-align:right;">
+28.80
+</td>
+<td style="text-align:right;">
+3.80
+</td>
+<td style="text-align:right;">
+185.66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_average1d
+</td>
+<td style="text-align:right;">
+26.34
+</td>
+<td style="text-align:right;">
+11.98
+</td>
+<td style="text-align:right;">
+25.17
+</td>
+<td style="text-align:right;">
+3.81
+</td>
+<td style="text-align:right;">
+136.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2045_average
+</td>
+<td style="text-align:right;">
+29.96
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+28.83
+</td>
+<td style="text-align:right;">
+3.84
+</td>
+<td style="text-align:right;">
+185.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_average1d
+</td>
+<td style="text-align:right;">
+26.44
+</td>
+<td style="text-align:right;">
+12.03
+</td>
+<td style="text-align:right;">
+25.28
+</td>
+<td style="text-align:right;">
+3.84
+</td>
+<td style="text-align:right;">
+137.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2050_average
+</td>
+<td style="text-align:right;">
+29.99
+</td>
+<td style="text-align:right;">
+14.49
+</td>
+<td style="text-align:right;">
+28.86
+</td>
+<td style="text-align:right;">
+3.86
+</td>
+<td style="text-align:right;">
+184.88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_average1d
+</td>
+<td style="text-align:right;">
+26.52
+</td>
+<td style="text-align:right;">
+12.04
+</td>
+<td style="text-align:right;">
+25.34
+</td>
+<td style="text-align:right;">
+3.82
+</td>
+<td style="text-align:right;">
+136.89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2055_average
+</td>
+<td style="text-align:right;">
+30.03
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+28.90
+</td>
+<td style="text-align:right;">
+3.82
+</td>
+<td style="text-align:right;">
+186.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_average1d
+</td>
+<td style="text-align:right;">
+26.60
+</td>
+<td style="text-align:right;">
+12.11
+</td>
+<td style="text-align:right;">
+25.38
+</td>
+<td style="text-align:right;">
+3.84
+</td>
+<td style="text-align:right;">
+138.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+future_avg_2060_average
+</td>
+<td style="text-align:right;">
+30.05
+</td>
+<td style="text-align:right;">
+14.52
+</td>
+<td style="text-align:right;">
+28.87
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+<td style="text-align:right;">
+185.89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2020_rcp45
+</td>
+<td style="text-align:right;">
+40.71
+</td>
+<td style="text-align:right;">
+26.00
+</td>
+<td style="text-align:right;">
+40.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2025_rcp45
+</td>
+<td style="text-align:right;">
+40.21
+</td>
+<td style="text-align:right;">
+24.93
+</td>
+<td style="text-align:right;">
+41.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2030_rcp45
+</td>
+<td style="text-align:right;">
+43.04
+</td>
+<td style="text-align:right;">
+25.65
+</td>
+<td style="text-align:right;">
+44.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2035_rcp45
+</td>
+<td style="text-align:right;">
+44.83
+</td>
+<td style="text-align:right;">
+26.93
+</td>
+<td style="text-align:right;">
+45.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2040_rcp45
+</td>
+<td style="text-align:right;">
+46.23
+</td>
+<td style="text-align:right;">
+26.64
+</td>
+<td style="text-align:right;">
+47.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2045_rcp45
+</td>
+<td style="text-align:right;">
+47.13
+</td>
+<td style="text-align:right;">
+28.36
+</td>
+<td style="text-align:right;">
+47.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2050_rcp45
+</td>
+<td style="text-align:right;">
+51.57
+</td>
+<td style="text-align:right;">
+28.70
+</td>
+<td style="text-align:right;">
+52.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2055_rcp45
+</td>
+<td style="text-align:right;">
+54.51
+</td>
+<td style="text-align:right;">
+26.86
+</td>
+<td style="text-align:right;">
+56.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2060_rcp45
+</td>
+<td style="text-align:right;">
+56.26
+</td>
+<td style="text-align:right;">
+28.30
+</td>
+<td style="text-align:right;">
+56.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2020
+</td>
+<td style="text-align:right;">
+35.94
+</td>
+<td style="text-align:right;">
+24.16
+</td>
+<td style="text-align:right;">
+35.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2025
+</td>
+<td style="text-align:right;">
+37.68
+</td>
+<td style="text-align:right;">
+24.76
+</td>
+<td style="text-align:right;">
+37.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2030
+</td>
+<td style="text-align:right;">
+42.40
+</td>
+<td style="text-align:right;">
+25.55
+</td>
+<td style="text-align:right;">
+44.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2035
+</td>
+<td style="text-align:right;">
+42.70
+</td>
+<td style="text-align:right;">
+25.68
+</td>
+<td style="text-align:right;">
+45.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2040
+</td>
+<td style="text-align:right;">
+46.45
+</td>
+<td style="text-align:right;">
+26.34
+</td>
+<td style="text-align:right;">
+48.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2045
+</td>
+<td style="text-align:right;">
+49.98
+</td>
+<td style="text-align:right;">
+27.43
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2050
+</td>
+<td style="text-align:right;">
+51.57
+</td>
+<td style="text-align:right;">
+28.66
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2055
+</td>
+<td style="text-align:right;">
+54.27
+</td>
+<td style="text-align:right;">
+28.98
+</td>
+<td style="text-align:right;">
+55.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_2060
+</td>
+<td style="text-align:right;">
+55.84
+</td>
+<td style="text-align:right;">
+29.05
+</td>
+<td style="text-align:right;">
+57.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score
+</td>
+<td style="text-align:right;">
+51.57
+</td>
+<td style="text-align:right;">
+28.66
+</td>
+<td style="text-align:right;">
+51.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
 </td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="final-checks" class="section level1 unnumbered" number="">
-<h1>Final Checks</h1>
-<p><img src="stormValidate_files/figure-html/upload-1.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-2.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-3.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-4.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-5.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-6.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-7.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-8.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-9.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-10.png" width="80%" style="display: block; margin: auto;" /><img src="stormValidate_files/figure-html/upload-11.png" width="80%" style="display: block; margin: auto;" />NULL
-List of 5
-$ nInserted : num 874593
+<p>List of 5
+$ nInserted : num 847006
 $ nMatched : num 0
 $ nRemoved : num 0
 $ nUpserted : num 0
