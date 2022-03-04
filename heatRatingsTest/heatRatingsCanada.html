@@ -24,7 +24,7 @@
 <meta name="author" content="Prepared by: Maximilian Stiefel" />
 
 
-<meta name="date" content="2022-02-14" />
+<meta name="date" content="2022-03-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -75,7 +75,6 @@
 <li class="chapter" data-level="" data-path=""><a href="#risk-rating"><i class="fa fa-check"></i>Risk Rating</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#spatial-distributions"><i class="fa fa-check"></i>Spatial distributions</a><ul>
 <li class="chapter" data-level="" data-path=""><a href="#relative-to-canada-and-usa"><i class="fa fa-check"></i>relative to Canada and USA</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#population-weighted"><i class="fa fa-check"></i>population weighted</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path=""><a href="#statistics-by-city"><i class="fa fa-check"></i>Statistics by city</a></li>
 </ul>
@@ -98,7 +97,7 @@
 <div id="header">
 <h1 class="title">HEAT VALIDATION</h1>
 <p class="author"><em>Prepared by: Maximilian Stiefel</em></p>
-<p class="date"><em>2022-02-14</em></p>
+<p class="date"><em>2022-03-04</em></p>
 </div>
 <style>
   
@@ -170,7 +169,6 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
 <div id="risk-rating" class="section level1 unnumbered">
 <h1>Risk Rating</h1>
 <p><img src="heatRatingsCanada_files/figure-html/canada-usa-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p><img src="heatRatingsCanada_files/figure-html/canada-pop-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p><img src="heatRatingsCanada_files/figure-html/canada-only-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="spatial-distributions" class="section level1 unnumbered">
@@ -178,11 +176,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
 <p>The differences are relative to a risk rating using non-population weighted data for only Canada.</p>
 <div id="relative-to-canada-and-usa" class="section level3 unnumbered">
 <h3>relative to Canada and USA</h3>
-<p><img src="heatRatingsCanada_files/figure-html/maps-1.png" width="90%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="population-weighted" class="section level3 unnumbered">
-<h3>population weighted</h3>
-<p><img src="heatRatingsCanada_files/figure-html/maps-2.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="heatRatingsCanada_files/figure-html/spatial-distributions%20-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="statistics-by-city" class="section level1 unnumbered">
@@ -205,9 +199,6 @@ scoreCanadaOnly
 <th style="text-align:right;">
 scoreCanadaUSA
 </th>
-<th style="text-align:right;">
-scoreCanadaPop
-</th>
 <th style="text-align:left;">
 cities
 </th>
@@ -228,10 +219,7 @@ Toronto ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+69
 </td>
 <td style="text-align:left;">
 Toronto ON
@@ -251,10 +239,7 @@ Montreal QC
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+69
 </td>
 <td style="text-align:left;">
 Montreal QC
@@ -271,13 +256,10 @@ Montreal QC
 Vancouver BC
 </td>
 <td style="text-align:right;">
-89
+94
 </td>
 <td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-93
+62
 </td>
 <td style="text-align:left;">
 Vancouver BC
@@ -294,13 +276,10 @@ Vancouver BC
 Calgary AB
 </td>
 <td style="text-align:right;">
-98
+95
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-99
+66
 </td>
 <td style="text-align:left;">
 Calgary AB
@@ -320,10 +299,7 @@ OTTAWA ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+70
 </td>
 <td style="text-align:left;">
 OTTAWA ON
@@ -340,13 +316,10 @@ OTTAWA ON
 Edmonton AB
 </td>
 <td style="text-align:right;">
-88
+87
 </td>
 <td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-93
+61
 </td>
 <td style="text-align:left;">
 Edmonton AB
@@ -366,10 +339,7 @@ Hamilton ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+71
 </td>
 <td style="text-align:left;">
 Hamilton ON
@@ -386,13 +356,10 @@ Hamilton ON
 Quebec QC
 </td>
 <td style="text-align:right;">
-97
+95
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-99
+65
 </td>
 <td style="text-align:left;">
 Quebec QC
@@ -409,13 +376,10 @@ Quebec QC
 Winnipeg MB
 </td>
 <td style="text-align:right;">
-97
+100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-99
+70
 </td>
 <td style="text-align:left;">
 Winnipeg MB
@@ -435,10 +399,7 @@ Kitchener ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+70
 </td>
 <td style="text-align:left;">
 Kitchener ON
@@ -458,10 +419,7 @@ London ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+70
 </td>
 <td style="text-align:left;">
 London ON
@@ -481,10 +439,7 @@ Saint Catharines-Niagara ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+70
 </td>
 <td style="text-align:left;">
 Saint Catharines-Niagara ON
@@ -501,13 +456,10 @@ Saint Catharines-Niagara ON
 Victoria BC
 </td>
 <td style="text-align:right;">
-72
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:right;">
 81
+</td>
+<td style="text-align:right;">
+54
 </td>
 <td style="text-align:left;">
 Victoria BC
@@ -527,10 +479,7 @@ Windsor ON
 100
 </td>
 <td style="text-align:right;">
-24
-</td>
-<td style="text-align:right;">
-100
+74
 </td>
 <td style="text-align:left;">
 Windsor ON
@@ -547,13 +496,10 @@ Windsor ON
 Halifax NS
 </td>
 <td style="text-align:right;">
-81
+84
 </td>
 <td style="text-align:right;">
-19
-</td>
-<td style="text-align:right;">
-88
+56
 </td>
 <td style="text-align:left;">
 Halifax NS
@@ -573,10 +519,7 @@ Oshawa ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+68
 </td>
 <td style="text-align:left;">
 Oshawa ON
@@ -593,13 +536,10 @@ Oshawa ON
 Saskatoon SK
 </td>
 <td style="text-align:right;">
-97
+100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-99
+70
 </td>
 <td style="text-align:left;">
 Saskatoon SK
@@ -616,13 +556,10 @@ Saskatoon SK
 Barrie ON
 </td>
 <td style="text-align:right;">
-99
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
 100
+</td>
+<td style="text-align:right;">
+69
 </td>
 <td style="text-align:left;">
 Barrie ON
@@ -639,13 +576,10 @@ Barrie ON
 Regina SK
 </td>
 <td style="text-align:right;">
-95
+100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-97
+72
 </td>
 <td style="text-align:left;">
 Regina SK
@@ -662,13 +596,10 @@ Regina SK
 Abbotsford BC
 </td>
 <td style="text-align:right;">
-82
+84
 </td>
 <td style="text-align:right;">
-19
-</td>
-<td style="text-align:right;">
-89
+61
 </td>
 <td style="text-align:left;">
 Abbotsford BC
@@ -685,13 +616,10 @@ Abbotsford BC
 Sherbrooke QC
 </td>
 <td style="text-align:right;">
-99
+95
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+66
 </td>
 <td style="text-align:left;">
 Sherbrooke QC
@@ -708,13 +636,10 @@ Sherbrooke QC
 Kelowna BC
 </td>
 <td style="text-align:right;">
-97
+100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-99
+75
 </td>
 <td style="text-align:left;">
 Kelowna BC
@@ -731,13 +656,10 @@ Kelowna BC
 Trois-Rivieres QC
 </td>
 <td style="text-align:right;">
-99
+97
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+66
 </td>
 <td style="text-align:left;">
 Trois-Rivieres QC
@@ -757,10 +679,7 @@ Guelph ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+70
 </td>
 <td style="text-align:left;">
 Guelph ON
@@ -780,10 +699,7 @@ Kingston ON
 100
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-100
+67
 </td>
 <td style="text-align:left;">
 Kingston ON
