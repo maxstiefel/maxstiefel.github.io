@@ -24,7 +24,7 @@
 <meta name="author" content="Prepared by: Maximilian Stiefel" />
 
 
-<meta name="date" content="2022-03-31" />
+<meta name="date" content="2022-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,8 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 <li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over time</a><ul>
 <li class="chapter" data-level="" data-path=""><a href="#old-wassi"><i class="fa fa-check"></i>old wassi</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#old-risk-rating"><i class="fa fa-check"></i>old risk rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#new-wassi-rcp45"><i class="fa fa-check"></i>new wassi rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#new-risk-rating-rcp45"><i class="fa fa-check"></i>new risk rating rcp45</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#new-wassi"><i class="fa fa-check"></i>new wassi</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#new-risk-rating"><i class="fa fa-check"></i>new risk rating</a></li>
 </ul></li>
@@ -652,7 +654,7 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 <div id="header">
 <h1 class="title">ClimateCheck: Drought Method</h1>
 <p class="author"><em>Prepared by: Maximilian Stiefel</em></p>
-<p class="date"><em>2022-03-31</em></p>
+<p class="date"><em>2022-04-22</em></p>
 </div>
 <style>
   
@@ -745,7 +747,7 @@ They provide water withdrawal and consumption data for public supply (cities) by
 <div id="drought-risk-rating" class="section level2 unnumbered">
 <h2>Drought Risk Rating</h2>
 <p>Typically we produce the ClimateCheck Risk Rating by mapping weighted projected averages onto the 2050 weighted projected average cumulative distribution function. Sometimes this mapping produces biased Risk Ratings. In these cases, we instead utilize stepped minmax transformations to produce the Risk Rating. The stepped minmax normalizes weighted projected averages in bins. For each bin, we manually set the range represented in the transformation based on scientific and empirical evidence. For example, with WaSSI, we create four bins: low water stress, moderate water stress, high water stress, and demand higher than supply. These bins have both empirical and theoretical bases. Low water stress comprises the majority of watersheds, moderate water stress is the range between the majority and the point at which water stress becomes a pressing issue for a community. Watersheds at this point, high water stress, and beyond face infrastructural, economic, and quality of life challenges. Once demand exceeds supply, more drastic actions must be taken to ensure sufficient water else catastrophic outcomes may ensue.</p>
-<p><img src="droughtValidate_files/figure-html/scores-1.png" width="672" style="display: block; margin: auto;" /><img src="droughtValidate_files/figure-html/scores-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="droughtValidate_files/figure-html/scores-1.png" width="672" style="display: block; margin: auto;" /><img src="droughtValidate_files/figure-html/scores-2.png" width="672" style="display: block; margin: auto;" /><img src="droughtValidate_files/figure-html/scores-3.png" width="672" style="display: block; margin: auto;" /><img src="droughtValidate_files/figure-html/scores-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p><img src="droughtValidate_files/figure-html/admin-unit-1.png" width="672" style="display: block; margin: auto;" /><img src="droughtValidate_files/figure-html/admin-unit-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>List of 5
 $ nInserted : num 2099
@@ -765,13 +767,21 @@ $ writeErrors: list()</p>
 <h3>old risk rating</h3>
 <p><img src="droughtValidate_files/figure-html/graphs-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
+<div id="new-wassi-rcp45" class="section level3 unnumbered">
+<h3>new wassi rcp45</h3>
+<p><img src="droughtValidate_files/figure-html/graphs-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="new-risk-rating-rcp45" class="section level3 unnumbered">
+<h3>new risk rating rcp45</h3>
+<p><img src="droughtValidate_files/figure-html/graphs-4.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
 <div id="new-wassi" class="section level3 unnumbered">
 <h3>new wassi</h3>
-<p><img src="droughtValidate_files/figure-html/graphs-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="droughtValidate_files/figure-html/graphs-5.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="new-risk-rating" class="section level3 unnumbered">
 <h3>new risk rating</h3>
-<p><img src="droughtValidate_files/figure-html/graphs-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="droughtValidate_files/figure-html/graphs-6.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="statistics-by-city" class="section level1 unnumbered">
@@ -806,6 +816,15 @@ new.future_avg_2050
 <th style="text-align:right;">
 new.score_2050
 </th>
+<th style="text-align:right;">
+new.future_avg_2020_rcp45
+</th>
+<th style="text-align:right;">
+new.future_avg_2050_rcp45
+</th>
+<th style="text-align:right;">
+new.score_2050_rcp45
+</th>
 <th style="text-align:left;">
 cities
 </th>
@@ -821,6 +840,15 @@ cities
 </td>
 <td style="text-align:left;">
 New York City
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+47
 </td>
 <td style="text-align:right;">
 0.19
@@ -872,6 +900,15 @@ Los Angeles
 <td style="text-align:right;">
 80
 </td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+70
+</td>
 <td style="text-align:left;">
 Los Angeles
 </td>
@@ -903,6 +940,15 @@ Chicago
 </td>
 <td style="text-align:right;">
 40
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+38
 </td>
 <td style="text-align:left;">
 Chicago
@@ -936,6 +982,15 @@ Houston
 <td style="text-align:right;">
 39
 </td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+33
+</td>
 <td style="text-align:left;">
 Houston
 </td>
@@ -964,6 +1019,15 @@ Philadelphia
 </td>
 <td style="text-align:right;">
 0.09
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.08
 </td>
 <td style="text-align:right;">
 33
@@ -1000,6 +1064,15 @@ Phoenix
 <td style="text-align:right;">
 35
 </td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+32
+</td>
 <td style="text-align:left;">
 Phoenix
 </td>
@@ -1031,6 +1104,15 @@ San Antonio
 </td>
 <td style="text-align:right;">
 87
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+<td style="text-align:right;">
+74
 </td>
 <td style="text-align:left;">
 San Antonio
@@ -1064,6 +1146,15 @@ San Diego
 <td style="text-align:right;">
 87
 </td>
+<td style="text-align:right;">
+0.86
+</td>
+<td style="text-align:right;">
+0.89
+</td>
+<td style="text-align:right;">
+82
+</td>
 <td style="text-align:left;">
 San Diego
 </td>
@@ -1077,6 +1168,15 @@ San Diego
 </td>
 <td style="text-align:left;">
 Dallas
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+37
 </td>
 <td style="text-align:right;">
 0.06
@@ -1128,6 +1228,15 @@ San Jose
 <td style="text-align:right;">
 47
 </td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+47
+</td>
 <td style="text-align:left;">
 San Jose
 </td>
@@ -1159,6 +1268,15 @@ Tucson
 </td>
 <td style="text-align:right;">
 28
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+29
 </td>
 <td style="text-align:left;">
 Tucson
@@ -1192,6 +1310,15 @@ Buffalo
 <td style="text-align:right;">
 27
 </td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+25
+</td>
 <td style="text-align:left;">
 Buffalo
 </td>
@@ -1223,6 +1350,15 @@ Atlanta
 </td>
 <td style="text-align:right;">
 45
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+41
 </td>
 <td style="text-align:left;">
 Atlanta
@@ -1256,6 +1392,15 @@ Minneapolis
 <td style="text-align:right;">
 25
 </td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+24
+</td>
 <td style="text-align:left;">
 Minneapolis
 </td>
@@ -1287,6 +1432,15 @@ Denver
 </td>
 <td style="text-align:right;">
 75
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:right;">
+62
 </td>
 <td style="text-align:left;">
 Denver
@@ -1320,6 +1474,15 @@ Seattle
 <td style="text-align:right;">
 32
 </td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+37
+</td>
 <td style="text-align:left;">
 Seattle
 </td>
@@ -1351,6 +1514,15 @@ New Orleans
 </td>
 <td style="text-align:right;">
 25
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+23
 </td>
 <td style="text-align:left;">
 New Orleans
@@ -1384,6 +1556,15 @@ Miami
 <td style="text-align:right;">
 44
 </td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+40
+</td>
 <td style="text-align:left;">
 Miami
 </td>
@@ -1415,6 +1596,15 @@ Detroit
 </td>
 <td style="text-align:right;">
 35
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+36
 </td>
 <td style="text-align:left;">
 Detroit
@@ -1448,6 +1638,15 @@ Las Vegas
 <td style="text-align:right;">
 100
 </td>
+<td style="text-align:right;">
+1.43
+</td>
+<td style="text-align:right;">
+1.43
+</td>
+<td style="text-align:right;">
+98
+</td>
 <td style="text-align:left;">
 Las Vegas
 </td>
@@ -1479,6 +1678,15 @@ St Louis
 </td>
 <td style="text-align:right;">
 8
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+7
 </td>
 <td style="text-align:left;">
 St Louis
@@ -1512,6 +1720,15 @@ Boston
 <td style="text-align:right;">
 32
 </td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+33
+</td>
 <td style="text-align:left;">
 Boston
 </td>
@@ -1544,6 +1761,15 @@ Savannah
 <td style="text-align:right;">
 25
 </td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+24
+</td>
 <td style="text-align:left;">
 Savannah
 </td>
@@ -1557,6 +1783,15 @@ Savannah
 </td>
 <td style="text-align:left;">
 Nashville
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+16
 </td>
 <td style="text-align:right;">
 0.01
@@ -1608,6 +1843,15 @@ Virginia Beach
 <td style="text-align:right;">
 30
 </td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+29
+</td>
 <td style="text-align:left;">
 Virginia Beach
 </td>
@@ -1622,34 +1866,34 @@ Virginia Beach
 <p>Antle, John M., and Susan M. Capalbo. 2010. “Adaptation of Agricultural and Food Systems to Climate Change: An Economic and Policy Perspective.” <em>Applied Economic Perspectives and Policy</em> 32 (3): 386–416.</p>
 </div>
 <div id="ref-averytSectoralContributionsSurface2013">
-<p>Averyt, K., J. Meldrum, P. Caldwell, G. Sun, S. McNulty, A. Huber-Lee, and N. Madden. 2013. “Sectoral Contributions to Surface Water Stress in the Coterminous United States.” <em>Environmental Research Letters</em> 8 (3): 035046. <a href="https://doi.org/10.1088/1748-9326/8/3/035046">https://doi.org/10.1088/1748-9326/8/3/035046</a>.</p>
+<p>Averyt, K., J. Meldrum, P. Caldwell, G. Sun, S. McNulty, A. Huber-Lee, and N. Madden. 2013. “Sectoral Contributions to Surface Water Stress in the Coterminous United States.” <em>Environmental Research Letters</em> 8 (3). IOP Publishing: 035046. <a href="https://doi.org/10.1088/1748-9326/8/3/035046" class="uri">https://doi.org/10.1088/1748-9326/8/3/035046</a>.</p>
 </div>
 <div id="ref-bons13">
 <p>Bonsal, Barrie R., Rabah Aider, Philippe Gachon, and Suzan Lapp. 2013. “An Assessment of Canadian Prairie Drought: Past, Present, and Future.” <em>Climate Dynamics</em> 41: 501–16.</p>
 </div>
 <div id="ref-daiDroughtGlobalWarming2011">
-<p>Dai, Aiguo. 2011. “Drought Under Global Warming: A Review.” <em>WIREs Climate Change</em> 2 (1): 45–65. <a href="https://doi.org/10.1002/wcc.81">https://doi.org/10.1002/wcc.81</a>.</p>
+<p>Dai, Aiguo. 2011. “Drought Under Global Warming: A Review.” <em>WIREs Climate Change</em> 2 (1): 45–65. <a href="https://doi.org/10.1002/wcc.81" class="uri">https://doi.org/10.1002/wcc.81</a>.</p>
 </div>
 <div id="ref-dary16">
-<p>Daryanto, Stefani, Lixin Wang, and Pierre-André Jacinthe. 2016. “Global Synthesis of Drought Effects on Maize and Wheat Production.” <em>PloS One</em> 11 (5): e0156362.</p>
+<p>Daryanto, Stefani, Lixin Wang, and Pierre-André Jacinthe. 2016. “Global Synthesis of Drought Effects on Maize and Wheat Production.” <em>PloS One</em> 11 (5). Public Library of Science: e0156362.</p>
 </div>
 <div id="ref-diff15">
 <p>Diffenbaugh, N. S., D. L. Swain, and D. Touma. 2015. “Anthropogenic Warming Has Increased Drought Risk in California.” <em>Proceedings of the National Academy of Sciences</em>.</p>
 </div>
 <div id="ref-duanDataProjectionsSurface2019">
-<p>Duan, Kai, Peter V. Caldwell, Ge Sun, Steven G. McNulty, Yang Zhang, Erik Shuster, Bingjun Liu, and Paul V. Bolstad. 2019. “Data on Projections of Surface Water Withdrawal, Consumption, and Availability in the Conterminous United States Through the 21st Century.” <em>Data in Brief</em> 23 (April): 103786. <a href="https://doi.org/10.1016/j.dib.2019.103786">https://doi.org/10.1016/j.dib.2019.103786</a>.</p>
+<p>Duan, Kai, Peter V. Caldwell, Ge Sun, Steven G. McNulty, Yang Zhang, Erik Shuster, Bingjun Liu, and Paul V. Bolstad. 2019. “Data on Projections of Surface Water Withdrawal, Consumption, and Availability in the Conterminous United States Through the 21st Century.” <em>Data in Brief</em> 23 (April): 103786. <a href="https://doi.org/10.1016/j.dib.2019.103786" class="uri">https://doi.org/10.1016/j.dib.2019.103786</a>.</p>
 </div>
 <div id="ref-fras11">
 <p>Fraser, Evan D. G., Andrew J. Dougill, Klaus Hubacek, Claire H. Quinn, Jan Sendzimir, and Mette Termansen. 2011. “Assessing Vulnerability to Climate Change in Dryland Livelihood Systems: Conceptual Challenges and Interdisciplinary Solutions.” <em>Ecology and Society</em> 16 (3).</p>
 </div>
 <div id="ref-fras13">
-<p>Fraser, Evan D.G., Elisabeth Simelton, Mette Termansen, Simon N. Gosling, and Andrew South. 2013. “"Vulnerability Hotspots": Integrating Socio-Economic and Hydrological Models to Identify Where Cereal Production May Decline in the Future Due to Climate Change Induced Drought.” <em>Agricultural and Forest Meteorology</em> 170: 195–205.</p>
+<p>Fraser, Evan D.G., Elisabeth Simelton, Mette Termansen, Simon N. Gosling, and Andrew South. 2013. “&quot;Vulnerability Hotspots&quot;: Integrating Socio-Economic and Hydrological Models to Identify Where Cereal Production May Decline in the Future Due to Climate Change Induced Drought.” <em>Agricultural and Forest Meteorology</em> 170: 195–205.</p>
 </div>
 <div id="ref-goha15">
 <p>Gohar, Abdelaziz A., Saud A. Amer, and Frank A. Ward. 2015. “Irrigation Infrastructure and Water Appropriation Rules for Food Security.” <em>Journal of Hydrology</em> 520: 85–100.</p>
 </div>
 <div id="ref-goha13">
-<p>Gohar, Abdelaziz A., Frank A. Ward, and Saud A. Amer. 2013. “Economic Performance of Water Storage Capacity Expansion for Food Security.” <em>Journal of Hydrology</em> 484: 16–25. <a href="https://doi.org/http://dx.doi.org/10.1016/j.jhydrol.2013.01.005">https://doi.org/http://dx.doi.org/10.1016/j.jhydrol.2013.01.005</a>.</p>
+<p>Gohar, Abdelaziz A., Frank A. Ward, and Saud A. Amer. 2013. “Economic Performance of Water Storage Capacity Expansion for Food Security.” <em>Journal of Hydrology</em> 484: 16–25. <a href="https://doi.org/http://dx.doi.org/10.1016/j.jhydrol.2013.01.005" class="uri">https://doi.org/http://dx.doi.org/10.1016/j.jhydrol.2013.01.005</a>.</p>
 </div>
 <div id="ref-hert14">
 <p>Hertel, Thomas W., and David B. Lobell. 2014. “Agricultural Adaptation to Climate Change in Rich and Poor Countries: Current Modeling Practice and Potential for Empirical Contributions.” <em>Energy Economics</em> 46: 562–75.</p>
@@ -1658,7 +1902,7 @@ Virginia Beach
 <p>Kiparsky, Michael, Anita Milman, and Sebastian Vicun. 2012. “Climate and Water: Knowledge of Impacts to Action on Adaptation.” <em>Annual Review of Environmental Resources</em> 37: 163–94.</p>
 </div>
 <div id="ref-lang17">
-<p>Lange, Bettina, Ian Holman, and John P. Bloomfield. 2017. “A Framework for a Joint Hydro-Meteorological-Social Analysis of Drought.” <em>Science of the Total Environment</em> 578: 297–306. <a href="https://doi.org/http://dx.doi.org/10.1016/j.scitotenv.2016.10.145">https://doi.org/http://dx.doi.org/10.1016/j.scitotenv.2016.10.145</a>.</p>
+<p>Lange, Bettina, Ian Holman, and John P. Bloomfield. 2017. “A Framework for a Joint Hydro-Meteorological-Social Analysis of Drought.” <em>Science of the Total Environment</em> 578: 297–306. <a href="https://doi.org/http://dx.doi.org/10.1016/j.scitotenv.2016.10.145" class="uri">https://doi.org/http://dx.doi.org/10.1016/j.scitotenv.2016.10.145</a>.</p>
 </div>
 <div id="ref-lobe15">
 <p>Lobell, David B., Graeme L. Hammer, Karine Chenu, Bangyou Zheng, Greg Mclean, and Scott C. Chapman. 2015. “The Shifting Influence of Drought and Heat Stress for Crops in Northeast Australia.” <em>Global Change Biology</em> 21: 4115–27.</p>
@@ -1682,19 +1926,19 @@ Virginia Beach
 <p>Prasad, P. V. V., S. A. Staggenborg, and Z. Ristic. 2008. “Impacts of Drought and/or Heat Stress and Yield Processes of Crop Plants.” In <em>Response of Crops to Limited Water: Understanding and Modeling Water Stress E Ects on Plant Growth Processes</em>. American Society of Agronomy, Crop Science Society of America, Soil Science Society of America.</p>
 </div>
 <div id="ref-rajs15">
-<p>Rajsekhar, Deepthi, Vijay P. Singh, and Ashok K. Mishra. 2015. “Integrated Drought Causality, Hazard, and Vulnerability Assessment for Future Socioeconomic Scenarios: An Information Theory Perspective.” <em>Journal of Geophysical Research: Atmospheres</em> 120 (13): 6346–78. <a href="https://doi.org/10.1002/2014JD022670">https://doi.org/10.1002/2014JD022670</a>.</p>
+<p>Rajsekhar, Deepthi, Vijay P. Singh, and Ashok K. Mishra. 2015. “Integrated Drought Causality, Hazard, and Vulnerability Assessment for Future Socioeconomic Scenarios: An Information Theory Perspective.” <em>Journal of Geophysical Research: Atmospheres</em> 120 (13): 6346–78. <a href="https://doi.org/10.1002/2014JD022670" class="uri">https://doi.org/10.1002/2014JD022670</a>.</p>
 </div>
 <div id="ref-robe12">
 <p>Roberts, Michael J., Wolfram Schlenker, and Jonathan Eyer. 2012. “Agronomic Weather Measures in Econometric Models of Crop Yield with Implications for Climate Change.” <em>American Journal of Agricultural Economics</em> 95 (2): 236–43.</p>
 </div>
 <div id="ref-vanvlietQualityMattersWater2017">
-<p>van Vliet, Michelle T. H., Martina Flörke, and Yoshihide Wada. 2017. “Quality Matters for Water Scarcity.” <em>Nature Geoscience</em> 10 (11): 800–802. <a href="https://doi.org/10.1038/ngeo3047">https://doi.org/10.1038/ngeo3047</a>.</p>
+<p>van Vliet, Michelle T. H., Martina Flörke, and Yoshihide Wada. 2017. “Quality Matters for Water Scarcity.” <em>Nature Geoscience</em> 10 (11). Nature Publishing Group: 800–802. <a href="https://doi.org/10.1038/ngeo3047" class="uri">https://doi.org/10.1038/ngeo3047</a>.</p>
 </div>
 <div id="ref-wandersHumanClimateImpacts2015">
-<p>Wanders, N., and Y. Wada. 2015. “Human and Climate Impacts on the 21st Century Hydrological Drought.” <em>Journal of Hydrology</em>, Drought processes, modeling, and mitigation, 526 (July): 208–20. <a href="https://doi.org/10.1016/j.jhydrol.2014.10.047">https://doi.org/10.1016/j.jhydrol.2014.10.047</a>.</p>
+<p>Wanders, N., and Y. Wada. 2015. “Human and Climate Impacts on the 21st Century Hydrological Drought.” <em>Journal of Hydrology</em>, Drought processes, modeling, and mitigation, 526 (July): 208–20. <a href="https://doi.org/10.1016/j.jhydrol.2014.10.047" class="uri">https://doi.org/10.1016/j.jhydrol.2014.10.047</a>.</p>
 </div>
 <div id="ref-wilhiteUnderstandingDroughtPhenomenon1985">
-<p>Wilhite, Donald A., and Mickey Glantz. 1985. “Understanding the Drought Phenomenon: The Role of Definitions.” <em>Water International</em>, 111–20.</p>
+<p>Wilhite, Donald A., and Mickey Glantz. 1985. “Understanding the Drought Phenomenon: The Role of Definitions.” <em>Water International</em>. Taylor &amp; Francis, 111–20.</p>
 </div>
 </div>
 </div>
