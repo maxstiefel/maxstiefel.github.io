@@ -24,7 +24,7 @@
 <meta name="author" content="Maximilian Stiefel" />
 
 
-<meta name="date" content="2022-04-22" />
+<meta name="date" content="2022-04-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -620,7 +620,7 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path=""><a href="#fire-perimeter"><i class="fa fa-check"></i>Fire Perimeter</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#risk-rating"><i class="fa fa-check"></i>Risk Rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#wildfire-risk-rating"><i class="fa fa-check"></i>Wildfire Risk Rating</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#exposed-structures"><i class="fa fa-check"></i>Exposed Structures</a></li>
 </ul>
 
@@ -642,7 +642,7 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 <div id="header">
 <h1 class="title">Wildfire Event Analysis</h1>
 <p class="author"><em>Maximilian Stiefel</em></p>
-<p class="date"><em>2022-04-22</em></p>
+<p class="date"><em>2022-04-26</em></p>
 </div>
 <style>
 
@@ -681,67 +681,46 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 </style>
 <div id="fire-perimeter" class="section level2 unnumbered">
 <h2>Fire Perimeter</h2>
-<p>|<br />
-| | 0%
-|<br />
-|====== | 8%
-|<br />
-|============ | 17%
-|<br />
-|================== | 25%
-|<br />
-|======================= | 33%
-|<br />
-|============================= | 42%
-|<br />
-|=================================== | 50%
-|<br />
-|========================================= | 58%
-|<br />
-|=============================================== | 67%
-|<br />
-|==================================================== | 75%
-|<br />
-|========================================================== | 83%
-|<br />
-|================================================================ | 92%
-|<br />
-|======================================================================| 100%
-<img src="fireEvent_files/figure-html/fire-perimeter-map-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>The McBride Fire began on April 12 2022 in Lincoln County, New Mexico around the area of Gavilan Canyon within the Village of Ruidoso. The fire currently has moderate fire behavior with an approximate size of 6195 acres and 0 percent containment. It is classified as a Type 1 Incident with about 299 people assisting the fight. Total cost to date, including property loss and firefighting resources, is estimated at $666,271. As of now the cause is of undetermined origin.</p>
-<p>Wildland fire agencies use the Incident Command System (ICS) to categorize the severity of fires. This system allows flexible fire response by scaling resources like engines, hand crews, and aircraft up or down as the complexity of the fire changes. Figure <a href="#fig:incident-command-system">1</a> offers further detail on the ICS. The vast majority of fires are among ICS types 1 through 3 and therefore with an estimated cost below $1 million.</p>
+<p>The McBride Fire began on April 12 2022 in Lincoln County, New Mexico around the area of Village of Ruidoso &amp; surrounding land in Lincoln County, Lincoln NF and State The fire currently has minimal fire behavior with an approximate size of 6159 acres and 95 percent containment. It is classified as a Type 4 Incident with about 37 people assisting the fight. Total cost to date, including property loss and firefighting resources, is estimated at $4,450,000. As of now the cause is of undetermined origin.</p>
+<div class="figure" style="text-align: center"><span id="fig:fire-perimeter-map"></span>
+<p class="caption">
+Figure 1: Location of the McBride Wildfire.
+</p>
+<img src="fireEvent_files/figure-html/fire-perimeter-map-1.png" alt="Location of the McBride Wildfire." width="80%" />
+</div>
+<p>Wildland fire agencies use the Incident Command System (ICS) to categorize the severity of fires. This system allows flexible fire response by scaling resources like engines, hand crews, and aircraft up or down as the complexity of the fire changes. Figure <a href="#fig:incident-command-system">2</a> offers further detail on the ICS. The vast majority of fires are among ICS types 1 through 3 and therefore with an estimated cost below $1 million.</p>
 <div class="figure" style="text-align: center"><span id="fig:incident-command-system"></span>
 <p class="caption">
-Figure 1: The Incident Command System categorizes severity of fires.
+Figure 2: The Incident Command System categorizes severity of fires.
 </p>
 <img src="graphics/fireIncidentType.png" alt="The Incident Command System categorizes severity of fires." width="30%" />
 </div>
 <!-- - Burning Index captures the contribution of fire behavior to the effort of containing a fire. -->
 <!-- - Energy Release Component estimates the potential available energy released in the flaming zone of a fire. -->
 </div>
-<div id="risk-rating" class="section level2 unnumbered">
-<h2>Risk Rating</h2>
+<div id="wildfire-risk-rating" class="section level2 unnumbered">
+<h2>Wildfire Risk Rating</h2>
 <p>The ClimateCheck Wildfire Risk Rating is based on data representing extreme fire weather and probabilistic fire behavior characteristics. We calculate the Fire Weather Index (FWI), a daily wildfire danger rating system metric that accounts for the effects of moisture content and wind on the amount of fuel available for combustion and how quickly a fire might spread. FWI is a measure of potential fire intensity—or energy available to be released–and a good indicator of overall fire danger. Input data to the FWI include temperature, precipitation, relative humidity and wind speed from 20 Coupled Model Intercomparison Project Global Climate Models (GCMs) downscaled to 6km spatial resolution.</p>
-<p>The two parameters we estimate from FWI distributions per GCM are the magnitude and frequency of extreme fire weather days, i.e., how often extremely dangerous fire weather occurs and how much more extreme it will be. This method looks at changes in the upper tail end of daily FWI values. Frequencies can be found for each target year (e.g., 2050) by counting daily exceedances of the historical extreme magnitude. Extreme is defined using a threshold blended from local and national historic baselines of extreme FWI values exceeding the 99th percentile. Figure <a href="#fig:fwi-trend">2</a> shows how the magnitude and frequency of extreme FWI days changes over the next few decades for the area within the McBride Wildfire perimeter.</p>
-<p>We model climate risk for wildfires with FWI since the majority of severe (high consequence) wildfires occur on days with high FWI values <span class="citation">(<span class="citeproc-not-found" data-reference-id="hawkinsAnthropogenicInfluenceRecent2022"><strong>???</strong></span>; <span class="citeproc-not-found" data-reference-id="wangExtremeFireWeather2022"><strong>???</strong></span>)</span>. FWI is also more reliable than other approaches to modeling climate risk for wildfires. While increases in the FWI due to anthropogenic climate change have been observed over the past several decades <span class="citation">(<span class="citeproc-not-found" data-reference-id="jainTrendAnalysisFire2017"><strong>???</strong></span>)</span>, climate risk models that explicitly parameterize land cover and land use change over projected time are susceptible to high degrees of uncertainty <span class="citation">(<span class="citeproc-not-found" data-reference-id="syphardMappingFutureFire2018"><strong>???</strong></span>)</span>. FWI is therefore the preferred metric for modeling wildfire severity and how climate change will impact wildfire risk.</p>
+<p>The two parameters we estimate from FWI distributions per GCM are the magnitude and frequency of extreme fire weather days, i.e., how often extremely dangerous fire weather occurs and how much more extreme it will be. This method looks at changes in the upper tail end of daily FWI values. Frequencies can be found for each target year (e.g., 2050) by counting daily exceedances of the historical extreme magnitude. Extreme is defined using a threshold blended from local and national historic baselines of extreme FWI values exceeding the 99th percentile. Figure <a href="#fig:fwi-trend">3</a> shows how the magnitude and frequency of extreme FWI days changes over the next few decades for the area within the McBride Wildfire perimeter.</p>
+<p>We model climate risk for wildfires with FWI since the majority of severe (high consequence) wildfires occur on days with high FWI values <span class="citation">(Hawkins, Abatzoglou, Li, &amp; Rupp, <a href="#ref-hawkinsAnthropogenicInfluenceRecent2022">2022</a>; Wang et al., <a href="#ref-wangExtremeFireWeather2022">2022</a>)</span>. FWI is also more reliable than other approaches to modeling climate risk for wildfires. While increases in the FWI due to anthropogenic climate change have been observed over the past several decades <span class="citation">(Jain et al., <a href="#ref-jainTrendAnalysisFire2017">2017</a>)</span>, climate risk models that explicitly parameterize land cover and land use change over projected time are susceptible to high degrees of uncertainty <span class="citation">(Syphard, Sheehan, Rustigian-Romsos, &amp; Ferschweiler, <a href="#ref-syphardMappingFutureFire2018">2018</a>)</span>. FWI is therefore the preferred metric for modeling wildfire severity and how climate change will impact wildfire risk.</p>
 <div class="figure" style="text-align: center"><span id="fig:fwi-trend"></span>
 <p class="caption">
-Figure 2: FWI trends over time in the wildfire perimeter.
+Figure 3: FWI trends over time in the wildfire perimeter.
 </p>
 <img src="fireEvent_files/figure-html/fwi-trend-1.png" alt="FWI trends over time in the wildfire perimeter." width="80%" />
 </div>
-<p>Since extreme FWI estimates are at too coarse a spatial resolution for property-level risk assessment, we utilize recently released, 30m resolution 2020 US Forest Service (USFS) wildfire risk data products known as Risk to Potential Structures (RPS), which is the likely damage if a house were present and a fire occurred. Figure <a href="#fig:rps">3</a> shows RPS around the McBride Wildfire perimeter. This wildfire severity product represents:</p>
+<p>Since extreme FWI estimates are at too coarse a spatial resolution for property-level risk assessment, we utilize recently released, 30m resolution 2020 US Forest Service (USFS) wildfire risk data products known as Risk to Potential Structures (RPS), which is the likely damage if a house were present and a fire occurred. Figure <a href="#fig:rps">4</a> shows RPS around the McBride Wildfire perimeter. This wildfire severity product represents:</p>
 <ul>
 <li>Burn Probability: the chance of a wildfire starting (frequency)</li>
 <li>Flame Length Exceedance Probability: likelihood that flame length exceeds a certain height (intensity)</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:rps"></span>
 <p class="caption">
-Figure 3: USFS Risk to Potential Structures around the McBride Wildfire
+Figure 4: USFS Risk to Potential Structures around the McBride Wildfire
 </p>
 <img src="fireEvent_files/figure-html/rps-1.png" alt="USFS Risk to Potential Structures around the McBride Wildfire" width="80%" />
 </div>
-<p>We combine the change in extreme FWI exceedances with these static USFS data to represent how wildfire frequency, intensity, and severity will shift over future time. Risk is rated using the weighted sum of CDF transformations: .25 for extreme FWI frequency, .25 for extreme FWI magnitude, .25 for burn probability, and .25 for flame length exceedance probability. The combined product is at a sufficiently high 30m2 spatial resolution to assess risk based on the environmental context for a specific property. Lastly, we adjust risk in managed and non-burnable lands with the National Land Cover Database according to land cover (e.g., barren land), urbanicity, and agricultural activity. Figure <a href="#fig:risk-rating">4</a> shows the ClimateCheck Wildfire Risk Rating around the McBride Wildfire perimeter. In summary, this rating method excels at estimating:</p>
+<p>We combine the change in extreme FWI exceedances with these static USFS data to represent how wildfire frequency, intensity, and severity will shift over future time. Risk is rated using the weighted sum of CDF transformations: .25 for extreme FWI frequency, .25 for extreme FWI magnitude, .25 for burn probability, and .25 for flame length exceedance probability. The combined product is at a sufficiently high 30m2 spatial resolution to assess risk based on the environmental context for a specific property. Lastly, we adjust risk in managed and non-burnable lands with the National Land Cover Database according to land cover (e.g., barren land), urbanicity, and agricultural activity. Figure <a href="#fig:risk-rating">5</a> shows the ClimateCheck Wildfire Risk Rating around the McBride Wildfire perimeter. In summary, this rating method excels at estimating:</p>
 <ol style="list-style-type: decimal">
 <li>Property-level differentiation in wildfire risk</li>
 <li>Frequency, intensity, and severity of wildfire events</li>
@@ -749,11 +728,11 @@ Figure 3: USFS Risk to Potential Structures around the McBride Wildfire
 </ol>
 <div class="figure" style="text-align: center"><span id="fig:risk-rating"></span>
 <p class="caption">
-Figure 4: ClimateCheck Wildfire Risk Rating around the McBride Wildfire
+Figure 5: ClimateCheck Wildfire Risk Rating around the McBride Wildfire
 </p>
 <img src="fireEvent_files/figure-html/risk-rating-1.png" alt="ClimateCheck Wildfire Risk Rating around the McBride Wildfire" width="80%" />
 </div>
-<p>Wildfire risk is -1.19 percent higher within the McBride Wildfire perimeter (average risk rating = 78.78) than for the neighboring area (average risk rating = 79.72). <a href="#tab:stats-tables">1</a> provides comparison statistics for the McBride Wildfire perimeter and the nearby surrounding area.</p>
+<p>Wildfire risk is -1.19 percent higher within the McBride Wildfire perimeter (average risk rating = 78.78) than for the neighboring area (average risk rating = 79.72). Table <a href="#tab:stats-tables">1</a> provides comparison statistics for the McBride Wildfire perimeter and the nearby surrounding area.</p>
 <table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
 <caption>
 <span id="tab:stats-tables">Table 1: </span>McBride Wildfire risk statistics summary
@@ -843,19 +822,42 @@ RPS
 </div>
 <div id="exposed-structures" class="section level2 unnumbered">
 <h2>Exposed Structures</h2>
-<p>Wildfires typically occur in wildland vegetation areas with very few people and structures. The Wildland-Urban Interface (WUI), areas where settlement intersperse with undeveloped wildland vegetation, has been increasing in geographic extent, number of structures, and population over the past several decades <span class="citation">(<span class="citeproc-not-found" data-reference-id="radeloffRapidGrowthUS2018"><strong>???</strong></span>)</span>. This trend means more human ignitions and a greater difficulty in protecting life and property. Figure <a href="#fig:building-footprints-map">5</a> displays buildings around the McBride Wildfire perimeter. There are approximately 196 buildings inside the fire perimeter whereas about 5098 buildings are within one mile of the perimeter.</p>
+<p>Wildfires typically occur in wildland vegetation areas with very few people and structures. The Wildland-Urban Interface (WUI), areas where settlement intersperse with undeveloped wildland vegetation, has been increasing in geographic extent, number of structures, and population over the past several decades <span class="citation">(Radeloff et al., <a href="#ref-radeloffRapidGrowthUS2018">2018</a>)</span>. This trend means more human ignitions and a greater difficulty in protecting life and property. Figure <a href="#fig:building-footprints-map">6</a> displays buildings around the McBride Wildfire perimeter. There are approximately 196 buildings inside the fire perimeter whereas about 5098 buildings are within one mile of the perimeter.</p>
 <div class="figure" style="text-align: center"><span id="fig:building-footprints-map"></span>
 <p class="caption">
-Figure 5: Building locations in the McBride Wildfire vicinity.
+Figure 6: Building locations in the McBride Wildfire vicinity.
 </p>
 <img src="fireEvent_files/figure-html/building-footprints-map-1.png" alt="Building locations in the McBride Wildfire vicinity." width="80%" />
 </div>
-<p>Many of these buildings were constructed in recent years. The number of new builds constructed since 2000 in nearby Census Tracts was estimated at 3621, which is about 18.6 of total structures. Figure <a href="#fig:year-built-map">6</a> shows these construction trends over time while Figure <a href="#fig:year-built-map">6</a> presents the proportion of new builds, both for Census Tracts around the the McBride Wildfire.</p>
+<p>Many of these buildings were constructed in recent years. The number of new builds constructed since 2000 in nearby Census Tracts was estimated at 3621, which is about 18.6 of total structures. Figure <a href="#fig:year-built-map">8</a> shows these construction trends over time while Figure <a href="#fig:year-built-map">8</a> presents the proportion of new builds, both for Census Tracts around the the McBride Wildfire.</p>
+<div class="figure" style="text-align: center"><span id="fig:year-built-trend"></span>
+<p class="caption">
+Figure 7: Housing construction trends in Census Tracts around the McBride Wildfire.
+</p>
+<img src="fireEvent_files/figure-html/year-built-trend-1.png" alt="Housing construction trends in Census Tracts around the McBride Wildfire." width="80%" />
+</div>
 <div class="figure" style="text-align: center"><span id="fig:year-built-map"></span>
 <p class="caption">
-Figure 6: New builds in Census Tracts surrounding the McBride Wildfire.
+Figure 8: New builds in Census Tracts surrounding the McBride Wildfire.
 </p>
 <img src="fireEvent_files/figure-html/year-built-map-1.png" alt="New builds in Census Tracts surrounding the McBride Wildfire." width="80%" />
+</div>
+<div id="refs" class="references">
+<div id="ref-hawkinsAnthropogenicInfluenceRecent2022">
+<p>Hawkins, L. R., Abatzoglou, J. T., Li, S., &amp; Rupp, D. E. (2022). Anthropogenic Influence on Recent Severe Autumn Fire Weather in the West Coast of the United States. <em>Geophysical Research Letters</em>, <em>49</em>(4), e2021GL095496. <a href="https://doi.org/10.1029/2021GL095496" class="uri">https://doi.org/10.1029/2021GL095496</a></p>
+</div>
+<div id="ref-jainTrendAnalysisFire2017">
+<p>Jain, P., Wang, X., Flannigan, M. D., Jain, P., Wang, X., &amp; Flannigan, M. D. (2017). Trend analysis of fire season length and extreme fire weather in North America between 1979 and 2015. <em>International Journal of Wildland Fire</em>, <em>26</em>(12), 1009–1020. <a href="https://doi.org/10.1071/WF17008" class="uri">https://doi.org/10.1071/WF17008</a></p>
+</div>
+<div id="ref-radeloffRapidGrowthUS2018">
+<p>Radeloff, V. C., Helmers, D. P., Kramer, H. A., Mockrin, M. H., Alexandre, P. M., Bar-Massada, A., … Stewart, S. I. (2018). Rapid growth of the US wildland-urban interface raises wildfire risk. <em>Proceedings of the National Academy of Sciences</em>, <em>115</em>(13), 3314–3319. <a href="https://doi.org/10.1073/pnas.1718850115" class="uri">https://doi.org/10.1073/pnas.1718850115</a></p>
+</div>
+<div id="ref-syphardMappingFutureFire2018">
+<p>Syphard, A. D., Sheehan, T., Rustigian-Romsos, H., &amp; Ferschweiler, K. (2018). Mapping future fire probability under climate change: Does vegetation matter? <em>PLOS ONE</em>, <em>13</em>(8), e0201680. <a href="https://doi.org/10.1371/journal.pone.0201680" class="uri">https://doi.org/10.1371/journal.pone.0201680</a></p>
+</div>
+<div id="ref-wangExtremeFireWeather2022">
+<p>Wang, B., Spessa, A. C., Feng, P., Hou, X., Yue, C., Luo, J.-J., … Yu, Q. (2022). Extreme fire weather is the major driver of severe bushfires in southeast Australia. <em>Science Bulletin</em>, <em>67</em>(6), 655–664. <a href="https://doi.org/10.1016/j.scib.2021.10.001" class="uri">https://doi.org/10.1016/j.scib.2021.10.001</a></p>
+</div>
 </div>
 </div>
             </section>
