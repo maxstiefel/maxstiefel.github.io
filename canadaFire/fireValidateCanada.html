@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Wildfire Validation Canada</title>
+  <meta name="description" content="Wildfire Validation Canada" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Wildfire Validation Canada" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Wildfire Validation Canada" />
+  
+  
+  
+
+<meta name="author" content="Maximilian Stiefel" />
+
+
+<meta name="date" content="2022-08-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet" />
+<script src="libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
+<script src="libs/sparkline-binding-2.0/sparkline.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.7
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.7'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<script>
+document.write('<div class="btn-group pull-right" style="position: absolute; top: 20%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
+</script>
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#fwi-risk-rating"><i class="fa fa-check"></i>FWI risk rating</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85counts"><i class="fa fa-check"></i>rcp85counts</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85magnitude"><i class="fa fa-check"></i>rcp85magnitude</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rcp85expectedvalue"><i class="fa fa-check"></i>rcp85expectedValue</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-trends-over-time"><i class="fa fa-check"></i>FWI trends over time</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85counts"><i class="fa fa-check"></i>fwi rcp85counts</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85magnitude"><i class="fa fa-check"></i>fwi rcp85magnitude</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85counts-score"><i class="fa fa-check"></i>fwi rcp85counts score</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-rcp85magnitude-score"><i class="fa fa-check"></i>fwi rcp85magnitude score</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-combined-score"><i class="fa fa-check"></i>fwi combined score</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#fwi-statistics-by-city"><i class="fa fa-check"></i>FWI statistics by city</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#burn-probabilities"><i class="fa fa-check"></i>Burn Probabilities</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#processing-fwi-and-bp"><i class="fa fa-check"></i>Processing FWI and BP</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#samples"><i class="fa fa-check"></i>Samples</a><ul>
+<li class="chapter" data-level="" data-path=""><a href="#toronto-on"><i class="fa fa-check"></i>Toronto ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#montreal-qc"><i class="fa fa-check"></i>Montreal QC</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#vancouver-bc"><i class="fa fa-check"></i>Vancouver BC</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#calgary-ab"><i class="fa fa-check"></i>Calgary AB</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#ottawa-on"><i class="fa fa-check"></i>OTTAWA ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#edmonton-ab"><i class="fa fa-check"></i>Edmonton AB</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hamilton-on"><i class="fa fa-check"></i>Hamilton ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#quebec-qc"><i class="fa fa-check"></i>Quebec QC</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#winnipeg-mb"><i class="fa fa-check"></i>Winnipeg MB</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#kitchener-on"><i class="fa fa-check"></i>Kitchener ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#london-on"><i class="fa fa-check"></i>London ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#saint-catharines-niagara-on"><i class="fa fa-check"></i>Saint Catharines-Niagara ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#victoria-bc"><i class="fa fa-check"></i>Victoria BC</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#windsor-on"><i class="fa fa-check"></i>Windsor ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#halifax-ns"><i class="fa fa-check"></i>Halifax NS</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#oshawa-on"><i class="fa fa-check"></i>Oshawa ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#saskatoon-sk"><i class="fa fa-check"></i>Saskatoon SK</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#barrie-on"><i class="fa fa-check"></i>Barrie ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#regina-sk"><i class="fa fa-check"></i>Regina SK</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#abbotsford-bc"><i class="fa fa-check"></i>Abbotsford BC</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#sherbrooke-qc"><i class="fa fa-check"></i>Sherbrooke QC</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#kelowna-bc"><i class="fa fa-check"></i>Kelowna BC</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#trois-rivieres-qc"><i class="fa fa-check"></i>Trois-Rivieres QC</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#guelph-on"><i class="fa fa-check"></i>Guelph ON</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#kingston-on"><i class="fa fa-check"></i>Kingston ON</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Wildfire Validation Canada</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Wildfire Validation Canada</h1>
+<p class="author"><em>Maximilian Stiefel</em></p>
+<p class="date"><em>2022-08-01</em></p>
+</div>
+<style>
+  
+  .book .book-body .page-wrapper .page-inner {
+    max-width: 1400px;
+    margin-left: 100px;  
+    margin-right: 100px;  
+  }
+  .book .book-summary {
+    width: 300px;
+    position:absolute;
+    top:0;
+    left:-300px;
+  }
+  .book.with-summary .book-header.fixed {
+      left: 300px;
+  }
+  .book.with-summary .book-body {
+      left: 300px;
+  }
+  .book .book-body .page-wrapper .page-inner section.normal table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+  .book caption {
+      font-size: 20px;
+  }
+  .book p.caption {
+      font-size: 20px;
+  }
+  .book p {
+      line-height: 2;
+  }
+
+</style>
+<div id="fwi-risk-rating" class="section level1 unnumbered">
+<h1>FWI risk rating</h1>
+<div id="rcp85counts" class="section level3 unnumbered">
+<h3>rcp85counts</h3>
+<p><img src="fireValidateCanada_files/figure-html/rating-1.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-2.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-3.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-4.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-5.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-6.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rcp85magnitude" class="section level3 unnumbered">
+<h3>rcp85magnitude</h3>
+<p><img src="fireValidateCanada_files/figure-html/rating-7.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-8.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-9.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-10.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-11.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-12.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rcp85expectedvalue" class="section level3 unnumbered">
+<h3>rcp85expectedValue</h3>
+<p><img src="fireValidateCanada_files/figure-html/rating-13.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-14.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-15.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-16.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-17.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/rating-18.png" width="100%" style="display: block; margin: auto;" /></p>
+<!-- # FWI observed to modeled {-} -->
+</div>
+</div>
+<div id="fwi-trends-over-time" class="section level1 unnumbered">
+<h1>FWI trends over time</h1>
+<div id="fwi-rcp85counts" class="section level3 unnumbered">
+<h3>fwi rcp85counts</h3>
+<p><img src="fireValidateCanada_files/figure-html/graphs-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-rcp85magnitude" class="section level3 unnumbered">
+<h3>fwi rcp85magnitude</h3>
+<p><img src="fireValidateCanada_files/figure-html/graphs-2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-rcp85counts-score" class="section level3 unnumbered">
+<h3>fwi rcp85counts score</h3>
+<p><img src="fireValidateCanada_files/figure-html/graphs-3.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-rcp85magnitude-score" class="section level3 unnumbered">
+<h3>fwi rcp85magnitude score</h3>
+<p><img src="fireValidateCanada_files/figure-html/graphs-4.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fwi-combined-score" class="section level3 unnumbered">
+<h3>fwi combined score</h3>
+<p><img src="fireValidateCanada_files/figure-html/graphs-5.png" width="100%" style="display: block; margin: auto;" /></p>
+<!-- # FWI spatial distributions {-} -->
+</div>
+</div>
+<div id="fwi-statistics-by-city" class="section level1 unnumbered">
+<h1>FWI statistics by city</h1>
+<table class=" lightable-paper table" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 11px; margin-left: auto; margin-right: auto;'>
+<thead>
+<tr>
+<th style="text-align:right;">
+lon
+</th>
+<th style="text-align:right;">
+lat
+</th>
+<th style="text-align:left;">
+cities
+</th>
+<th style="text-align:right;">
+rcp85counts1990
+</th>
+<th style="text-align:right;">
+rcp85magnitude1990
+</th>
+<th style="text-align:right;">
+rcp85counts2050
+</th>
+<th style="text-align:right;">
+rcp85magnitude2050
+</th>
+<th style="text-align:right;">
+rcp85countsScore2050
+</th>
+<th style="text-align:right;">
+rcp85magnitudeScore2050
+</th>
+<th style="text-align:right;">
+rcp85score2050
+</th>
+<th style="text-align:left;">
+cities
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+-79.38
+</td>
+<td style="text-align:right;">
+43.62
+</td>
+<td style="text-align:left;">
+Toronto ON
+</td>
+<td style="text-align:right;">
+5.62
+</td>
+<td style="text-align:right;">
+11.77
+</td>
+<td style="text-align:right;">
+9.76
+</td>
+<td style="text-align:right;">
+13.66
+</td>
+<td style="text-align:right;">
+16.75
+</td>
+<td style="text-align:right;">
+2.67
+</td>
+<td style="text-align:right;">
+3.67
+</td>
+<td style="text-align:left;">
+Toronto ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-73.62
+</td>
+<td style="text-align:right;">
+45.62
+</td>
+<td style="text-align:left;">
+Montreal QC
+</td>
+<td style="text-align:right;">
+5.03
+</td>
+<td style="text-align:right;">
+10.11
+</td>
+<td style="text-align:right;">
+8.12
+</td>
+<td style="text-align:right;">
+11.20
+</td>
+<td style="text-align:right;">
+5.91
+</td>
+<td style="text-align:right;">
+1.59
+</td>
+<td style="text-align:right;">
+2.03
+</td>
+<td style="text-align:left;">
+Montreal QC
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-123.12
+</td>
+<td style="text-align:right;">
+49.38
+</td>
+<td style="text-align:left;">
+Vancouver BC
+</td>
+<td style="text-align:right;">
+3.94
+</td>
+<td style="text-align:right;">
+7.17
+</td>
+<td style="text-align:right;">
+7.80
+</td>
+<td style="text-align:right;">
+8.12
+</td>
+<td style="text-align:right;">
+4.56
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+0.83
+</td>
+<td style="text-align:left;">
+Vancouver BC
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-114.12
+</td>
+<td style="text-align:right;">
+51.12
+</td>
+<td style="text-align:left;">
+Calgary AB
+</td>
+<td style="text-align:right;">
+7.74
+</td>
+<td style="text-align:right;">
+23.12
+</td>
+<td style="text-align:right;">
+9.96
+</td>
+<td style="text-align:right;">
+23.92
+</td>
+<td style="text-align:right;">
+18.55
+</td>
+<td style="text-align:right;">
+9.14
+</td>
+<td style="text-align:right;">
+12.09
+</td>
+<td style="text-align:left;">
+Calgary AB
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-75.62
+</td>
+<td style="text-align:right;">
+45.38
+</td>
+<td style="text-align:left;">
+OTTAWA ON
+</td>
+<td style="text-align:right;">
+5.11
+</td>
+<td style="text-align:right;">
+10.83
+</td>
+<td style="text-align:right;">
+7.71
+</td>
+<td style="text-align:right;">
+11.78
+</td>
+<td style="text-align:right;">
+4.14
+</td>
+<td style="text-align:right;">
+1.84
+</td>
+<td style="text-align:right;">
+2.02
+</td>
+<td style="text-align:left;">
+OTTAWA ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-113.62
+</td>
+<td style="text-align:right;">
+53.62
+</td>
+<td style="text-align:left;">
+Edmonton AB
+</td>
+<td style="text-align:right;">
+7.90
+</td>
+<td style="text-align:right;">
+24.65
+</td>
+<td style="text-align:right;">
+8.72
+</td>
+<td style="text-align:right;">
+25.36
+</td>
+<td style="text-align:right;">
+8.86
+</td>
+<td style="text-align:right;">
+11.45
+</td>
+<td style="text-align:right;">
+10.15
+</td>
+<td style="text-align:left;">
+Edmonton AB
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-79.88
+</td>
+<td style="text-align:right;">
+43.38
+</td>
+<td style="text-align:left;">
+Hamilton ON
+</td>
+<td style="text-align:right;">
+5.79
+</td>
+<td style="text-align:right;">
+11.76
+</td>
+<td style="text-align:right;">
+10.25
+</td>
+<td style="text-align:right;">
+13.62
+</td>
+<td style="text-align:right;">
+20.92
+</td>
+<td style="text-align:right;">
+2.66
+</td>
+<td style="text-align:right;">
+3.89
+</td>
+<td style="text-align:left;">
+Hamilton ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-71.12
+</td>
+<td style="text-align:right;">
+46.88
+</td>
+<td style="text-align:left;">
+Quebec QC
+</td>
+<td style="text-align:right;">
+4.49
+</td>
+<td style="text-align:right;">
+7.98
+</td>
+<td style="text-align:right;">
+6.90
+</td>
+<td style="text-align:right;">
+8.82
+</td>
+<td style="text-align:right;">
+1.56
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:left;">
+Quebec QC
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-97.12
+</td>
+<td style="text-align:right;">
+49.88
+</td>
+<td style="text-align:left;">
+Winnipeg MB
+</td>
+<td style="text-align:right;">
+7.83
+</td>
+<td style="text-align:right;">
+24.71
+</td>
+<td style="text-align:right;">
+9.47
+</td>
+<td style="text-align:right;">
+25.70
+</td>
+<td style="text-align:right;">
+13.97
+</td>
+<td style="text-align:right;">
+12.13
+</td>
+<td style="text-align:right;">
+12.74
+</td>
+<td style="text-align:left;">
+Winnipeg MB
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-80.62
+</td>
+<td style="text-align:right;">
+43.38
+</td>
+<td style="text-align:left;">
+Kitchener ON
+</td>
+<td style="text-align:right;">
+5.80
+</td>
+<td style="text-align:right;">
+12.42
+</td>
+<td style="text-align:right;">
+9.53
+</td>
+<td style="text-align:right;">
+13.90
+</td>
+<td style="text-align:right;">
+14.57
+</td>
+<td style="text-align:right;">
+2.77
+</td>
+<td style="text-align:right;">
+3.64
+</td>
+<td style="text-align:left;">
+Kitchener ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-81.12
+</td>
+<td style="text-align:right;">
+42.88
+</td>
+<td style="text-align:left;">
+London ON
+</td>
+<td style="text-align:right;">
+5.62
+</td>
+<td style="text-align:right;">
+12.00
+</td>
+<td style="text-align:right;">
+8.77
+</td>
+<td style="text-align:right;">
+13.32
+</td>
+<td style="text-align:right;">
+9.19
+</td>
+<td style="text-align:right;">
+2.53
+</td>
+<td style="text-align:right;">
+3.12
+</td>
+<td style="text-align:left;">
+London ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-79.12
+</td>
+<td style="text-align:right;">
+43.12
+</td>
+<td style="text-align:left;">
+Saint Catharines-Niagara ON
+</td>
+<td style="text-align:right;">
+5.49
+</td>
+<td style="text-align:right;">
+11.61
+</td>
+<td style="text-align:right;">
+9.56
+</td>
+<td style="text-align:right;">
+13.45
+</td>
+<td style="text-align:right;">
+14.82
+</td>
+<td style="text-align:right;">
+2.59
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+<td style="text-align:left;">
+Saint Catharines-Niagara ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-123.62
+</td>
+<td style="text-align:right;">
+48.38
+</td>
+<td style="text-align:left;">
+Victoria BC
+</td>
+<td style="text-align:right;">
+7.53
+</td>
+<td style="text-align:right;">
+21.39
+</td>
+<td style="text-align:right;">
+6.92
+</td>
+<td style="text-align:right;">
+20.64
+</td>
+<td style="text-align:right;">
+1.63
+</td>
+<td style="text-align:right;">
+5.30
+</td>
+<td style="text-align:right;">
+4.02
+</td>
+<td style="text-align:left;">
+Victoria BC
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-82.88
+</td>
+<td style="text-align:right;">
+42.38
+</td>
+<td style="text-align:left;">
+Windsor ON
+</td>
+<td style="text-align:right;">
+5.19
+</td>
+<td style="text-align:right;">
+11.29
+</td>
+<td style="text-align:right;">
+9.10
+</td>
+<td style="text-align:right;">
+12.79
+</td>
+<td style="text-align:right;">
+11.34
+</td>
+<td style="text-align:right;">
+2.32
+</td>
+<td style="text-align:right;">
+3.10
+</td>
+<td style="text-align:left;">
+Windsor ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-63.62
+</td>
+<td style="text-align:right;">
+44.62
+</td>
+<td style="text-align:left;">
+Halifax NS
+</td>
+<td style="text-align:right;">
+4.22
+</td>
+<td style="text-align:right;">
+8.21
+</td>
+<td style="text-align:right;">
+7.78
+</td>
+<td style="text-align:right;">
+9.50
+</td>
+<td style="text-align:right;">
+4.48
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:left;">
+Halifax NS
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-78.88
+</td>
+<td style="text-align:right;">
+43.88
+</td>
+<td style="text-align:left;">
+Oshawa ON
+</td>
+<td style="text-align:right;">
+5.53
+</td>
+<td style="text-align:right;">
+11.84
+</td>
+<td style="text-align:right;">
+8.78
+</td>
+<td style="text-align:right;">
+13.34
+</td>
+<td style="text-align:right;">
+9.31
+</td>
+<td style="text-align:right;">
+2.54
+</td>
+<td style="text-align:right;">
+3.13
+</td>
+<td style="text-align:left;">
+Oshawa ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-106.62
+</td>
+<td style="text-align:right;">
+52.12
+</td>
+<td style="text-align:left;">
+Saskatoon SK
+</td>
+<td style="text-align:right;">
+8.60
+</td>
+<td style="text-align:right;">
+32.15
+</td>
+<td style="text-align:right;">
+11.50
+</td>
+<td style="text-align:right;">
+35.03
+</td>
+<td style="text-align:right;">
+29.99
+</td>
+<td style="text-align:right;">
+39.34
+</td>
+<td style="text-align:right;">
+34.00
+</td>
+<td style="text-align:left;">
+Saskatoon SK
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-79.62
+</td>
+<td style="text-align:right;">
+44.38
+</td>
+<td style="text-align:left;">
+Barrie ON
+</td>
+<td style="text-align:right;">
+5.67
+</td>
+<td style="text-align:right;">
+11.55
+</td>
+<td style="text-align:right;">
+8.66
+</td>
+<td style="text-align:right;">
+12.74
+</td>
+<td style="text-align:right;">
+8.52
+</td>
+<td style="text-align:right;">
+2.30
+</td>
+<td style="text-align:right;">
+2.89
+</td>
+<td style="text-align:left;">
+Barrie ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-104.62
+</td>
+<td style="text-align:right;">
+50.38
+</td>
+<td style="text-align:left;">
+Regina SK
+</td>
+<td style="text-align:right;">
+8.55
+</td>
+<td style="text-align:right;">
+33.74
+</td>
+<td style="text-align:right;">
+11.41
+</td>
+<td style="text-align:right;">
+36.36
+</td>
+<td style="text-align:right;">
+29.17
+</td>
+<td style="text-align:right;">
+42.55
+</td>
+<td style="text-align:right;">
+35.07
+</td>
+<td style="text-align:left;">
+Regina SK
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-122.38
+</td>
+<td style="text-align:right;">
+49.12
+</td>
+<td style="text-align:left;">
+Abbotsford BC
+</td>
+<td style="text-align:right;">
+4.99
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+8.84
+</td>
+<td style="text-align:right;">
+11.22
+</td>
+<td style="text-align:right;">
+9.67
+</td>
+<td style="text-align:right;">
+1.60
+</td>
+<td style="text-align:right;">
+2.41
+</td>
+<td style="text-align:left;">
+Abbotsford BC
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-71.88
+</td>
+<td style="text-align:right;">
+45.38
+</td>
+<td style="text-align:left;">
+Sherbrooke QC
+</td>
+<td style="text-align:right;">
+4.46
+</td>
+<td style="text-align:right;">
+8.52
+</td>
+<td style="text-align:right;">
+6.42
+</td>
+<td style="text-align:right;">
+9.15
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+<td style="text-align:left;">
+Sherbrooke QC
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-119.38
+</td>
+<td style="text-align:right;">
+49.88
+</td>
+<td style="text-align:left;">
+Kelowna BC
+</td>
+<td style="text-align:right;">
+7.54
+</td>
+<td style="text-align:right;">
+21.50
+</td>
+<td style="text-align:right;">
+11.89
+</td>
+<td style="text-align:right;">
+23.61
+</td>
+<td style="text-align:right;">
+33.17
+</td>
+<td style="text-align:right;">
+8.66
+</td>
+<td style="text-align:right;">
+18.43
+</td>
+<td style="text-align:left;">
+Kelowna BC
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-72.62
+</td>
+<td style="text-align:right;">
+46.38
+</td>
+<td style="text-align:left;">
+Trois-Rivieres QC
+</td>
+<td style="text-align:right;">
+5.07
+</td>
+<td style="text-align:right;">
+9.48
+</td>
+<td style="text-align:right;">
+7.30
+</td>
+<td style="text-align:right;">
+10.39
+</td>
+<td style="text-align:right;">
+2.60
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+1.33
+</td>
+<td style="text-align:left;">
+Trois-Rivieres QC
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-80.38
+</td>
+<td style="text-align:right;">
+43.62
+</td>
+<td style="text-align:left;">
+Guelph ON
+</td>
+<td style="text-align:right;">
+5.95
+</td>
+<td style="text-align:right;">
+12.27
+</td>
+<td style="text-align:right;">
+9.42
+</td>
+<td style="text-align:right;">
+13.89
+</td>
+<td style="text-align:right;">
+13.57
+</td>
+<td style="text-align:right;">
+2.76
+</td>
+<td style="text-align:right;">
+3.58
+</td>
+<td style="text-align:left;">
+Guelph ON
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-76.62
+</td>
+<td style="text-align:right;">
+44.12
+</td>
+<td style="text-align:left;">
+Kingston ON
+</td>
+<td style="text-align:right;">
+5.67
+</td>
+<td style="text-align:right;">
+11.81
+</td>
+<td style="text-align:right;">
+8.80
+</td>
+<td style="text-align:right;">
+13.13
+</td>
+<td style="text-align:right;">
+9.44
+</td>
+<td style="text-align:right;">
+2.45
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+<td style="text-align:left;">
+Kingston ON
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="burn-probabilities" class="section level1 unnumbered">
+<h1>Burn Probabilities</h1>
+<p><img src="fireValidateCanada_files/figure-html/burn-probability-1.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/burn-probability-2.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/burn-probability-3.png" width="100%" style="display: block; margin: auto;" /><img src="fireValidateCanada_files/figure-html/burn-probability-4.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="processing-fwi-and-bp" class="section level1 unnumbered">
+<h1>Processing FWI and BP</h1>
+</div>
+<div id="samples" class="section level1 unnumbered">
+<h1>Samples</h1>
+<p><img src="fireValidateCanada_files/figure-html/samples-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="toronto-on" class="section level2 unnumbered">
+<h2>Toronto ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The area around this city doesn’t have any wildfire risk.</p>
+</div>
+<div id="montreal-qc" class="section level2 unnumbered">
+<h2>Montreal QC</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 7. This location has about a 0.66% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.69% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 6. This location has about a 0.51% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.45% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 7. This location has about a 0.48% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.51% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+</div>
+<div id="vancouver-bc" class="section level2 unnumbered">
+<h2>Vancouver BC</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 15. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 17. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 17. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 16. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 29. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 23. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 11. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 6</p>
+<p>SCORE: 23. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 16. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 21. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 22. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 22. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 12. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 20. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 28. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 10</p>
+<p>SCORE: 16. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 13. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 17. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 15. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 6</p>
+<p>SCORE: 6. This location has about a 0.6% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 6</p>
+</div>
+<div id="calgary-ab" class="section level2 unnumbered">
+<h2>Calgary AB</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-5.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 40. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 9</p>
+<p>SCORE: 39. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 11</p>
+<p>SCORE: 51. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 58. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 40. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 9</p>
+<p>SCORE: 53. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 53. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 50. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 52. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 33. This location has about a 0.84% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 10</p>
+<p>SCORE: 44. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 10</p>
+<p>SCORE: 56. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 40. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 9</p>
+<p>SCORE: 49. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 54. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 55. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 54. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 54. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 57. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 40. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 9</p>
+</div>
+<div id="ottawa-on" class="section level2 unnumbered">
+<h2>OTTAWA ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-6.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 6. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.24% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.24% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.27% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.24% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.27% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.45% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+</div>
+<div id="edmonton-ab" class="section level2 unnumbered">
+<h2>Edmonton AB</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-7.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 46. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 49. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 47. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 46. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 42. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 44. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 43. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 46. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 47. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 47. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 46. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 44. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 43. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 8</p>
+<p>SCORE: 44. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 43. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 8</p>
+<p>SCORE: 46. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 47. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 43. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 46. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 44. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+</div>
+<div id="hamilton-on" class="section level2 unnumbered">
+<h2>Hamilton ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-8.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The area around this city doesn’t have any wildfire risk.</p>
+</div>
+<div id="quebec-qc" class="section level2 unnumbered">
+<h2>Quebec QC</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-9.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 5. This location has about a 0.63% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 35. This location has about a 14% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 11. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 28. This location has about a 10% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 47. This location has about a 42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 35. This location has about a 15% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 36. This location has about a 16% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 33. This location has about a 12% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 34. This location has about a 15% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 46. This location has about a 40% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 5. This location has about a 0.45% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 36. This location has about a 21% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 39. This location has about a 24% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 5. This location has about a 0.48% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 40. This location has about a 28% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 39. This location has about a 26% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 47. This location has about a 42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 5. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 36. This location has about a 22% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 40. This location has about a 29% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+</div>
+<div id="winnipeg-mb" class="section level2 unnumbered">
+<h2>Winnipeg MB</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-10.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 47. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 46. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 53. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 62. This location has about a 6% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 45. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 50. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 46. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 47. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 69. This location has about a 19% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 8</p>
+<p>SCORE: 51. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 52. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 46. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 54. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 51. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 45. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 47. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 74. This location has about a 22% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 54. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+<p>SCORE: 73. This location has about a 19% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 9</p>
+<p>SCORE: 55. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 10</p>
+</div>
+<div id="kitchener-on" class="section level2 unnumbered">
+<h2>Kitchener ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-11.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The area around this city doesn’t have any wildfire risk.</p>
+</div>
+<div id="london-on" class="section level2 unnumbered">
+<h2>London ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-12.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The area around this city doesn’t have any wildfire risk.</p>
+</div>
+<div id="saint-catharines-niagara-on" class="section level2 unnumbered">
+<h2>Saint Catharines-Niagara ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-13.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The area around this city doesn’t have any wildfire risk.</p>
+</div>
+<div id="victoria-bc" class="section level2 unnumbered">
+<h2>Victoria BC</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-14.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 24. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 29. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 27. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 27. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 25. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 8</p>
+<p>SCORE: 23. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 33. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 28. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 25. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 27. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 26. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 8</p>
+<p>SCORE: 29. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 29. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 28. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 29. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 28. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 27. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 23. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+<p>SCORE: 17. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 6</p>
+<p>SCORE: 26. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 7</p>
+</div>
+<div id="windsor-on" class="section level2 unnumbered">
+<h2>Windsor ON</h2>
+</div>
+<div id="halifax-ns" class="section level2 unnumbered">
+<h2>Halifax NS</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-15.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 10. This location has about a 0.96% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 10. This location has about a 0.96% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 7. This location has about a 0.75% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 6. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 10. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 9. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 14. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 10. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 16. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 9</p>
+<p>SCORE: 8. This location has about a 0.93% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 10. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 7. This location has about a 0.69% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 6. This location has about a 0.48% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 7. This location has about a 0.78% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 9. This location has about a 0.93% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 10. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 7. This location has about a 0.78% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 8. This location has about a 0.63% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.78% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 8</p>
+<p>SCORE: 10. This location has about a 0.81% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+</div>
+<div id="oshawa-on" class="section level2 unnumbered">
+<h2>Oshawa ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-16.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The area around this city doesn’t have any wildfire risk.</p>
+</div>
+<div id="saskatoon-sk" class="section level2 unnumbered">
+<h2>Saskatoon SK</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-17.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 77. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 74. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 80. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 12</p>
+<p>SCORE: 85. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 12</p>
+<p>SCORE: 75. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 12</p>
+<p>SCORE: 74. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 81. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 82. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 12</p>
+<p>SCORE: 80. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 74. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 87. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 12</p>
+<p>SCORE: 78. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 11</p>
+<p>SCORE: 89. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 12</p>
+<p>SCORE: 78. This location has about a 0.96% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 78. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 11</p>
+<p>SCORE: 80. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 11</p>
+<p>SCORE: 79. This location has about a 0.96% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 11</p>
+<p>SCORE: 86. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 12</p>
+<p>SCORE: 77. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 12</p>
+<p>SCORE: 86. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 9 to 12</p>
+</div>
+<div id="barrie-on" class="section level2 unnumbered">
+<h2>Barrie ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-18.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 8. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 7</p>
+<p>SCORE: 8. This location has about a 0.45% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.45% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.66% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.54% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.45% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 7</p>
+<p>SCORE: 9. This location has about a 0.66% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.51% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 7</p>
+<p>SCORE: 8. This location has about a 0.45% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+</div>
+<div id="regina-sk" class="section level2 unnumbered">
+<h2>Regina SK</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-19.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 75. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 76. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 71. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 75. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 77. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 76. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 73. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 69. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 77. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 73. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 73. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 72. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 79. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 74. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 66. This location has about a 0.9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 74. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 76. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 71. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 78. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 73. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Moderate risk on the worst fire weather days. Counts: 8 to 11</p>
+</div>
+<div id="abbotsford-bc" class="section level2 unnumbered">
+<h2>Abbotsford BC</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-20.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 19. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 20. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 22. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 10</p>
+<p>SCORE: 15. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 9</p>
+<p>SCORE: 13. This location has about a 0.93% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 9</p>
+<p>SCORE: 11. This location has about a 0.66% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 9</p>
+<p>SCORE: 21. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 14. This location has about a 0.84% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 10</p>
+<p>SCORE: 19. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 10</p>
+<p>SCORE: 19. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 9</p>
+<p>SCORE: 23. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 31. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 10</p>
+<p>SCORE: 17. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 10</p>
+<p>SCORE: 12. This location has about a 1% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 22. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 28. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 10</p>
+<p>SCORE: 25. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 21. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 9</p>
+<p>SCORE: 9. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 9</p>
+<p>SCORE: 24. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 10</p>
+</div>
+<div id="sherbrooke-qc" class="section level2 unnumbered">
+<h2>Sherbrooke QC</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-21.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 5. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 6</p>
+<p>SCORE: 5. This location has about a 0.48% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.63% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 4. This location has about a 0.54% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.6% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.69% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 4. This location has about a 0.6% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.69% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.51% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.57% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 5. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+<p>SCORE: 4. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 6</p>
+</div>
+<div id="kelowna-bc" class="section level2 unnumbered">
+<h2>Kelowna BC</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-22.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 59. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 12</p>
+<p>SCORE: 54. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 11</p>
+<p>SCORE: 66. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 12</p>
+<p>SCORE: 61. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 12</p>
+<p>SCORE: 62. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 11</p>
+<p>SCORE: 61. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 11</p>
+<p>SCORE: 47. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 11</p>
+<p>SCORE: 66. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 51. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 6 to 12</p>
+<p>SCORE: 66. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 75. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 12</p>
+<p>SCORE: 47. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 11</p>
+<p>SCORE: 58. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 12</p>
+<p>SCORE: 66. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 46. This location has about a 2% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 11</p>
+<p>SCORE: 47. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 11</p>
+<p>SCORE: 50. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 11</p>
+<p>SCORE: 68. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 8 to 11</p>
+<p>SCORE: 66. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 12</p>
+<p>SCORE: 63. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 7 to 12</p>
+</div>
+<div id="trois-rivieres-qc" class="section level2 unnumbered">
+<h2>Trois-Rivieres QC</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-23.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 6. This location has about a 0.54% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 41. This location has about a 22% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 28. This location has about a 9% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 5. This location has about a 0.45% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 7. This location has about a 0.51% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.42% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 5. This location has about a 0.39% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 19. This location has about a 4% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 6. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 13. This location has about a 3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 8. This location has about a 0.75% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 7</p>
+<p>SCORE: 24. This location has about a 7% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 4 to 7</p>
+</div>
+<div id="guelph-on" class="section level2 unnumbered">
+<h2>Guelph ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-24.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The area around this city doesn’t have any wildfire risk.</p>
+</div>
+<div id="kingston-on" class="section level2 unnumbered">
+<h2>Kingston ON</h2>
+<p><img src="fireValidateCanada_files/figure-html/samples-25.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>SCORE: 9. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.27% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.24% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.3% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.24% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.27% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.36% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 9. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+<p>SCORE: 8. This location has about a 0.33% probability of burning in a 30-year period based on 2050 burn probabilities.Historically, this location experienced Low risk on the worst fire weather days. Counts: 5 to 8</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>
