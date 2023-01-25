@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>SPI VALIDATION</title>
+  <meta name="description" content="SPI VALIDATION" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="SPI VALIDATION" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SPI VALIDATION" />
+  
+  
+  
+
+<meta name="author" content="Maximilian Stiefel" />
+
+
+<meta name="date" content="2023-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet" />
+<script src="libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
+<script src="libs/sparkline-binding-2.0/sparkline.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#combine-gcms"><i class="fa fa-check"></i>Combine GCMs</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#risk-rating"><i class="fa fa-check"></i>Risk Rating</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#frequency"><i class="fa fa-check"></i>frequency</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#magnitude"><i class="fa fa-check"></i>magnitude</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#frequencydiff"><i class="fa fa-check"></i>frequencyDiff</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#magnitudediff"><i class="fa fa-check"></i>magnitudeDiff</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rating_2050_rcp85"><i class="fa fa-check"></i>rating_2050_rcp85</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over Time</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#spatial-distributions"><i class="fa fa-check"></i>Spatial Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#observed-to-modeled"><i class="fa fa-check"></i>Observed to Modeled</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#statistics-by-city"><i class="fa fa-check"></i>Statistics by City</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#final-checks"><i class="fa fa-check"></i>Final Checks</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#downscaling-and-masking"><i class="fa fa-check"></i>Downscaling and masking</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#final-risk-rating"><i class="fa fa-check"></i>Final risk rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#summary-statistics"><i class="fa fa-check"></i>Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#hazard-specific-analysis"><i class="fa fa-check"></i>Hazard-Specific Analysis</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">SPI VALIDATION</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">SPI VALIDATION</h1>
+<p class="author"><em>Maximilian Stiefel</em></p>
+<p class="date"><em>2023-01-25</em></p>
+</div>
+<style>
+  
+  .book .book-body .page-wrapper .page-inner {
+    max-width: 1400px;
+    margin-left: 100px;  
+    margin-right: 100px;  
+  }
+  .book .book-summary {
+    width: 300px;
+    position:absolute;
+    top:0;
+    left:-300px;
+  }
+  .book.with-summary .book-header.fixed {
+      left: 300px;
+  }
+  .book.with-summary .book-body {
+      left: 300px;
+  }
+  .book .book-body .page-wrapper .page-inner section.normal table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+  .book caption {
+      font-size: 20px;
+  }
+  .book p.caption {
+      font-size: 20px;
+  }
+  .book p {
+      line-height: 2;
+  }
+
+</style>
+<!-- ----------------------------------- -->
+<!-- ----------------------------------- -->
+<!-- RATINGS STATISTICS BY HAZARD -->
+<!-- ----------------------------------- -->
+<!-- ----------------------------------- -->
+<!-- ----------------------------------- -->
+<!-- WILDFIRE -->
+<!-- ----------------------------------- -->
+<!-- counts, magnitude -->
+<!-- relative to each north america for all matching variables -->
+<!-- ----------------------------------- -->
+<!-- WILDFIRE -->
+<!-- ----------------------------------- -->
+<!-- expected value (counts, magnitude) -->
+<!-- relative to each country -->
+<!-- ----------------------------------- -->
+<!-- HEAT -->
+<!-- ----------------------------------- -->
+<!-- counts, magnitude, wetbulb counts, wetbulb magnitude -->
+<!-- relative to north america for all matching variables -->
+<!-- ----------------------------------- -->
+<!-- PRECIP -->
+<!-- ----------------------------------- -->
+<!-- average2d, counts2d -->
+<!-- relative to north america for all matching variables -->
+<div id="combine-gcms" class="section level1 unnumbered hasAnchor" number="">
+<h1>Combine GCMs<a href="#combine-gcms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="SPIValidate_files/figure-html/model-averaging-1.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/model-averaging-2.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/model-averaging-3.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/model-averaging-4.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="risk-rating" class="section level1 unnumbered hasAnchor" number="">
+<h1>Risk Rating<a href="#risk-rating" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="frequency" class="section level3 unnumbered hasAnchor" number="">
+<h3>frequency<a href="#frequency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="SPIValidate_files/figure-html/rating-1.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-2.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-3.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-4.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-5.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-6.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="magnitude" class="section level3 unnumbered hasAnchor" number="">
+<h3>magnitude<a href="#magnitude" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="SPIValidate_files/figure-html/rating-7.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-8.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-9.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-10.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-11.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-12.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="frequencydiff" class="section level3 unnumbered hasAnchor" number="">
+<h3>frequencyDiff<a href="#frequencydiff" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="SPIValidate_files/figure-html/rating-13.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-14.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-15.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-16.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-17.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-18.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="magnitudediff" class="section level3 unnumbered hasAnchor" number="">
+<h3>magnitudeDiff<a href="#magnitudediff" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="SPIValidate_files/figure-html/rating-19.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-20.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-21.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-22.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-23.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-24.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rating_2050_rcp85" class="section level3 unnumbered hasAnchor" number="">
+<h3>rating_2050_rcp85<a href="#rating_2050_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="SPIValidate_files/figure-html/rating-25.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-26.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-27.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-28.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-29.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/rating-30.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="trends-over-time" class="section level1 unnumbered hasAnchor" number="">
+<h1>Trends over Time<a href="#trends-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+</div>
+<div id="spatial-distributions" class="section level1 unnumbered hasAnchor" number="">
+<h1>Spatial Distributions<a href="#spatial-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="observed-to-modeled" class="section level2 unnumbered hasAnchor" number="">
+<h2>Observed to Modeled<a href="#observed-to-modeled" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+</div>
+<div id="statistics-by-city" class="section level1 unnumbered hasAnchor" number="">
+<h1>Statistics by City<a href="#statistics-by-city" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+</div>
+<div id="final-checks" class="section level1 unnumbered hasAnchor" number="">
+<h1>Final Checks<a href="#final-checks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="downscaling-and-masking" class="section level3 unnumbered hasAnchor" number="">
+<h3>Downscaling and masking<a href="#downscaling-and-masking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="SPIValidate_files/figure-html/clean-1.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-2.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-3.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-4.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-5.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-6.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-7.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-8.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-9.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-10.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-11.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-12.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="final-risk-rating" class="section level3 unnumbered hasAnchor" number="">
+<h3>Final risk rating<a href="#final-risk-rating" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="SPIValidate_files/figure-html/clean-13.png" width="90%" style="display: block; margin: auto;" /><img src="SPIValidate_files/figure-html/clean-14.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="summary-statistics" class="section level3 unnumbered hasAnchor" number="">
+<h3>Summary statistics<a href="#summary-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+variable
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+median
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+max
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+length_1970_months
+</td>
+<td style="text-align:right;">
+10.85
+</td>
+<td style="text-align:right;">
+1.27
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+<td style="text-align:right;">
+6.44
+</td>
+<td style="text-align:right;">
+15.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_1975_months
+</td>
+<td style="text-align:right;">
+10.80
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+<td style="text-align:right;">
+6.06
+</td>
+<td style="text-align:right;">
+14.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_1980_months
+</td>
+<td style="text-align:right;">
+10.62
+</td>
+<td style="text-align:right;">
+1.09
+</td>
+<td style="text-align:right;">
+10.81
+</td>
+<td style="text-align:right;">
+6.25
+</td>
+<td style="text-align:right;">
+13.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_1985_months
+</td>
+<td style="text-align:right;">
+10.30
+</td>
+<td style="text-align:right;">
+0.91
+</td>
+<td style="text-align:right;">
+10.38
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+13.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_1990_months
+</td>
+<td style="text-align:right;">
+9.99
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+12.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_1995_months
+</td>
+<td style="text-align:right;">
+9.94
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+13.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2000_months
+</td>
+<td style="text-align:right;">
+9.77
+</td>
+<td style="text-align:right;">
+0.73
+</td>
+<td style="text-align:right;">
+9.81
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+13.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2005_months
+</td>
+<td style="text-align:right;">
+9.47
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+<td style="text-align:right;">
+9.44
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+13.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2010_months
+</td>
+<td style="text-align:right;">
+9.24
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:right;">
+9.19
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+12.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2015_months
+</td>
+<td style="text-align:right;">
+8.96
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:right;">
+6.44
+</td>
+<td style="text-align:right;">
+12.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2020_rcp85_months
+</td>
+<td style="text-align:right;">
+8.63
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+<td style="text-align:right;">
+8.75
+</td>
+<td style="text-align:right;">
+6.06
+</td>
+<td style="text-align:right;">
+11.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2025_rcp85_months
+</td>
+<td style="text-align:right;">
+8.23
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+<td style="text-align:right;">
+8.19
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+11.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2030_rcp85_months
+</td>
+<td style="text-align:right;">
+7.87
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:right;">
+8.00
+</td>
+<td style="text-align:right;">
+5.00
+</td>
+<td style="text-align:right;">
+12.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2035_rcp85_months
+</td>
+<td style="text-align:right;">
+7.57
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+<td style="text-align:right;">
+7.56
+</td>
+<td style="text-align:right;">
+4.06
+</td>
+<td style="text-align:right;">
+10.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2040_rcp85_months
+</td>
+<td style="text-align:right;">
+7.25
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+7.19
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+<td style="text-align:right;">
+10.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2045_rcp85_months
+</td>
+<td style="text-align:right;">
+7.06
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+3.25
+</td>
+<td style="text-align:right;">
+11.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2050_rcp85_months
+</td>
+<td style="text-align:right;">
+6.83
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+11.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2055_rcp85_months
+</td>
+<td style="text-align:right;">
+6.49
+</td>
+<td style="text-align:right;">
+1.35
+</td>
+<td style="text-align:right;">
+6.44
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+11.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2060_rcp85_months
+</td>
+<td style="text-align:right;">
+6.15
+</td>
+<td style="text-align:right;">
+1.46
+</td>
+<td style="text-align:right;">
+6.00
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_1970_spi
+</td>
+<td style="text-align:right;">
+-1.54
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-1.54
+</td>
+<td style="text-align:right;">
+-1.68
+</td>
+<td style="text-align:right;">
+-1.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_1975_spi
+</td>
+<td style="text-align:right;">
+-1.54
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-1.54
+</td>
+<td style="text-align:right;">
+-1.69
+</td>
+<td style="text-align:right;">
+-1.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_1980_spi
+</td>
+<td style="text-align:right;">
+-1.53
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-1.53
+</td>
+<td style="text-align:right;">
+-1.69
+</td>
+<td style="text-align:right;">
+-1.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_1985_spi
+</td>
+<td style="text-align:right;">
+-1.52
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-1.52
+</td>
+<td style="text-align:right;">
+-1.70
+</td>
+<td style="text-align:right;">
+-1.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_1990_spi
+</td>
+<td style="text-align:right;">
+-1.51
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-1.51
+</td>
+<td style="text-align:right;">
+-1.68
+</td>
+<td style="text-align:right;">
+-1.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_1995_spi
+</td>
+<td style="text-align:right;">
+-1.50
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-1.50
+</td>
+<td style="text-align:right;">
+-1.73
+</td>
+<td style="text-align:right;">
+-1.29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2000_spi
+</td>
+<td style="text-align:right;">
+-1.49
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-1.50
+</td>
+<td style="text-align:right;">
+-1.68
+</td>
+<td style="text-align:right;">
+-1.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2005_spi
+</td>
+<td style="text-align:right;">
+-1.48
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-1.48
+</td>
+<td style="text-align:right;">
+-1.69
+</td>
+<td style="text-align:right;">
+-1.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2010_spi
+</td>
+<td style="text-align:right;">
+-1.48
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-1.48
+</td>
+<td style="text-align:right;">
+-1.73
+</td>
+<td style="text-align:right;">
+-1.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2015_spi
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+-1.71
+</td>
+<td style="text-align:right;">
+-1.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2020_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+-1.74
+</td>
+<td style="text-align:right;">
+-1.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2025_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+-1.70
+</td>
+<td style="text-align:right;">
+-1.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2030_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.45
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-1.46
+</td>
+<td style="text-align:right;">
+-1.71
+</td>
+<td style="text-align:right;">
+-1.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2035_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.45
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-1.45
+</td>
+<td style="text-align:right;">
+-1.66
+</td>
+<td style="text-align:right;">
+-1.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2040_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.44
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-1.44
+</td>
+<td style="text-align:right;">
+-1.65
+</td>
+<td style="text-align:right;">
+-1.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2045_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.43
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-1.44
+</td>
+<td style="text-align:right;">
+-1.65
+</td>
+<td style="text-align:right;">
+-1.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2050_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.42
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-1.43
+</td>
+<td style="text-align:right;">
+-1.65
+</td>
+<td style="text-align:right;">
+-1.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2055_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.41
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+-1.42
+</td>
+<td style="text-align:right;">
+-1.63
+</td>
+<td style="text-align:right;">
+-1.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2060_rcp85_spi
+</td>
+<td style="text-align:right;">
+-1.41
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+-1.41
+</td>
+<td style="text-align:right;">
+-1.73
+</td>
+<td style="text-align:right;">
+-1.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_1970
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_1975
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_1980
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_1985
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_1990
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_1995
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2000
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2005
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2010
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2015
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2020_rcp85
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2025_rcp85
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2030_rcp85
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2035_rcp85
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2040_rcp85
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2045_rcp85
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2050_rcp85
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2055_rcp85
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2060_rcp85
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2020_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.48
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+-2.11
+</td>
+<td style="text-align:right;">
+-1.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2025_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+-2.13
+</td>
+<td style="text-align:right;">
+-1.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2030_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+-1.47
+</td>
+<td style="text-align:right;">
+-2.27
+</td>
+<td style="text-align:right;">
+-1.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2035_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.46
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+-1.45
+</td>
+<td style="text-align:right;">
+-2.49
+</td>
+<td style="text-align:right;">
+-1.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2040_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.44
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+-1.43
+</td>
+<td style="text-align:right;">
+-2.49
+</td>
+<td style="text-align:right;">
+-1.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2045_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.42
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+-1.41
+</td>
+<td style="text-align:right;">
+-2.35
+</td>
+<td style="text-align:right;">
+-1.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2050_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.40
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+-1.40
+</td>
+<td style="text-align:right;">
+-2.20
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2055_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.40
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+-1.40
+</td>
+<td style="text-align:right;">
+-2.22
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_2060_rcp45_spi
+</td>
+<td style="text-align:right;">
+-1.41
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+-1.40
+</td>
+<td style="text-align:right;">
+-2.21
+</td>
+<td style="text-align:right;">
+-1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2020_rcp45
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2025_rcp45
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2030_rcp45
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2035_rcp45
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2040_rcp45
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2045_rcp45
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2050_rcp45
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2055_rcp45
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_2060_rcp45
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2020_rcp45_months
+</td>
+<td style="text-align:right;">
+8.61
+</td>
+<td style="text-align:right;">
+1.68
+</td>
+<td style="text-align:right;">
+8.56
+</td>
+<td style="text-align:right;">
+2.44
+</td>
+<td style="text-align:right;">
+26.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2025_rcp45_months
+</td>
+<td style="text-align:right;">
+8.29
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+8.31
+</td>
+<td style="text-align:right;">
+2.06
+</td>
+<td style="text-align:right;">
+17.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2030_rcp45_months
+</td>
+<td style="text-align:right;">
+8.05
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+8.06
+</td>
+<td style="text-align:right;">
+1.06
+</td>
+<td style="text-align:right;">
+24.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2035_rcp45_months
+</td>
+<td style="text-align:right;">
+7.56
+</td>
+<td style="text-align:right;">
+1.91
+</td>
+<td style="text-align:right;">
+7.56
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+19.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2040_rcp45_months
+</td>
+<td style="text-align:right;">
+7.02
+</td>
+<td style="text-align:right;">
+1.88
+</td>
+<td style="text-align:right;">
+7.12
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+17.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2045_rcp45_months
+</td>
+<td style="text-align:right;">
+6.64
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+<td style="text-align:right;">
+6.75
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+19.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2050_rcp45_months
+</td>
+<td style="text-align:right;">
+6.43
+</td>
+<td style="text-align:right;">
+2.10
+</td>
+<td style="text-align:right;">
+6.50
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+20.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2055_rcp45_months
+</td>
+<td style="text-align:right;">
+6.28
+</td>
+<td style="text-align:right;">
+2.06
+</td>
+<td style="text-align:right;">
+6.38
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+17.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+length_2060_rcp45_months
+</td>
+<td style="text-align:right;">
+6.18
+</td>
+<td style="text-align:right;">
+2.03
+</td>
+<td style="text-align:right;">
+6.25
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+17.88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitudeDiff_2050_rcp85_spi
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequencyDiff_2050_rcp85
+</td>
+<td style="text-align:right;">
+-0.51
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+-0.56
+</td>
+<td style="text-align:right;">
+-0.82
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequency_rating_2050_rcp85
+</td>
+<td style="text-align:right;">
+39.14
+</td>
+<td style="text-align:right;">
+30.20
+</td>
+<td style="text-align:right;">
+27.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitude_rating_2050_rcp85_spi
+</td>
+<td style="text-align:right;">
+28.81
+</td>
+<td style="text-align:right;">
+23.70
+</td>
+<td style="text-align:right;">
+22.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+frequencyDiff_rating_2050_rcp85
+</td>
+<td style="text-align:right;">
+11.19
+</td>
+<td style="text-align:right;">
+13.58
+</td>
+<td style="text-align:right;">
+7.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+magnitudeDiff_rating_2050_rcp85_spi
+</td>
+<td style="text-align:right;">
+17.35
+</td>
+<td style="text-align:right;">
+19.98
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rating_2050_rcp85
+</td>
+<td style="text-align:right;">
+22.88
+</td>
+<td style="text-align:right;">
+20.22
+</td>
+<td style="text-align:right;">
+16.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rating
+</td>
+<td style="text-align:right;">
+22.88
+</td>
+<td style="text-align:right;">
+20.22
+</td>
+<td style="text-align:right;">
+16.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="hazard-specific-analysis" class="section level1 unnumbered hasAnchor" number="">
+<h1>Hazard-Specific Analysis<a href="#hazard-specific-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Toronto ON</p>
+<p>15/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.0 months in 1990 and about 7.2 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Montreal QC</p>
+<p>20/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.8 months in 1990 and about 7.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Vancouver BC</p>
+<p>14/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.0 months in 1990 and about 7.6 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Calgary AB</p>
+<p>51/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 8.9 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>OTTAWA ON</p>
+<p>19/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.4 months in 1990 and about 7.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Edmonton AB</p>
+<p>28/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.9 months in 1990 and about 7.9 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Hamilton ON</p>
+<p>20/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 7.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Quebec QC</p>
+<p>10/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.8 months in 1990 and about 6.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Winnipeg MB</p>
+<p>20/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.4 months in 1990 and about 7.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Kitchener ON</p>
+<p>12/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.6 months in 1990 and about 6.6 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>London ON</p>
+<p>12/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 6.4 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Saint Catharines-Niagara ON</p>
+<p>16/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.2 months in 1990 and about 7.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Victoria BC</p>
+<p>7/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.0 months in 1990 and about 6.2 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Windsor ON</p>
+<p>19/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 7.2 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Halifax NS</p>
+<p>20/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.0 months in 1990 and about 7.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Oshawa ON</p>
+<p>19/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.4 months in 1990 and about 7.2 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Saskatoon SK</p>
+<p>24/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.2 months in 1990 and about 7.8 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Barrie ON</p>
+<p>12/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 6.8 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Regina SK</p>
+<p>31/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 8.0 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Abbotsford BC</p>
+<p>20/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 8.8 months in 1990 and about 7.1 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Sherbrooke QC</p>
+<p>12/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.0 months in 1990 and about 6.8 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Kelowna BC</p>
+<p>16/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.2 months in 1990 and about 7.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Trois-Rivieres QC</p>
+<p>9/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.2 months in 1990 and about 6.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Guelph ON</p>
+<p>11/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 6.2 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Kingston ON</p>
+<p>22/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.2 months in 1990 and about 7.9 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>New York City</p>
+<p>33/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.5 months in 1990 and about 8.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Los Angeles</p>
+<p>65/100. This location is likely to have low precipitation more often in 2050 than in 1990. The typical length of a meteorological drought is about 9.1 months in 1990 and about 9.9 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Chicago</p>
+<p>26/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.0 months in 1990 and about 7.1 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Houston</p>
+<p>89/100. This location is likely to have low precipitation more often in 2050 than in 1990. The typical length of a meteorological drought is about 8.2 months in 1990 and about 8.4 months in 2050. The rain deficit in the driest months will be more extreme in 2050 than in 1990.</p>
+<p>Philadelphia</p>
+<p>35/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 8.8 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Phoenix</p>
+<p>51/100. This location is likely to have low precipitation more often in 2050 than in 1990. The typical length of a meteorological drought is about 9.0 months in 1990 and about 9.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>San Antonio</p>
+<p>87/100. This location is likely to have low precipitation more often in 2050 than in 1990. The typical length of a meteorological drought is about 8.2 months in 1990 and about 9.2 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>San Diego</p>
+<p>39/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.2 months in 1990 and about 8.9 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Dallas</p>
+<p>88/100. This location is likely to have low precipitation about as often in 2050 as in 1990. The typical length of a meteorological drought is about 9.4 months in 1990 and about 9.0 months in 2050. The rain deficit in the driest months will be more extreme in 2050 than in 1990.</p>
+<p>San Jose</p>
+<p>93/100. This location is likely to have low precipitation more often in 2050 than in 1990. The typical length of a meteorological drought is about 8.8 months in 1990 and about 9.0 months in 2050. The rain deficit in the driest months will be more extreme in 2050 than in 1990.</p>
+<p>Tucson</p>
+<p>87/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 8.6 months in 1990 and about 9.1 months in 2050. The rain deficit in the driest months will be more extreme in 2050 than in 1990.</p>
+<p>Buffalo</p>
+<p>21/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.0 months in 1990 and about 7.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Atlanta</p>
+<p>33/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.4 months in 1990 and about 8.0 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Minneapolis</p>
+<p>25/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.9 months in 1990 and about 7.2 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Denver</p>
+<p>54/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.2 months in 1990 and about 9.0 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Seattle</p>
+<p>14/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.0 months in 1990 and about 6.8 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>New Orleans</p>
+<p>95/100. This location is likely to have low precipitation more often in 2050 than in 1990. The typical length of a meteorological drought is about 8.6 months in 1990 and about 8.2 months in 2050. The rain deficit in the driest months will be more extreme in 2050 than in 1990.</p>
+<p>Miami</p>
+<p>61/100. This location is likely to have low precipitation about as often in 2050 as in 1990. The typical length of a meteorological drought is about 8.8 months in 1990 and about 8.2 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Detroit</p>
+<p>19/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.8 months in 1990 and about 7.2 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Las Vegas</p>
+<p>70/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.0 months in 1990 and about 8.2 months in 2050. The rain deficit in the driest months will be more extreme in 2050 than in 1990.</p>
+<p>St Louis</p>
+<p>42/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.8 months in 1990 and about 8.0 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Boston</p>
+<p>31/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.0 months in 1990 and about 7.2 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Savannah</p>
+<p>30/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.0 months in 1990 and about 7.2 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+<p>Nashville</p>
+<p>33/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 10.2 months in 1990 and about 8.2 months in 2050. The rain deficit in the driest months will be less extreme in 2050 than in 1990.</p>
+<p>Virginia Beach</p>
+<p>41/100. This location is likely to have low precipitation less often in 2050 than in 1990. The typical length of a meteorological drought is about 9.0 months in 1990 and about 8.0 months in 2050. The rain deficit in the driest months will be about the same in 2050 as in 1990.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
