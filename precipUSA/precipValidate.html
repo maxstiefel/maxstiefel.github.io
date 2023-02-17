@@ -23,7 +23,7 @@
 <meta name="author" content="Maximilian Stiefel" />
 
 
-<meta name="date" content="2023-02-16" />
+<meta name="date" content="2023-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,6 +57,8 @@
 <link href="libs/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet" />
 <script src="libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
 <script src="libs/sparkline-binding-2.0/sparkline.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -73,7 +75,14 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path=""><a href="#risk-rating"><i class="fa fa-check"></i>Risk Rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#risk-rating"><i class="fa fa-check"></i>Risk Rating</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#counts2d"><i class="fa fa-check"></i>counts2d</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals2d"><i class="fa fa-check"></i>totals2d</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average2d"><i class="fa fa-check"></i>average2d</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual"><i class="fa fa-check"></i>annual</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rating_2050_rcp85"><i class="fa fa-check"></i>rating_2050_rcp85</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path=""><a href="#trends-over-time"><i class="fa fa-check"></i>Trends over Time</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#spatial-distributions"><i class="fa fa-check"></i>Spatial Distributions</a>
 <ul>
@@ -81,8 +90,115 @@
 </ul></li>
 <li class="chapter" data-level="" data-path=""><a href="#statistics-by-city"><i class="fa fa-check"></i>Statistics by City</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#loss-validation"><i class="fa fa-check"></i>Loss Validation</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#final-checks"><i class="fa fa-check"></i>Final Checks</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#old-to-new"><i class="fa fa-check"></i>Old to New</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#final-checks"><i class="fa fa-check"></i>Final Checks</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#downscale-impute-mask"><i class="fa fa-check"></i>Downscale, impute, mask</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#final-risk-rating"><i class="fa fa-check"></i>Final risk rating</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#summary-statistics"><i class="fa fa-check"></i>Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#old-to-new"><i class="fa fa-check"></i>Old to New</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#new-york-city"><i class="fa fa-check"></i>New York City</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#los-angeles"><i class="fa fa-check"></i>Los Angeles</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#chicago"><i class="fa fa-check"></i>Chicago</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#houston"><i class="fa fa-check"></i>Houston</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#philadelphia"><i class="fa fa-check"></i>Philadelphia</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#phoenix"><i class="fa fa-check"></i>Phoenix</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#san-antonio"><i class="fa fa-check"></i>San Antonio</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#san-diego"><i class="fa fa-check"></i>San Diego</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#dallas"><i class="fa fa-check"></i>Dallas</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#san-jose"><i class="fa fa-check"></i>San Jose</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#tucson"><i class="fa fa-check"></i>Tucson</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#buffalo"><i class="fa fa-check"></i>Buffalo</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#atlanta"><i class="fa fa-check"></i>Atlanta</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#minneapolis"><i class="fa fa-check"></i>Minneapolis</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#denver"><i class="fa fa-check"></i>Denver</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#seattle"><i class="fa fa-check"></i>Seattle</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#new-orleans"><i class="fa fa-check"></i>New Orleans</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#miami"><i class="fa fa-check"></i>Miami</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#detroit"><i class="fa fa-check"></i>Detroit</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#las-vegas"><i class="fa fa-check"></i>Las Vegas</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#st-louis"><i class="fa fa-check"></i>St Louis</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#boston"><i class="fa fa-check"></i>Boston</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#savannah"><i class="fa fa-check"></i>Savannah</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#nashville"><i class="fa fa-check"></i>Nashville</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#virginia-beach"><i class="fa fa-check"></i>Virginia Beach</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#threshold_rcp45_in"><i class="fa fa-check"></i>threshold_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2020_rcp45_in"><i class="fa fa-check"></i>annual_2020_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2020_rcp45_in"><i class="fa fa-check"></i>totals_2020_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2020_rcp45"><i class="fa fa-check"></i>events_2020_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2025_rcp45_in"><i class="fa fa-check"></i>annual_2025_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2025_rcp45_in"><i class="fa fa-check"></i>totals_2025_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2025_rcp45"><i class="fa fa-check"></i>events_2025_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2030_rcp45_in"><i class="fa fa-check"></i>annual_2030_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2030_rcp45_in"><i class="fa fa-check"></i>totals_2030_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2030_rcp45"><i class="fa fa-check"></i>events_2030_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2035_rcp45_in"><i class="fa fa-check"></i>annual_2035_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2035_rcp45_in"><i class="fa fa-check"></i>totals_2035_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2035_rcp45"><i class="fa fa-check"></i>events_2035_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2040_rcp45_in"><i class="fa fa-check"></i>annual_2040_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2040_rcp45_in"><i class="fa fa-check"></i>totals_2040_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2040_rcp45"><i class="fa fa-check"></i>events_2040_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2045_rcp45_in"><i class="fa fa-check"></i>annual_2045_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2045_rcp45_in"><i class="fa fa-check"></i>totals_2045_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2045_rcp45"><i class="fa fa-check"></i>events_2045_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2050_rcp45_in"><i class="fa fa-check"></i>annual_2050_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2050_rcp45_in"><i class="fa fa-check"></i>totals_2050_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2050_rcp45"><i class="fa fa-check"></i>events_2050_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2055_rcp45_in"><i class="fa fa-check"></i>annual_2055_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2055_rcp45_in"><i class="fa fa-check"></i>totals_2055_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2055_rcp45"><i class="fa fa-check"></i>events_2055_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2060_rcp45_in"><i class="fa fa-check"></i>annual_2060_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2060_rcp45_in"><i class="fa fa-check"></i>totals_2060_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2060_rcp45"><i class="fa fa-check"></i>events_2060_rcp45</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2020_rcp45_in"><i class="fa fa-check"></i>average_2020_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2025_rcp45_in"><i class="fa fa-check"></i>average_2025_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2030_rcp45_in"><i class="fa fa-check"></i>average_2030_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2035_rcp45_in"><i class="fa fa-check"></i>average_2035_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2040_rcp45_in"><i class="fa fa-check"></i>average_2040_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2045_rcp45_in"><i class="fa fa-check"></i>average_2045_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2050_rcp45_in"><i class="fa fa-check"></i>average_2050_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2055_rcp45_in"><i class="fa fa-check"></i>average_2055_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2060_rcp45_in"><i class="fa fa-check"></i>average_2060_rcp45_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#threshold_rcp85_in"><i class="fa fa-check"></i>threshold_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2020_rcp85_in"><i class="fa fa-check"></i>annual_2020_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2020_rcp85_in"><i class="fa fa-check"></i>totals_2020_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2020_rcp85"><i class="fa fa-check"></i>events_2020_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2025_rcp85_in"><i class="fa fa-check"></i>annual_2025_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2025_rcp85_in"><i class="fa fa-check"></i>totals_2025_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2025_rcp85"><i class="fa fa-check"></i>events_2025_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2030_rcp85_in"><i class="fa fa-check"></i>annual_2030_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2030_rcp85_in"><i class="fa fa-check"></i>totals_2030_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2030_rcp85"><i class="fa fa-check"></i>events_2030_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2035_rcp85_in"><i class="fa fa-check"></i>annual_2035_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2035_rcp85_in"><i class="fa fa-check"></i>totals_2035_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2035_rcp85"><i class="fa fa-check"></i>events_2035_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2040_rcp85_in"><i class="fa fa-check"></i>annual_2040_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2040_rcp85_in"><i class="fa fa-check"></i>totals_2040_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2040_rcp85"><i class="fa fa-check"></i>events_2040_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2045_rcp85_in"><i class="fa fa-check"></i>annual_2045_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2045_rcp85_in"><i class="fa fa-check"></i>totals_2045_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2045_rcp85"><i class="fa fa-check"></i>events_2045_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2050_rcp85_in"><i class="fa fa-check"></i>annual_2050_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2050_rcp85_in"><i class="fa fa-check"></i>totals_2050_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2050_rcp85"><i class="fa fa-check"></i>events_2050_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2055_rcp85_in"><i class="fa fa-check"></i>annual_2055_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2055_rcp85_in"><i class="fa fa-check"></i>totals_2055_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2055_rcp85"><i class="fa fa-check"></i>events_2055_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#annual_2060_rcp85_in"><i class="fa fa-check"></i>annual_2060_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#totals_2060_rcp85_in"><i class="fa fa-check"></i>totals_2060_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#events_2060_rcp85"><i class="fa fa-check"></i>events_2060_rcp85</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2020_rcp85_in"><i class="fa fa-check"></i>average_2020_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2025_rcp85_in"><i class="fa fa-check"></i>average_2025_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2030_rcp85_in"><i class="fa fa-check"></i>average_2030_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2035_rcp85_in"><i class="fa fa-check"></i>average_2035_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2040_rcp85_in"><i class="fa fa-check"></i>average_2040_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2045_rcp85_in"><i class="fa fa-check"></i>average_2045_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2050_rcp85_in"><i class="fa fa-check"></i>average_2050_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2055_rcp85_in"><i class="fa fa-check"></i>average_2055_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#average_2060_rcp85_in"><i class="fa fa-check"></i>average_2060_rcp85_in</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#rating"><i class="fa fa-check"></i>rating</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path=""><a href="#hazard-specific-analysis"><i class="fa fa-check"></i>Hazard-Specific Analysis</a></li>
 </ul>
 
@@ -104,7 +220,7 @@
 <div id="header">
 <h1 class="title">PRECIP VALIDATION</h1>
 <p class="author"><em>Maximilian Stiefel</em></p>
-<p class="date"><em>2023-02-16</em></p>
+<p class="date"><em>2023-02-17</em></p>
 </div>
 <style>
   
@@ -175,6 +291,28 @@
 <!-- relative to north america for all matching variables -->
 <div id="risk-rating" class="section level1 unnumbered hasAnchor" number="">
 <h1>Risk Rating<a href="#risk-rating" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="precipValidate_files/figure-html/prepare-1.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-2.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-3.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-4.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-5.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-6.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-7.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-8.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-9.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/prepare-10.png" width="90%" style="display: block; margin: auto;" />
+Written 31.7% of 212778 rows in 2 secs using 72 threads. maxBuffUsed=26%. ETA 5 secs.</p>
+<div id="counts2d" class="section level3 unnumbered hasAnchor" number="">
+<h3>counts2d<a href="#counts2d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="precipValidate_files/figure-html/rate-1.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-2.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-3.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-4.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-5.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-6.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="totals2d" class="section level3 unnumbered hasAnchor" number="">
+<h3>totals2d<a href="#totals2d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="precipValidate_files/figure-html/rate-7.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-8.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-9.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-10.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-11.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-12.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="average2d" class="section level3 unnumbered hasAnchor" number="">
+<h3>average2d<a href="#average2d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="precipValidate_files/figure-html/rate-13.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-14.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-15.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-16.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-17.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-18.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="annual" class="section level3 unnumbered hasAnchor" number="">
+<h3>annual<a href="#annual" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="precipValidate_files/figure-html/rate-19.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-20.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-21.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-22.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-23.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-24.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rating_2050_rcp85" class="section level3 unnumbered hasAnchor" number="">
+<h3>rating_2050_rcp85<a href="#rating_2050_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="precipValidate_files/figure-html/rate-25.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-26.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-27.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-28.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-29.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/rate-30.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 <div id="trends-over-time" class="section level1 unnumbered hasAnchor" number="">
 <h1>Trends over Time<a href="#trends-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -193,11 +331,2590 @@
 </div>
 <div id="final-checks" class="section level1 unnumbered hasAnchor" number="">
 <h1>Final Checks<a href="#final-checks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="downscale-impute-mask" class="section level3 unnumbered hasAnchor" number="">
+<h3>Downscale, impute, mask<a href="#downscale-impute-mask" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="precipValidate_files/figure-html/clean-1.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-2.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-3.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-4.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-5.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-6.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-7.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-8.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-9.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-10.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-11.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-12.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="final-risk-rating" class="section level3 unnumbered hasAnchor" number="">
+<h3>Final risk rating<a href="#final-risk-rating" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="precipValidate_files/figure-html/clean-13.png" width="90%" style="display: block; margin: auto;" /><img src="precipValidate_files/figure-html/clean-14.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="summary-statistics" class="section level3 unnumbered hasAnchor" number="">
+<h3>Summary statistics<a href="#summary-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+variable
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+median
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+max
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+threshold_rcp45_in
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+0.66
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+3.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+threshold_rcp85_in
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+0.66
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+3.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_1970
+</td>
+<td style="text-align:right;">
+11.05
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+<td style="text-align:right;">
+8.25
+</td>
+<td style="text-align:right;">
+16.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_1975
+</td>
+<td style="text-align:right;">
+11.07
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+11.01
+</td>
+<td style="text-align:right;">
+8.23
+</td>
+<td style="text-align:right;">
+16.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_1980
+</td>
+<td style="text-align:right;">
+11.06
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+10.98
+</td>
+<td style="text-align:right;">
+7.88
+</td>
+<td style="text-align:right;">
+16.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_1985
+</td>
+<td style="text-align:right;">
+11.06
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+10.96
+</td>
+<td style="text-align:right;">
+7.96
+</td>
+<td style="text-align:right;">
+16.52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_1990
+</td>
+<td style="text-align:right;">
+10.91
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+10.85
+</td>
+<td style="text-align:right;">
+7.87
+</td>
+<td style="text-align:right;">
+16.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_1995
+</td>
+<td style="text-align:right;">
+11.07
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+<td style="text-align:right;">
+8.10
+</td>
+<td style="text-align:right;">
+16.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2000
+</td>
+<td style="text-align:right;">
+11.34
+</td>
+<td style="text-align:right;">
+1.04
+</td>
+<td style="text-align:right;">
+11.27
+</td>
+<td style="text-align:right;">
+8.26
+</td>
+<td style="text-align:right;">
+16.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2005_rcp45
+</td>
+<td style="text-align:right;">
+11.41
+</td>
+<td style="text-align:right;">
+1.09
+</td>
+<td style="text-align:right;">
+11.38
+</td>
+<td style="text-align:right;">
+7.94
+</td>
+<td style="text-align:right;">
+16.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2010_rcp45
+</td>
+<td style="text-align:right;">
+11.58
+</td>
+<td style="text-align:right;">
+1.16
+</td>
+<td style="text-align:right;">
+11.53
+</td>
+<td style="text-align:right;">
+8.01
+</td>
+<td style="text-align:right;">
+17.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2015_rcp45
+</td>
+<td style="text-align:right;">
+11.66
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+11.58
+</td>
+<td style="text-align:right;">
+7.62
+</td>
+<td style="text-align:right;">
+17.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2020_rcp45
+</td>
+<td style="text-align:right;">
+11.69
+</td>
+<td style="text-align:right;">
+1.33
+</td>
+<td style="text-align:right;">
+11.58
+</td>
+<td style="text-align:right;">
+7.29
+</td>
+<td style="text-align:right;">
+17.56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2025_rcp45
+</td>
+<td style="text-align:right;">
+11.72
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+11.63
+</td>
+<td style="text-align:right;">
+7.66
+</td>
+<td style="text-align:right;">
+17.67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2030_rcp45
+</td>
+<td style="text-align:right;">
+11.72
+</td>
+<td style="text-align:right;">
+1.33
+</td>
+<td style="text-align:right;">
+11.67
+</td>
+<td style="text-align:right;">
+7.69
+</td>
+<td style="text-align:right;">
+17.73
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2035_rcp45
+</td>
+<td style="text-align:right;">
+11.78
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+<td style="text-align:right;">
+11.68
+</td>
+<td style="text-align:right;">
+7.64
+</td>
+<td style="text-align:right;">
+17.44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2040_rcp45
+</td>
+<td style="text-align:right;">
+11.85
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+11.74
+</td>
+<td style="text-align:right;">
+7.78
+</td>
+<td style="text-align:right;">
+17.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2045_rcp45
+</td>
+<td style="text-align:right;">
+11.88
+</td>
+<td style="text-align:right;">
+1.45
+</td>
+<td style="text-align:right;">
+11.82
+</td>
+<td style="text-align:right;">
+7.64
+</td>
+<td style="text-align:right;">
+17.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2050_rcp45
+</td>
+<td style="text-align:right;">
+12.02
+</td>
+<td style="text-align:right;">
+1.52
+</td>
+<td style="text-align:right;">
+11.92
+</td>
+<td style="text-align:right;">
+7.31
+</td>
+<td style="text-align:right;">
+18.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2055_rcp45
+</td>
+<td style="text-align:right;">
+12.13
+</td>
+<td style="text-align:right;">
+1.47
+</td>
+<td style="text-align:right;">
+11.96
+</td>
+<td style="text-align:right;">
+7.38
+</td>
+<td style="text-align:right;">
+18.34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2060_rcp45
+</td>
+<td style="text-align:right;">
+12.21
+</td>
+<td style="text-align:right;">
+1.56
+</td>
+<td style="text-align:right;">
+12.08
+</td>
+<td style="text-align:right;">
+7.33
+</td>
+<td style="text-align:right;">
+18.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_1970_in
+</td>
+<td style="text-align:right;">
+13.18
+</td>
+<td style="text-align:right;">
+7.14
+</td>
+<td style="text-align:right;">
+12.44
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+<td style="text-align:right;">
+102.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_1975_in
+</td>
+<td style="text-align:right;">
+13.20
+</td>
+<td style="text-align:right;">
+7.20
+</td>
+<td style="text-align:right;">
+12.43
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+<td style="text-align:right;">
+102.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_1980_in
+</td>
+<td style="text-align:right;">
+13.22
+</td>
+<td style="text-align:right;">
+7.27
+</td>
+<td style="text-align:right;">
+12.38
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+103.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_1985_in
+</td>
+<td style="text-align:right;">
+13.24
+</td>
+<td style="text-align:right;">
+7.27
+</td>
+<td style="text-align:right;">
+12.37
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+104.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_1990_in
+</td>
+<td style="text-align:right;">
+13.08
+</td>
+<td style="text-align:right;">
+7.13
+</td>
+<td style="text-align:right;">
+12.34
+</td>
+<td style="text-align:right;">
+1.25
+</td>
+<td style="text-align:right;">
+103.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_1995_in
+</td>
+<td style="text-align:right;">
+13.23
+</td>
+<td style="text-align:right;">
+7.17
+</td>
+<td style="text-align:right;">
+12.47
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+<td style="text-align:right;">
+102.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2000_in
+</td>
+<td style="text-align:right;">
+13.54
+</td>
+<td style="text-align:right;">
+7.34
+</td>
+<td style="text-align:right;">
+12.75
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+<td style="text-align:right;">
+105.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2005_rcp45_in
+</td>
+<td style="text-align:right;">
+13.67
+</td>
+<td style="text-align:right;">
+7.40
+</td>
+<td style="text-align:right;">
+13.06
+</td>
+<td style="text-align:right;">
+1.25
+</td>
+<td style="text-align:right;">
+106.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2010_rcp45_in
+</td>
+<td style="text-align:right;">
+13.93
+</td>
+<td style="text-align:right;">
+7.52
+</td>
+<td style="text-align:right;">
+13.31
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+108.66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2015_rcp45_in
+</td>
+<td style="text-align:right;">
+14.05
+</td>
+<td style="text-align:right;">
+7.68
+</td>
+<td style="text-align:right;">
+13.43
+</td>
+<td style="text-align:right;">
+1.32
+</td>
+<td style="text-align:right;">
+110.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2020_rcp45_in
+</td>
+<td style="text-align:right;">
+14.07
+</td>
+<td style="text-align:right;">
+7.70
+</td>
+<td style="text-align:right;">
+13.39
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+112.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2025_rcp45_in
+</td>
+<td style="text-align:right;">
+14.09
+</td>
+<td style="text-align:right;">
+7.65
+</td>
+<td style="text-align:right;">
+13.34
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+114.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2030_rcp45_in
+</td>
+<td style="text-align:right;">
+14.11
+</td>
+<td style="text-align:right;">
+7.69
+</td>
+<td style="text-align:right;">
+13.46
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+114.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2035_rcp45_in
+</td>
+<td style="text-align:right;">
+14.19
+</td>
+<td style="text-align:right;">
+7.71
+</td>
+<td style="text-align:right;">
+13.59
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+111.74
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2040_rcp45_in
+</td>
+<td style="text-align:right;">
+14.27
+</td>
+<td style="text-align:right;">
+7.70
+</td>
+<td style="text-align:right;">
+13.74
+</td>
+<td style="text-align:right;">
+1.34
+</td>
+<td style="text-align:right;">
+112.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2045_rcp45_in
+</td>
+<td style="text-align:right;">
+14.36
+</td>
+<td style="text-align:right;">
+7.91
+</td>
+<td style="text-align:right;">
+13.69
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+117.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2050_rcp45_in
+</td>
+<td style="text-align:right;">
+14.54
+</td>
+<td style="text-align:right;">
+8.00
+</td>
+<td style="text-align:right;">
+13.81
+</td>
+<td style="text-align:right;">
+1.33
+</td>
+<td style="text-align:right;">
+120.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2055_rcp45_in
+</td>
+<td style="text-align:right;">
+14.63
+</td>
+<td style="text-align:right;">
+7.93
+</td>
+<td style="text-align:right;">
+14.07
+</td>
+<td style="text-align:right;">
+1.38
+</td>
+<td style="text-align:right;">
+120.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2060_rcp45_in
+</td>
+<td style="text-align:right;">
+14.75
+</td>
+<td style="text-align:right;">
+8.05
+</td>
+<td style="text-align:right;">
+14.18
+</td>
+<td style="text-align:right;">
+1.28
+</td>
+<td style="text-align:right;">
+119.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_1970_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_1975_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.12
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+7.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_1980_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_1985_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+7.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_1990_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+7.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_1995_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.12
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+7.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2000_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.12
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+7.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2005_rcp45_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+7.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2010_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2015_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2020_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2025_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2030_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2035_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2040_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2045_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2050_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2055_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+7.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2060_rcp45_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+7.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_1970_in
+</td>
+<td style="text-align:right;">
+30.42
+</td>
+<td style="text-align:right;">
+17.60
+</td>
+<td style="text-align:right;">
+28.51
+</td>
+<td style="text-align:right;">
+1.82
+</td>
+<td style="text-align:right;">
+235.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_1975_in
+</td>
+<td style="text-align:right;">
+30.39
+</td>
+<td style="text-align:right;">
+17.53
+</td>
+<td style="text-align:right;">
+28.58
+</td>
+<td style="text-align:right;">
+1.81
+</td>
+<td style="text-align:right;">
+234.56
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_1980_in
+</td>
+<td style="text-align:right;">
+30.38
+</td>
+<td style="text-align:right;">
+17.58
+</td>
+<td style="text-align:right;">
+28.55
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+235.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_1985_in
+</td>
+<td style="text-align:right;">
+30.37
+</td>
+<td style="text-align:right;">
+17.65
+</td>
+<td style="text-align:right;">
+28.43
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+236.58
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_1990_in
+</td>
+<td style="text-align:right;">
+30.09
+</td>
+<td style="text-align:right;">
+17.48
+</td>
+<td style="text-align:right;">
+28.23
+</td>
+<td style="text-align:right;">
+1.74
+</td>
+<td style="text-align:right;">
+234.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_1995_in
+</td>
+<td style="text-align:right;">
+30.28
+</td>
+<td style="text-align:right;">
+17.51
+</td>
+<td style="text-align:right;">
+28.42
+</td>
+<td style="text-align:right;">
+1.81
+</td>
+<td style="text-align:right;">
+233.52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2000_in
+</td>
+<td style="text-align:right;">
+30.68
+</td>
+<td style="text-align:right;">
+17.72
+</td>
+<td style="text-align:right;">
+28.77
+</td>
+<td style="text-align:right;">
+1.80
+</td>
+<td style="text-align:right;">
+235.52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2005_rcp45_in
+</td>
+<td style="text-align:right;">
+30.65
+</td>
+<td style="text-align:right;">
+17.66
+</td>
+<td style="text-align:right;">
+29.02
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+235.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2010_rcp45_in
+</td>
+<td style="text-align:right;">
+30.87
+</td>
+<td style="text-align:right;">
+17.80
+</td>
+<td style="text-align:right;">
+29.06
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+236.89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2015_rcp45_in
+</td>
+<td style="text-align:right;">
+31.03
+</td>
+<td style="text-align:right;">
+18.06
+</td>
+<td style="text-align:right;">
+29.05
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+240.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2020_rcp45_in
+</td>
+<td style="text-align:right;">
+31.03
+</td>
+<td style="text-align:right;">
+18.06
+</td>
+<td style="text-align:right;">
+29.04
+</td>
+<td style="text-align:right;">
+1.76
+</td>
+<td style="text-align:right;">
+241.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2025_rcp45_in
+</td>
+<td style="text-align:right;">
+30.98
+</td>
+<td style="text-align:right;">
+17.94
+</td>
+<td style="text-align:right;">
+29.00
+</td>
+<td style="text-align:right;">
+1.76
+</td>
+<td style="text-align:right;">
+241.73
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2030_rcp45_in
+</td>
+<td style="text-align:right;">
+30.88
+</td>
+<td style="text-align:right;">
+17.91
+</td>
+<td style="text-align:right;">
+28.99
+</td>
+<td style="text-align:right;">
+1.76
+</td>
+<td style="text-align:right;">
+241.98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2035_rcp45_in
+</td>
+<td style="text-align:right;">
+30.96
+</td>
+<td style="text-align:right;">
+17.96
+</td>
+<td style="text-align:right;">
+29.05
+</td>
+<td style="text-align:right;">
+1.76
+</td>
+<td style="text-align:right;">
+239.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2040_rcp45_in
+</td>
+<td style="text-align:right;">
+31.01
+</td>
+<td style="text-align:right;">
+17.91
+</td>
+<td style="text-align:right;">
+29.16
+</td>
+<td style="text-align:right;">
+1.81
+</td>
+<td style="text-align:right;">
+239.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2045_rcp45_in
+</td>
+<td style="text-align:right;">
+31.05
+</td>
+<td style="text-align:right;">
+18.07
+</td>
+<td style="text-align:right;">
+29.07
+</td>
+<td style="text-align:right;">
+1.74
+</td>
+<td style="text-align:right;">
+243.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2050_rcp45_in
+</td>
+<td style="text-align:right;">
+31.24
+</td>
+<td style="text-align:right;">
+18.15
+</td>
+<td style="text-align:right;">
+29.24
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+244.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2055_rcp45_in
+</td>
+<td style="text-align:right;">
+31.24
+</td>
+<td style="text-align:right;">
+17.97
+</td>
+<td style="text-align:right;">
+29.39
+</td>
+<td style="text-align:right;">
+1.83
+</td>
+<td style="text-align:right;">
+243.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2060_rcp45_in
+</td>
+<td style="text-align:right;">
+31.39
+</td>
+<td style="text-align:right;">
+18.12
+</td>
+<td style="text-align:right;">
+29.46
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+242.78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2005_rcp85
+</td>
+<td style="text-align:right;">
+11.49
+</td>
+<td style="text-align:right;">
+1.12
+</td>
+<td style="text-align:right;">
+11.44
+</td>
+<td style="text-align:right;">
+7.73
+</td>
+<td style="text-align:right;">
+16.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2010_rcp85
+</td>
+<td style="text-align:right;">
+11.56
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+11.51
+</td>
+<td style="text-align:right;">
+7.68
+</td>
+<td style="text-align:right;">
+16.86
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2015_rcp85
+</td>
+<td style="text-align:right;">
+11.53
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:right;">
+11.42
+</td>
+<td style="text-align:right;">
+7.73
+</td>
+<td style="text-align:right;">
+17.22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2020_rcp85
+</td>
+<td style="text-align:right;">
+11.70
+</td>
+<td style="text-align:right;">
+1.23
+</td>
+<td style="text-align:right;">
+11.61
+</td>
+<td style="text-align:right;">
+7.91
+</td>
+<td style="text-align:right;">
+17.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2025_rcp85
+</td>
+<td style="text-align:right;">
+11.89
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+11.80
+</td>
+<td style="text-align:right;">
+8.14
+</td>
+<td style="text-align:right;">
+17.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2030_rcp85
+</td>
+<td style="text-align:right;">
+11.90
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+<td style="text-align:right;">
+11.81
+</td>
+<td style="text-align:right;">
+8.02
+</td>
+<td style="text-align:right;">
+17.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2035_rcp85
+</td>
+<td style="text-align:right;">
+11.91
+</td>
+<td style="text-align:right;">
+1.37
+</td>
+<td style="text-align:right;">
+11.88
+</td>
+<td style="text-align:right;">
+7.65
+</td>
+<td style="text-align:right;">
+17.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2040_rcp85
+</td>
+<td style="text-align:right;">
+12.10
+</td>
+<td style="text-align:right;">
+1.45
+</td>
+<td style="text-align:right;">
+12.06
+</td>
+<td style="text-align:right;">
+7.50
+</td>
+<td style="text-align:right;">
+17.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2045_rcp85
+</td>
+<td style="text-align:right;">
+12.24
+</td>
+<td style="text-align:right;">
+1.54
+</td>
+<td style="text-align:right;">
+12.18
+</td>
+<td style="text-align:right;">
+7.38
+</td>
+<td style="text-align:right;">
+18.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2050_rcp85
+</td>
+<td style="text-align:right;">
+12.28
+</td>
+<td style="text-align:right;">
+1.65
+</td>
+<td style="text-align:right;">
+12.19
+</td>
+<td style="text-align:right;">
+7.25
+</td>
+<td style="text-align:right;">
+18.84
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2055_rcp85
+</td>
+<td style="text-align:right;">
+12.39
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+12.24
+</td>
+<td style="text-align:right;">
+7.16
+</td>
+<td style="text-align:right;">
+18.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+events_2060_rcp85
+</td>
+<td style="text-align:right;">
+12.45
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+12.32
+</td>
+<td style="text-align:right;">
+7.18
+</td>
+<td style="text-align:right;">
+18.86
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2005_rcp85_in
+</td>
+<td style="text-align:right;">
+13.80
+</td>
+<td style="text-align:right;">
+7.50
+</td>
+<td style="text-align:right;">
+13.08
+</td>
+<td style="text-align:right;">
+1.27
+</td>
+<td style="text-align:right;">
+107.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2010_rcp85_in
+</td>
+<td style="text-align:right;">
+13.93
+</td>
+<td style="text-align:right;">
+7.57
+</td>
+<td style="text-align:right;">
+13.17
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+108.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2015_rcp85_in
+</td>
+<td style="text-align:right;">
+13.88
+</td>
+<td style="text-align:right;">
+7.58
+</td>
+<td style="text-align:right;">
+13.09
+</td>
+<td style="text-align:right;">
+1.38
+</td>
+<td style="text-align:right;">
+110.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2020_rcp85_in
+</td>
+<td style="text-align:right;">
+14.08
+</td>
+<td style="text-align:right;">
+7.68
+</td>
+<td style="text-align:right;">
+13.26
+</td>
+<td style="text-align:right;">
+1.40
+</td>
+<td style="text-align:right;">
+111.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2025_rcp85_in
+</td>
+<td style="text-align:right;">
+14.31
+</td>
+<td style="text-align:right;">
+7.76
+</td>
+<td style="text-align:right;">
+13.43
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+<td style="text-align:right;">
+111.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2030_rcp85_in
+</td>
+<td style="text-align:right;">
+14.34
+</td>
+<td style="text-align:right;">
+7.79
+</td>
+<td style="text-align:right;">
+13.55
+</td>
+<td style="text-align:right;">
+1.35
+</td>
+<td style="text-align:right;">
+111.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2035_rcp85_in
+</td>
+<td style="text-align:right;">
+14.38
+</td>
+<td style="text-align:right;">
+7.90
+</td>
+<td style="text-align:right;">
+13.63
+</td>
+<td style="text-align:right;">
+1.31
+</td>
+<td style="text-align:right;">
+114.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2040_rcp85_in
+</td>
+<td style="text-align:right;">
+14.62
+</td>
+<td style="text-align:right;">
+8.04
+</td>
+<td style="text-align:right;">
+13.89
+</td>
+<td style="text-align:right;">
+1.28
+</td>
+<td style="text-align:right;">
+118.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2045_rcp85_in
+</td>
+<td style="text-align:right;">
+14.81
+</td>
+<td style="text-align:right;">
+8.14
+</td>
+<td style="text-align:right;">
+14.06
+</td>
+<td style="text-align:right;">
+1.32
+</td>
+<td style="text-align:right;">
+120.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2050_rcp85_in
+</td>
+<td style="text-align:right;">
+14.89
+</td>
+<td style="text-align:right;">
+8.24
+</td>
+<td style="text-align:right;">
+14.07
+</td>
+<td style="text-align:right;">
+1.34
+</td>
+<td style="text-align:right;">
+122.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2055_rcp85_in
+</td>
+<td style="text-align:right;">
+15.05
+</td>
+<td style="text-align:right;">
+8.35
+</td>
+<td style="text-align:right;">
+14.34
+</td>
+<td style="text-align:right;">
+1.34
+</td>
+<td style="text-align:right;">
+124.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+totals_2060_rcp85_in
+</td>
+<td style="text-align:right;">
+15.13
+</td>
+<td style="text-align:right;">
+8.36
+</td>
+<td style="text-align:right;">
+14.50
+</td>
+<td style="text-align:right;">
+1.34
+</td>
+<td style="text-align:right;">
+123.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2005_rcp85_in
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+7.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2010_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2015_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2020_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2025_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2030_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2035_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2040_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+7.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2045_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.13
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2050_rcp85_in
+</td>
+<td style="text-align:right;">
+1.18
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2055_rcp85_in
+</td>
+<td style="text-align:right;">
+1.19
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+average_2060_rcp85_in
+</td>
+<td style="text-align:right;">
+1.19
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+7.29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2005_rcp85_in
+</td>
+<td style="text-align:right;">
+30.80
+</td>
+<td style="text-align:right;">
+17.80
+</td>
+<td style="text-align:right;">
+28.96
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+234.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2010_rcp85_in
+</td>
+<td style="text-align:right;">
+30.80
+</td>
+<td style="text-align:right;">
+17.80
+</td>
+<td style="text-align:right;">
+28.91
+</td>
+<td style="text-align:right;">
+1.76
+</td>
+<td style="text-align:right;">
+235.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2015_rcp85_in
+</td>
+<td style="text-align:right;">
+30.70
+</td>
+<td style="text-align:right;">
+17.81
+</td>
+<td style="text-align:right;">
+28.69
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+238.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2020_rcp85_in
+</td>
+<td style="text-align:right;">
+30.91
+</td>
+<td style="text-align:right;">
+17.93
+</td>
+<td style="text-align:right;">
+28.73
+</td>
+<td style="text-align:right;">
+1.88
+</td>
+<td style="text-align:right;">
+240.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2025_rcp85_in
+</td>
+<td style="text-align:right;">
+31.18
+</td>
+<td style="text-align:right;">
+17.99
+</td>
+<td style="text-align:right;">
+29.07
+</td>
+<td style="text-align:right;">
+1.84
+</td>
+<td style="text-align:right;">
+238.55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2030_rcp85_in
+</td>
+<td style="text-align:right;">
+31.08
+</td>
+<td style="text-align:right;">
+17.92
+</td>
+<td style="text-align:right;">
+29.19
+</td>
+<td style="text-align:right;">
+1.83
+</td>
+<td style="text-align:right;">
+238.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2035_rcp85_in
+</td>
+<td style="text-align:right;">
+31.03
+</td>
+<td style="text-align:right;">
+18.00
+</td>
+<td style="text-align:right;">
+29.10
+</td>
+<td style="text-align:right;">
+1.79
+</td>
+<td style="text-align:right;">
+240.99
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2040_rcp85_in
+</td>
+<td style="text-align:right;">
+31.33
+</td>
+<td style="text-align:right;">
+18.19
+</td>
+<td style="text-align:right;">
+29.37
+</td>
+<td style="text-align:right;">
+1.74
+</td>
+<td style="text-align:right;">
+245.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2045_rcp85_in
+</td>
+<td style="text-align:right;">
+31.46
+</td>
+<td style="text-align:right;">
+18.28
+</td>
+<td style="text-align:right;">
+29.46
+</td>
+<td style="text-align:right;">
+1.77
+</td>
+<td style="text-align:right;">
+247.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2050_rcp85_in
+</td>
+<td style="text-align:right;">
+31.41
+</td>
+<td style="text-align:right;">
+18.29
+</td>
+<td style="text-align:right;">
+29.29
+</td>
+<td style="text-align:right;">
+1.79
+</td>
+<td style="text-align:right;">
+246.81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2055_rcp85_in
+</td>
+<td style="text-align:right;">
+31.50
+</td>
+<td style="text-align:right;">
+18.34
+</td>
+<td style="text-align:right;">
+29.44
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+248.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+annual_2060_rcp85_in
+</td>
+<td style="text-align:right;">
+31.48
+</td>
+<td style="text-align:right;">
+18.27
+</td>
+<td style="text-align:right;">
+29.45
+</td>
+<td style="text-align:right;">
+1.77
+</td>
+<td style="text-align:right;">
+246.68
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rating
+</td>
+<td style="text-align:right;">
+49.54
+</td>
+<td style="text-align:right;">
+30.82
+</td>
+<td style="text-align:right;">
+50.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+</tbody>
+</table>
+<p>Written 9.5% of 847010 rows in 2 secs using 72 threads. maxBuffUsed=9%. ETA 22 secs.</p>
+</div>
 </div>
 <div id="old-to-new" class="section level1 unnumbered hasAnchor" number="">
 <h1>Old to New<a href="#old-to-new" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>### New York City {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+<div id="new-york-city" class="section level2 unnumbered hasAnchor" number="">
+<h2>New York City<a href="#new-york-city" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -1039,8 +3756,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Los Angeles {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="los-angeles" class="section level2 unnumbered hasAnchor" number="">
+<h2>Los Angeles<a href="#los-angeles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -1882,8 +4601,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Chicago {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="chicago" class="section level2 unnumbered hasAnchor" number="">
+<h2>Chicago<a href="#chicago" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -2725,8 +5446,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Houston {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="houston" class="section level2 unnumbered hasAnchor" number="">
+<h2>Houston<a href="#houston" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3568,8 +6291,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Philadelphia {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="philadelphia" class="section level2 unnumbered hasAnchor" number="">
+<h2>Philadelphia<a href="#philadelphia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -4411,8 +7136,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Phoenix {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="phoenix" class="section level2 unnumbered hasAnchor" number="">
+<h2>Phoenix<a href="#phoenix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -5254,8 +7981,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### San Antonio {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="san-antonio" class="section level2 unnumbered hasAnchor" number="">
+<h2>San Antonio<a href="#san-antonio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -6097,8 +8826,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### San Diego {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="san-diego" class="section level2 unnumbered hasAnchor" number="">
+<h2>San Diego<a href="#san-diego" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -6940,8 +9671,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Dallas {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="dallas" class="section level2 unnumbered hasAnchor" number="">
+<h2>Dallas<a href="#dallas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -7783,8 +10516,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### San Jose {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="san-jose" class="section level2 unnumbered hasAnchor" number="">
+<h2>San Jose<a href="#san-jose" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -8626,8 +11361,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Tucson {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="tucson" class="section level2 unnumbered hasAnchor" number="">
+<h2>Tucson<a href="#tucson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -9469,8 +12206,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Buffalo {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="buffalo" class="section level2 unnumbered hasAnchor" number="">
+<h2>Buffalo<a href="#buffalo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -10312,8 +13051,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Atlanta {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="atlanta" class="section level2 unnumbered hasAnchor" number="">
+<h2>Atlanta<a href="#atlanta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -11155,8 +13896,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Minneapolis {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="minneapolis" class="section level2 unnumbered hasAnchor" number="">
+<h2>Minneapolis<a href="#minneapolis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -11998,8 +14741,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Denver {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="denver" class="section level2 unnumbered hasAnchor" number="">
+<h2>Denver<a href="#denver" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -12841,8 +15586,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Seattle {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="seattle" class="section level2 unnumbered hasAnchor" number="">
+<h2>Seattle<a href="#seattle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -13684,8 +16431,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### New Orleans {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="new-orleans" class="section level2 unnumbered hasAnchor" number="">
+<h2>New Orleans<a href="#new-orleans" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -14527,8 +17276,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Miami {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="miami" class="section level2 unnumbered hasAnchor" number="">
+<h2>Miami<a href="#miami" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -15370,8 +18121,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Detroit {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="detroit" class="section level2 unnumbered hasAnchor" number="">
+<h2>Detroit<a href="#detroit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -16213,8 +18966,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Las Vegas {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="las-vegas" class="section level2 unnumbered hasAnchor" number="">
+<h2>Las Vegas<a href="#las-vegas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -17056,8 +19811,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### St Louis {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="st-louis" class="section level2 unnumbered hasAnchor" number="">
+<h2>St Louis<a href="#st-louis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -17899,8 +20656,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Boston {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="boston" class="section level2 unnumbered hasAnchor" number="">
+<h2>Boston<a href="#boston" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -18742,8 +21501,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Savannah {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="savannah" class="section level2 unnumbered hasAnchor" number="">
+<h2>Savannah<a href="#savannah" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -19585,8 +22346,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Nashville {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="nashville" class="section level2 unnumbered hasAnchor" number="">
+<h2>Nashville<a href="#nashville" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -20428,8 +23191,10 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### Virginia Beach {-}</p>
-<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 14px; margin-left: auto; margin-right: auto;">
+</div>
+<div id="virginia-beach" class="section level2 unnumbered hasAnchor" number="">
+<h2>Virginia Beach<a href="#virginia-beach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table class=" lightable-paper table" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -21271,159 +24036,316 @@ rating
 </tr>
 </tbody>
 </table>
-<p>### threshold_rcp45_in {-}</p>
+</div>
+<div id="threshold_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>threshold_rcp45_in<a href="#threshold_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2020_rcp45_in {-}</p>
+</div>
+<div id="annual_2020_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2020_rcp45_in<a href="#annual_2020_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-2.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2020_rcp45_in {-}</p>
+</div>
+<div id="totals_2020_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2020_rcp45_in<a href="#totals_2020_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-3.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2020_rcp45 {-}</p>
+</div>
+<div id="events_2020_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2020_rcp45<a href="#events_2020_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-4.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2025_rcp45_in {-}</p>
+</div>
+<div id="annual_2025_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2025_rcp45_in<a href="#annual_2025_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-5.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2025_rcp45_in {-}</p>
+</div>
+<div id="totals_2025_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2025_rcp45_in<a href="#totals_2025_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-6.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2025_rcp45 {-}</p>
+</div>
+<div id="events_2025_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2025_rcp45<a href="#events_2025_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-7.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2030_rcp45_in {-}</p>
+</div>
+<div id="annual_2030_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2030_rcp45_in<a href="#annual_2030_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-8.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2030_rcp45_in {-}</p>
+</div>
+<div id="totals_2030_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2030_rcp45_in<a href="#totals_2030_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-9.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2030_rcp45 {-}</p>
+</div>
+<div id="events_2030_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2030_rcp45<a href="#events_2030_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-10.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2035_rcp45_in {-}</p>
+</div>
+<div id="annual_2035_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2035_rcp45_in<a href="#annual_2035_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-11.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2035_rcp45_in {-}</p>
+</div>
+<div id="totals_2035_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2035_rcp45_in<a href="#totals_2035_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-12.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2035_rcp45 {-}</p>
+</div>
+<div id="events_2035_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2035_rcp45<a href="#events_2035_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-13.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2040_rcp45_in {-}</p>
+</div>
+<div id="annual_2040_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2040_rcp45_in<a href="#annual_2040_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-14.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2040_rcp45_in {-}</p>
+</div>
+<div id="totals_2040_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2040_rcp45_in<a href="#totals_2040_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-15.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2040_rcp45 {-}</p>
+</div>
+<div id="events_2040_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2040_rcp45<a href="#events_2040_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-16.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2045_rcp45_in {-}</p>
+</div>
+<div id="annual_2045_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2045_rcp45_in<a href="#annual_2045_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-17.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2045_rcp45_in {-}</p>
+</div>
+<div id="totals_2045_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2045_rcp45_in<a href="#totals_2045_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-18.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2045_rcp45 {-}</p>
+</div>
+<div id="events_2045_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2045_rcp45<a href="#events_2045_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-19.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2050_rcp45_in {-}</p>
+</div>
+<div id="annual_2050_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2050_rcp45_in<a href="#annual_2050_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-20.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2050_rcp45_in {-}</p>
+</div>
+<div id="totals_2050_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2050_rcp45_in<a href="#totals_2050_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-21.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2050_rcp45 {-}</p>
+</div>
+<div id="events_2050_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2050_rcp45<a href="#events_2050_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-22.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2055_rcp45_in {-}</p>
+</div>
+<div id="annual_2055_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2055_rcp45_in<a href="#annual_2055_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-23.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2055_rcp45_in {-}</p>
+</div>
+<div id="totals_2055_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2055_rcp45_in<a href="#totals_2055_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-24.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2055_rcp45 {-}</p>
+</div>
+<div id="events_2055_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2055_rcp45<a href="#events_2055_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-25.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2060_rcp45_in {-}</p>
+</div>
+<div id="annual_2060_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2060_rcp45_in<a href="#annual_2060_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-26.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2060_rcp45_in {-}</p>
+</div>
+<div id="totals_2060_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2060_rcp45_in<a href="#totals_2060_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-27.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2060_rcp45 {-}</p>
+</div>
+<div id="events_2060_rcp45" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2060_rcp45<a href="#events_2060_rcp45" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-28.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2020_rcp45_in {-}</p>
+</div>
+<div id="average_2020_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2020_rcp45_in<a href="#average_2020_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-29.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2025_rcp45_in {-}</p>
+</div>
+<div id="average_2025_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2025_rcp45_in<a href="#average_2025_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-30.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2030_rcp45_in {-}</p>
+</div>
+<div id="average_2030_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2030_rcp45_in<a href="#average_2030_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-31.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2035_rcp45_in {-}</p>
+</div>
+<div id="average_2035_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2035_rcp45_in<a href="#average_2035_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-32.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2040_rcp45_in {-}</p>
+</div>
+<div id="average_2040_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2040_rcp45_in<a href="#average_2040_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-33.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2045_rcp45_in {-}</p>
+</div>
+<div id="average_2045_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2045_rcp45_in<a href="#average_2045_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-34.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2050_rcp45_in {-}</p>
+</div>
+<div id="average_2050_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2050_rcp45_in<a href="#average_2050_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-35.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2055_rcp45_in {-}</p>
+</div>
+<div id="average_2055_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2055_rcp45_in<a href="#average_2055_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-36.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2060_rcp45_in {-}</p>
+</div>
+<div id="average_2060_rcp45_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2060_rcp45_in<a href="#average_2060_rcp45_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-37.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### threshold_rcp85_in {-}</p>
+</div>
+<div id="threshold_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>threshold_rcp85_in<a href="#threshold_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-38.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2020_rcp85_in {-}</p>
+</div>
+<div id="annual_2020_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2020_rcp85_in<a href="#annual_2020_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-39.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2020_rcp85_in {-}</p>
+</div>
+<div id="totals_2020_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2020_rcp85_in<a href="#totals_2020_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-40.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2020_rcp85 {-}</p>
+</div>
+<div id="events_2020_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2020_rcp85<a href="#events_2020_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-41.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2025_rcp85_in {-}</p>
+</div>
+<div id="annual_2025_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2025_rcp85_in<a href="#annual_2025_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-42.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2025_rcp85_in {-}</p>
+</div>
+<div id="totals_2025_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2025_rcp85_in<a href="#totals_2025_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-43.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2025_rcp85 {-}</p>
+</div>
+<div id="events_2025_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2025_rcp85<a href="#events_2025_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-44.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2030_rcp85_in {-}</p>
+</div>
+<div id="annual_2030_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2030_rcp85_in<a href="#annual_2030_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-45.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2030_rcp85_in {-}</p>
+</div>
+<div id="totals_2030_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2030_rcp85_in<a href="#totals_2030_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-46.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2030_rcp85 {-}</p>
+</div>
+<div id="events_2030_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2030_rcp85<a href="#events_2030_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-47.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2035_rcp85_in {-}</p>
+</div>
+<div id="annual_2035_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2035_rcp85_in<a href="#annual_2035_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-48.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2035_rcp85_in {-}</p>
+</div>
+<div id="totals_2035_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2035_rcp85_in<a href="#totals_2035_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-49.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2035_rcp85 {-}</p>
+</div>
+<div id="events_2035_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2035_rcp85<a href="#events_2035_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-50.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2040_rcp85_in {-}</p>
+</div>
+<div id="annual_2040_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2040_rcp85_in<a href="#annual_2040_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-51.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2040_rcp85_in {-}</p>
+</div>
+<div id="totals_2040_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2040_rcp85_in<a href="#totals_2040_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-52.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2040_rcp85 {-}</p>
+</div>
+<div id="events_2040_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2040_rcp85<a href="#events_2040_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-53.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2045_rcp85_in {-}</p>
+</div>
+<div id="annual_2045_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2045_rcp85_in<a href="#annual_2045_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-54.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2045_rcp85_in {-}</p>
+</div>
+<div id="totals_2045_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2045_rcp85_in<a href="#totals_2045_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-55.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2045_rcp85 {-}</p>
+</div>
+<div id="events_2045_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2045_rcp85<a href="#events_2045_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-56.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2050_rcp85_in {-}</p>
+</div>
+<div id="annual_2050_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2050_rcp85_in<a href="#annual_2050_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-57.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2050_rcp85_in {-}</p>
+</div>
+<div id="totals_2050_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2050_rcp85_in<a href="#totals_2050_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-58.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2050_rcp85 {-}</p>
+</div>
+<div id="events_2050_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2050_rcp85<a href="#events_2050_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-59.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2055_rcp85_in {-}</p>
+</div>
+<div id="annual_2055_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2055_rcp85_in<a href="#annual_2055_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-60.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2055_rcp85_in {-}</p>
+</div>
+<div id="totals_2055_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2055_rcp85_in<a href="#totals_2055_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-61.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2055_rcp85 {-}</p>
+</div>
+<div id="events_2055_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2055_rcp85<a href="#events_2055_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-62.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### annual_2060_rcp85_in {-}</p>
+</div>
+<div id="annual_2060_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>annual_2060_rcp85_in<a href="#annual_2060_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-63.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### totals_2060_rcp85_in {-}</p>
+</div>
+<div id="totals_2060_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>totals_2060_rcp85_in<a href="#totals_2060_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-64.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### events_2060_rcp85 {-}</p>
+</div>
+<div id="events_2060_rcp85" class="section level2 unnumbered hasAnchor" number="">
+<h2>events_2060_rcp85<a href="#events_2060_rcp85" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-65.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2020_rcp85_in {-}</p>
+</div>
+<div id="average_2020_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2020_rcp85_in<a href="#average_2020_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-66.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2025_rcp85_in {-}</p>
+</div>
+<div id="average_2025_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2025_rcp85_in<a href="#average_2025_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-67.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2030_rcp85_in {-}</p>
+</div>
+<div id="average_2030_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2030_rcp85_in<a href="#average_2030_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-68.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2035_rcp85_in {-}</p>
+</div>
+<div id="average_2035_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2035_rcp85_in<a href="#average_2035_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-69.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2040_rcp85_in {-}</p>
+</div>
+<div id="average_2040_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2040_rcp85_in<a href="#average_2040_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-70.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2045_rcp85_in {-}</p>
+</div>
+<div id="average_2045_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2045_rcp85_in<a href="#average_2045_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-71.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2050_rcp85_in {-}</p>
+</div>
+<div id="average_2050_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2050_rcp85_in<a href="#average_2050_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-72.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2055_rcp85_in {-}</p>
+</div>
+<div id="average_2055_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2055_rcp85_in<a href="#average_2055_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-73.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### average_2060_rcp85_in {-}</p>
+</div>
+<div id="average_2060_rcp85_in" class="section level2 unnumbered hasAnchor" number="">
+<h2>average_2060_rcp85_in<a href="#average_2060_rcp85_in" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-74.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>### rating {-}</p>
+</div>
+<div id="rating" class="section level2 unnumbered hasAnchor" number="">
+<h2>rating<a href="#rating" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="precipValidate_files/figure-html/compare-75.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 <div id="hazard-specific-analysis" class="section level1 unnumbered hasAnchor" number="">
 <h1>Hazard-Specific Analysis<a href="#hazard-specific-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>List of 5
+$ nInserted : num 847010
+$ nMatched : num 0
+$ nRemoved : num 0
+$ nUpserted : num 0
+$ writeErrors: list()</p>
 </div>
             </section>
 
