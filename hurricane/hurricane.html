@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>HURRICANE VALIDATION</title>
+  <meta name="description" content="HURRICANE VALIDATION" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="HURRICANE VALIDATION" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="HURRICANE VALIDATION" />
+  
+  
+  
+
+<meta name="author" content="Maximilian Stiefel" />
+
+
+<meta name="date" content="2023-02-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet" />
+<script src="libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
+<script src="libs/sparkline-binding-2.0/sparkline.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#methods"><i class="fa fa-check"></i>METHODS</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#hurricane-characteristics"><i class="fa fa-check"></i>HURRICANE CHARACTERISTICS</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#category-1"><i class="fa fa-check"></i>Category 1</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#high-res-flood-and-wind"><i class="fa fa-check"></i>HIGH RES FLOOD AND WIND</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#category-1-1"><i class="fa fa-check"></i>Category 1</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">HURRICANE VALIDATION</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">HURRICANE VALIDATION</h1>
+<p class="author"><em>Maximilian Stiefel</em></p>
+<p class="date"><em>2023-02-28</em></p>
+</div>
+<style>
+  
+  .book .book-body .page-wrapper .page-inner {
+    max-width: 1400px;
+    margin-left: 100px;  
+    margin-right: 100px;  
+  }
+  .book .book-summary {
+    width: 300px;
+    position:absolute;
+    top:0;
+    left:-300px;
+  }
+  .book.with-summary .book-header.fixed {
+      left: 300px;
+  }
+  .book.with-summary .book-body {
+      left: 300px;
+  }
+  .book .book-body .page-wrapper .page-inner section.normal table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+  .book caption {
+      font-size: 20px;
+  }
+  .book p.caption {
+      font-size: 20px;
+  }
+  .book p {
+      line-height: 2;
+  }
+
+</style>
+<div id="methods" class="section level1 unnumbered hasAnchor" number="">
+<h1>METHODS<a href="#methods" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The ClimateCheck hurricane risk rating represents a composite of hazards related to hurricane events. These include high winds, storm surge and pluvial flooding. Below are our target statistics and ratings with associated source datasets as well as a process for estimating each hazard and its components.</p>
+<blockquote>
+<p>STATISTICS</p>
+</blockquote>
+<!-- Estimated for each Saffir-Simpson Hurricane Wind Scale Category. -->
+<ol style="list-style-type: decimal">
+<li><p>Annual hurricane probability. HURDAT2 historical hurricane tracks are sufficient since there is high uncertainty around changing probabilities by place.</p></li>
+<li><p>Hurricane flood depth:</p></li>
+</ol>
+<ul>
+<li><p>Pluvial flood depths from WCA2D <span class="citation">(Guidolin et al. 2016)</span> historical and projected modeling. Pluvial flood return periods mapped to annual hurricane probability.</p></li>
+<li><p>Storm surge flood depths from SLOSH. Modeled current storm surge hazard adjusted by surge tide projected estimates from <span class="citation">Gori et al. (2022)</span></p></li>
+</ul>
+<!-- sea level rise - additive to surge heights and horizontally expansive to adjacent low lying cells. in some places it is not additive. -->
+<!-- wind speed  -->
+<!-- radius -->
+<!-- tracks -->
+<!-- EVA with MOM adjusted by 10 years of max daily tide adjusted by sea level rise -->
+<!-- 3. Hurricane precipitation intensity -->
+<ol start="3" style="list-style-type: decimal">
+<li>Hurricane wind intensity. Historical wind speeds adjusted by a change factor from modeled tropical cyclone maximum velocity from <span class="citation">Gori et al. (2022)</span></li>
+</ol>
+<blockquote>
+<p>RATINGS</p>
+</blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Hurricane flood risk rating based on maximum depth across flood types.</p></li>
+<li><p>Hurricane wind risk rating based on wind speed intensity.</p></li>
+<li><p>Hurricane risk rating as a composite index of hurricane flood and wind risk ratings.</p></li>
+</ol>
+<blockquote>
+<p>PROCESS</p>
+</blockquote>
+<!-- We first aggregate the [NOAA HURDAT2](https://www.nhc.noaa.gov/data/) historical hurricane track segments (vector lines) by event ID. Then we buffer these tracks with a 200km radius. Each track (i.e. hurricane event) includes max windspeeds which we rasterize with the mean. We interpolate these rasterized windspeeds a further 100km to account for gaps in the track data and spatial distribution. Then we rasterize the sum of hurricane events and estimate the annual probability of a hurricane passing by each grid cell by fitting the summed counts to the poisson distribution.  -->
+<p>We use <a href="https://www.nhc.noaa.gov/data/">NOAA HURDAT2</a> historical hurricane tracks (vector points) from 1851-2021. Coastal states are grouped and buffered with a 200km radius. We use a peaks over threshold approach to gather exceedances per event and per state grouping that lay beyond 64 kt (74 mph)–this corresponds to the minimum windspeed for a tropical cyclone to be categorized as a hurricane. Return periods and levels are based on the Generalized Pareto Distribution.</p>
+<p>To find projected max windspeeds, we apply a change factor to the historical data from the relative change in modeled tropical cyclone maximum velocity from <span class="citation">Gori et al. (2022)</span>. These data come as 25km spaced point estimates along the US East and Gulf of Mexico coasts, which we then rasterize and interpolate for cells affected by historical hurricanes. The extreme value analysis described above is repeated for the projected windspeeds.</p>
+<p>Flood mapping uses a 10m digital elevation model (DEM) from a mosaiced product of the USGS National Elevation Dataset (NED) and NOAA Continuously Updated Digital Elevation Model (CUDEM). We take storm surge depths from the <a href="https://www.nhc.noaa.gov/nationalsurge/?text#data">NOAA SLOSH</a> model, which represent Maximum Envelopes of Water (MEOWs) and Maximum of MEOWs (MOMs). MEOWs are created by computing the maximum storm surge resulting from up to 100,000 hypothetical storms simulated through each SLOSH grid of varying forward speed, radius of maximum wind, intensity (Categories 1-5), landfall location, tide level, and storm direction. MOMs are an ensemble product of maximum storm surge heights created for each storm category by retaining the maximum storm surge value in each grid cell for all the MEOWs, regardless of the forward speed, storm trajectory, or landfall location. A high tide initial water level was used for the storm surge maps.</p>
+<p>Projected storm surge depths are found by applying a change factor to the SLOSH maps from the absolute change in modeled surge tide from <span class="citation">Gori et al. (2022)</span>. We rasterize this relative change and interpolate for cells with SLOSH surge depths. This produces a change in vertical extent. To represent change in horizontal extent we:</p>
+<ol style="list-style-type: decimal">
+<li>sum projected surge depths with the DEM</li>
+<li>smooth the summed layer</li>
+<li>difference the DEM from the smoothed layer</li>
+</ol>
+<p>Historical and projected pluvial flood depths for the 100 and 500 year return periods are mapped onto hurricane event frequencies. These flood depths come from the open-source cellular automata-based Weighted Cellular Automata 2D (WCA2D) model. Initially developed for small area urban surface water runoff and sewer network simulations <span class="citation">(Austin et al. 2014)</span>, WCA2D has expanded to become a generalizable tool for high resolution precipitation-based flood modeling <span class="citation">(Guidolin et al. 2012, 2016; Ghimire et al. 2012)</span>.</p>
+<p>A maximum flood depth from the combined storm surge and pluvial flood models is taken and masked for cells representing surface water. We estimate the hurricane risk rating as equal parts risk from the wind intensities and flood depths.</p>
+</div>
+<div id="hurricane-characteristics" class="section level1 unnumbered hasAnchor" number="">
+<h1>HURRICANE CHARACTERISTICS<a href="#hurricane-characteristics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="category-1" class="section level2 unnumbered hasAnchor" number="">
+<h2>Category 1<a href="#category-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="hurricane_files/figure-html/wind-process-1.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/wind-process-2.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/wind-process-3.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/wind-process-4.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="high-res-flood-and-wind" class="section level1 unnumbered hasAnchor" number="">
+<h1>HIGH RES FLOOD AND WIND<a href="#high-res-flood-and-wind" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="hurricane_files/figure-html/flood-process-1.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-2.png" width="90%" style="display: block; margin: auto;" /></p>
+<div id="category-1-1" class="section level2 unnumbered hasAnchor" number="">
+<h2>Category 1<a href="#category-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="hurricane_files/figure-html/flood-process-3.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-4.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-5.png" width="90%" style="display: block; margin: auto;" /></p>
+<div id="section" class="section level4 unnumbered" number="">
+<h4 class="unnumbered" number=""></h4>
+<p><img src="hurricane_files/figure-html/flood-process-6.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-7.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-8.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-9.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-10.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-11.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="hurricane_files/figure-html/flood-process-12.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="hurricane_files/figure-html/flood-process-13.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="before-water-mask" class="section level4 unnumbered hasAnchor" number="">
+<h4>before water mask<a href="#before-water-mask" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="after-water-mask" class="section level4 unnumbered hasAnchor" number="">
+<h4>after water mask<a href="#after-water-mask" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="hurricane_files/figure-html/flood-process-14.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-15.png" width="90%" style="display: block; margin: auto;" /><img src="hurricane_files/figure-html/flood-process-16.png" width="90%" style="display: block; margin: auto;" /></p>
+<div id="refs" class="references hanging-indent">
+<div id="ref-austinQuickAccurateCellular2014">
+<p>Austin, Rebecca J., Albert S. Chen, Dragan A. Savić, and Slobodan Djordjević. 2014. “Quick and Accurate Cellular Automata Sewer Simulator.” <em>Journal of Hydroinformatics</em> 16 (6): 1359–74. <a href="https://doi.org/10.2166/hydro.2014.070">https://doi.org/10.2166/hydro.2014.070</a>.</p>
+</div>
+<div id="ref-ghimireFormulationFast2D2012">
+<p>Ghimire, Bidur, Albert S. Chen, Michele Guidolin, Edward C. Keedwell, Slobodan Djordjević, and Dragan A. Savić. 2012. “Formulation of a Fast 2D Urban Pluvial Flood Model Using a Cellular Automata Approach.” <em>Journal of Hydroinformatics</em> 15 (3): 676–86. <a href="https://doi.org/10.2166/hydro.2012.245">https://doi.org/10.2166/hydro.2012.245</a>.</p>
+</div>
+<div id="ref-goriTropicalCycloneClimatology2022">
+<p>Gori, Avantika, Ning Lin, Dazhi Xi, and Kerry Emanuel. 2022. “Tropical Cyclone Climatology Change Greatly Exacerbates US Extreme RainfallSurge Hazard.” <em>Nature Climate Change</em> 12 (2): 171–78. <a href="https://doi.org/10.1038/s41558-021-01272-7">https://doi.org/10.1038/s41558-021-01272-7</a>.</p>
+</div>
+<div id="ref-guidolinWeightedCellularAutomata2016">
+<p>Guidolin, Michele, Albert S. Chen, Bidur Ghimire, Edward C. Keedwell, Slobodan Djordjević, and Dragan A. Savić. 2016. “A Weighted Cellular Automata 2D Inundation Model for Rapid Flood Analysis.” <em>Environmental Modelling &amp; Software</em> 84 (October): 378–94. <a href="https://doi.org/10.1016/j.envsoft.2016.07.008">https://doi.org/10.1016/j.envsoft.2016.07.008</a>.</p>
+</div>
+<div id="ref-guidolinCADDIESNewFramework2012">
+<p>Guidolin, Michele, Andrew Duncan, Bidur Ghimire, Mike Gibson, Edward Keedwell, Albert S. Chen, Slobodan Djordjevic, and Dragan Savic. 2012. “CADDIES: A New Framework for Rapid Development of Parallel Cellular Automata Algorithms for Flood Simulation,” July.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
