@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Canada: Tidal Flooding</title>
+  <meta name="description" content="Canada: Tidal Flooding" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Canada: Tidal Flooding" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Canada: Tidal Flooding" />
+  
+  
+  
+
+<meta name="author" content="Prepared by: Maximilian Stiefel" />
+
+
+<meta name="date" content="2023-03-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet" />
+<script src="libs/jquery-sparkline-2.1.2/jquery.sparkline.js"></script>
+<script src="libs/sparkline-binding-2.0/sparkline.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.7
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.7'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<script>
+document.write('<div class="btn-group pull-right" style="position: absolute; top: 20%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
+</script>
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path=""><a href="#intro"><i class="fa fa-check"></i>Intro</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#methods"><i class="fa fa-check"></i>Methods</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#conus"><i class="fa fa-check"></i>CONUS</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#canada"><i class="fa fa-check"></i>Canada</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#examples"><i class="fa fa-check"></i>Examples</a>
+<ul>
+<li class="chapter" data-level="" data-path=""><a href="#n44w064-halifax"><i class="fa fa-check"></i>N44W064 Halifax</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#n47w053-st.-johns"><i class="fa fa-check"></i>N47W053 St. Johns</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#n48w124-vancouver"><i class="fa fa-check"></i>N48W124 Vancouver</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Canada: Tidal Flooding</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Canada: Tidal Flooding</h1>
+<p class="author"><em>Prepared by: Maximilian Stiefel</em></p>
+<p class="date"><em>2023-03-14</em></p>
+</div>
+<style>
+  
+  .book .book-body .page-wrapper .page-inner {
+    max-width: 1400px;
+    margin-left: 100px;  
+    margin-right: 100px;  
+  }
+  .book .book-body .page-wrapper .page-inner section.normal img {
+    width: 1200px;
+    height: auto; 
+  }
+  .book .book-summary {
+    width: 300px;
+    position:absolute;
+    top:0;
+    left:-300px;
+  }
+  .book.with-summary .book-header.fixed {
+      left: 300px;
+  }
+  .book.with-summary .book-body {
+      left: 300px;
+  }
+  .book .book-body .page-wrapper .page-inner section.normal table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+  
+</style>
+<div id="intro" class="section level1 unnumbered hasAnchor" number="">
+<h1>Intro<a href="#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>High-tide coastal flooding occurs when water inundates land during the highest tides. It is a cyclically occurring phenomenon where coastal waters exceed mean higher high water (MHHW), the average height of the highest tide recorded each day. The land above MHHW is dry most of the time. MHHW has a baseline average from the most recent National Tidal Datum Epoch from 1983-2001 and locally varies by relative sea level, tidal patterns and behavior, and geomorphological features and processes, such as elevation and erosion. Similarly, high tide flooding probability is a function of local relative sea level and coastal land elevation. Although melting ice and warmer water, which takes up more space than cooler water, increase ocean volume globally, sea level rise varies locally.</p>
+<p><span class="citation">Dahl et al. (2017)</span> found an effective inundation threshold from frequent high tide flooding using a mixed-methods approach to determine when land in a coastal community becomes unusable because it floods too frequently even if it is not permanently inundated. The authors established an effective inundation threshold of 26 flood days/year through interviews with community planners and leaders. They project land usability tipping points by estimating which areas flood more frequently than the threshold for coastal communities across the US.</p>
+</div>
+<div id="methods" class="section level1 unnumbered hasAnchor" number="">
+<h1>Methods<a href="#methods" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The high tide flood hazard model counts the number of days annually that tidal heights exceed an elevation grid cell. Inundation exceedances are estimated from a nonparametric probability density curve of daily maximum tidal heights over several decades <span class="citation">(<span class="citeproc-not-found" data-reference-id="sweetExtremeMeanAcceleration2014"><strong>???</strong></span>)</span>. We adjust these curves with sea level rise projections to estimate the frequency of future high tide flooding. Data for this model include high resolution digital elevation models, daily tide gauge readings, tidal datums, and sea level rise projections.</p>
+<p>We first interpolate projected relative sea level rise for each tide gauge, find the nearest tidal gauge to each elevation grid cell, and use the daily high tide distribution from the closest tidal gauge to model exceedance probabilities. The complement of the CDF transformed elevation values s the probability of exceedance, i.e., 1 – CDF(elevation). DEMs need to match the vertical datum of tidal data, e.g., in the USA we difference MHHW from the DEM. A geospatial cleanup uses region grouping to remove hazardous cells disconnected from the sea.</p>
+<p>The daily inundation exceedance probabilities comprise the ClimateCheck High Tide Flood Risk Rating. Multiplying these probabilities by 365 gives the annual number of high tide flooding days.</p>
+<div id="conus" class="section level2 unnumbered hasAnchor" number="">
+<h2>CONUS<a href="#conus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Data and modeling products come from the National Oceanic and Atmospheric Administration (NOAA) and other sources <span class="citation">(Marcy et al. 2011; Kopp et al. 2014; Sweet et al. 2017, 2018, 2019)</span> to estimate high tide flood hazard:</p>
+<ol style="list-style-type: decimal">
+<li>NOAA Continuously Updated Digital Elevation Model (CUDEM). Horizontal resolution is ~<span class="math inline">\(5m^2\)</span>, resampled to <span class="math inline">\(10m^2\)</span></li>
+<li>NOAA Mean Higher High Water (MHHW) Interpolated Surface. The 16 MHHW tiles provide a 50 to 100m2 horizontal resolution.</li>
+<li>NOAA daily tidal data from nearly 100 tidal gauges to observe tidal variability measured at tide gauges.</li>
+<li>NOAA relative sea level rise projections. One-degree grid along the coasts.</li>
+</ol>
+</div>
+<div id="canada" class="section level2 unnumbered hasAnchor" number="">
+<h2>Canada<a href="#canada" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><a href="https://spacedata.copernicus.eu/collections/copernicus-digital-elevation-model">Copernicus Digital Elevation Model (COP-DEM) GLO-30</a>. Horizontal resolution is <span class="math inline">\(30m^2\)</span>.</li>
+<li><a href="https://gesla787883612.wordpress.com/about/">GESLA-3 (Global Extreme Sea Level Analysis Version 3)</a>. Daily tidal data from stations across the globe.</li>
+<li><a href="https://tides.gc.ca/en/stations/">Candian Hydrographic Service Chart Datum (CD)</a> for each tidal station to vertically transform tidal heights to DEM vertical datum.</li>
+<li><a href="https://geoscan.nrcan.gc.ca/starweb/geoscan/servlet.starweb?path=geoscan/fulle.web&amp;search1=R=327878">Geological Survey of Canada relative sea level rise projections</a>. Canadian standard CD is Lower Low Water Large Tide (LLWLT).</li>
+</ol>
+</div>
+</div>
+<div id="examples" class="section level1 unnumbered hasAnchor" number="">
+<h1>Examples<a href="#examples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="n44w064-halifax" class="section level2 unnumbered hasAnchor" number="">
+<h2>N44W064 Halifax<a href="#n44w064-halifax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Zoom: 12</code></pre>
+<p><img src="tidalValidate_files/figure-html/htf-probs-1.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-5.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-6.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-7.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-8.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-9.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-10.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-11.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-12.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-13.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-14.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-15.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-16.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-17.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-18.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-19.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-20.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-21.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-22.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-23.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-24.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-25.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-26.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-27.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-28.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-29.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="n47w053-st.-johns" class="section level2 unnumbered hasAnchor" number="">
+<h2>N47W053 St. Johns<a href="#n47w053-st.-johns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Zoom: 12</code></pre>
+<p><img src="tidalValidate_files/figure-html/htf-probs-30.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-31.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-32.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-33.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-34.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-35.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-36.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-37.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-38.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-39.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-40.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-41.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-42.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-43.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-44.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-45.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-46.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-47.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-48.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-49.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-50.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-51.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-52.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-53.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-54.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-55.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-56.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="n48w124-vancouver" class="section level2 unnumbered hasAnchor" number="">
+<h2>N48W124 Vancouver<a href="#n48w124-vancouver" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Zoom: 12</code></pre>
+<p><img src="tidalValidate_files/figure-html/htf-probs-57.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-58.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-59.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-60.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-61.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-62.png" width="100%" style="display: block; margin: auto;" /><img src="tidalValidate_files/figure-html/htf-probs-63.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-64.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-65.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-66.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-67.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-68.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-69.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-70.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-71.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-72.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-73.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-74.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-75.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-76.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-77.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-78.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-79.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-80.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-81.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-82.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="tidalValidate_files/figure-html/htf-probs-83.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="refs" class="references hanging-indent">
+<div id="ref-dahlEffectiveInundationContinental2017">
+<p>Dahl, K., Erika Spanger-Siegfried, A. Caldas, and Shana Udvardy. 2017. “Effective Inundation of Continental United States Communities with 21 St Century Sea Level Rise.” In. <a href="https://doi.org/10.1525/ELEMENTA.234">https://doi.org/10.1525/ELEMENTA.234</a>.</p>
+</div>
+<div id="ref-koppProbabilistic21st22nd2014">
+<p>Kopp, Robert E., Radley M. Horton, Christopher M. Little, Jerry X. Mitrovica, Michael Oppenheimer, D. J. Rasmussen, Benjamin H. Strauss, and Claudia Tebaldi. 2014. “Probabilistic 21st and 22nd Century Sea-Level Projections at a Global Network of Tide-Gauge Sites.” <em>Earth’s Future</em> 2 (8): 383–406. <a href="https://doi.org/10.1002/2014EF000239">https://doi.org/10.1002/2014EF000239</a>.</p>
+</div>
+<div id="ref-marcy2011new">
+<p>Marcy, Douglas, William Brooks, Kyle Draganov, Brian Hadley, Chris Haynes, Nate Herold, John McCombs, et al. 2011. “New Mapping Tool and Techniques for Visualizing Sea Level Rise and Coastal Flooding Impacts.” In <em>Solutions to Coastal Disasters 2011</em>, 474–90.</p>
+</div>
+<div id="ref-sweet20192018">
+<p>Sweet, William, Greg Dusek, Douglas C Marcy, Greg Carbin, and John Marra. 2019. “2018 State of US High Tide Flooding with a 2019 Outlook.”</p>
+</div>
+<div id="ref-sweet2017global">
+<p>Sweet, William V, Robert E Kopp, Christopher P Weaver, Jayantha Obeysekera, Radley M Horton, E Robert Thieler, and Chris Zervas. 2017. “Global and Regional Sea Level Rise Scenarios for the United States.”</p>
+</div>
+<div id="ref-sweet2018patterns">
+<p>Sweet, William William VanderVeer, Greg Dusek, JTB Obeysekera, and John J Marra. 2018. “Patterns and Projections of High Tide Flooding Along the US Coastline Using a Common Impact Threshold.”</p>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
