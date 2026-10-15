@@ -29,6 +29,12 @@ body:has(#workspace:not([hidden])) header{padding-bottom:12px;margin-bottom:12px
 #label-tooltip{position:fixed;z-index:20;width:310px;padding:12px 14px;background:#edf4ef;color:#18231b;border:1px solid #b0c6b6;border-radius:5px;box-shadow:0 8px 28px #0008;font-size:12px;line-height:1.5;pointer-events:none}
 @media(max-width:800px){.labels{grid-template-columns:repeat(3,minmax(0,1fr))}.label.extra,.label.extra:last-child{grid-column:span 3}}
 @media(max-width:500px){.labels{grid-template-columns:repeat(2,minmax(0,1fr))}.label.extra,.label.extra:last-child{grid-column:span 2}}
+
+.label-copy{display:block;min-width:0}.label-summary{display:block;color:#b5bdb8;font-size:11px;line-height:1.35;margin-top:4px}.label-text{font-weight:600}
+.selection-tray{position:sticky;top:0;z-index:10;background:#0b0c0df5;border-bottom:1px solid var(--line);padding:9px 0;font-size:12px;line-height:1.5}
+.selection-tray summary{font-weight:600}.selection-list{margin-top:5px;max-height:22vh;overflow:auto}.selection-chip{display:inline-block;margin:3px 6px 3px 0;padding:4px 7px;border:1px solid var(--accent);border-radius:4px;color:var(--accent)}
+#workspace .selection-tray{margin-top:0!important}
+@media(max-width:680px){body:has(#workspace:not([hidden])) main{padding:12px 12px 24px}.labels{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.label{min-height:86px;align-items:flex-start;padding:10px 8px;font-size:12px;gap:5px}.label .num{min-width:20px}.label-summary{font-size:11px}.label.extra,.label.extra:last-child{grid-column:span 2;min-height:54px}#paragraph{max-height:28vh;font-size:16px}.toolbar{padding-bottom:calc(10px + env(safe-area-inset-bottom))!important}.toolbar .status{order:4;width:100%}#workspace .toolbar button{padding:10px 8px;font-size:13px}#label-tooltip{display:none}input,textarea{font-size:16px}}
 </style>
 <main>
 <header><span class="brand">⌑ TEVA</span><span class="eyebrow">Research · Human coding · v1</span></header>
@@ -45,7 +51,8 @@ body:has(#workspace:not([hidden])) header{padding-bottom:12px;margin-bottom:12px
 <progress id="progress" value="0" max="150" aria-label="Completed paragraphs"></progress>
 <div id="item-id"></div><blockquote id="paragraph" tabindex="-1"></blockquote>
 <div class="topline"><h2>Select all labels that apply</h2><span id="selected" class="note"></span></div>
-<p class="note">Hover over a title or focus it with Tab to see its full definition. “No relevant label” and “Bad quality” cannot be combined with another label.</p>
+<p class="note">WPS means wildfire protection strategy. Each card gives a short reminder; the rating guide contains the full definitions. On a computer, hover or use Tab for the full definition. Labels 26 and 27 must each be used alone.</p>
+<details class="selection-tray" open><summary id="selection-heading">No codes selected</summary><div id="selection-list" class="selection-list" aria-live="polite"></div></details>
 <div id="labels" class="labels" role="group" aria-label="Paragraph labels"></div>
 <details><summary>Optional note or discussion flag</summary><label for="notes"><p class="note">Optional note for Max</p></label><textarea id="notes" placeholder="Anything unclear about this paragraph?"></textarea>
 <p><label><input type="checkbox" id="flag"> Flag this paragraph for discussion</label></p></details>
@@ -96,7 +103,7 @@ function answer(){return answers[study.items[index].id]||{labels:[],notes:'',fla
 function update(patch){answers[study.items[index].id]={...answer(),...patch,updated_at:new Date().toISOString()};persist();}
 function count(){return study.items.filter(x=>answers[x.id]?.done).length;}
 function show(id){for(const name of ['welcome','workspace','complete'])$(name).hidden=name!==id;window.scrollTo(0,0);}
-function refreshLabels(){const a=answer();for(const b of $('labels').children)b.setAttribute('aria-pressed',String(a.labels.includes(Number(b.dataset.id))));$('selected').textContent=a.labels.length+' selected';$('save-next').disabled=!a.labels.length;}
+function refreshLabels(){const a=answer();for(const b of $('labels').children)b.setAttribute('aria-pressed',String(a.labels.includes(Number(b.dataset.id))));$('selected').textContent=a.labels.length+' selected';$('selection-heading').textContent=a.labels.length?'Selected codes: '+a.labels.join(', '):'No codes selected';$('selection-list').replaceChildren(...a.labels.map(id=>{const chip=document.createElement('span');chip.className='selection-chip';chip.textContent=id+' · '+labelTitles[id-1];return chip;}));$('save-next').disabled=!a.labels.length;}
 function render(){
  hideTooltip();show('workspace');const a=answer(),n=count();$('position').textContent=`Paragraph ${index+1} of ${study.items.length} · ${n} completed`;$('progress').max=study.items.length;$('progress').value=n;
  $('item-id').textContent=study.items[index].id;$('paragraph').textContent=study.items[index].text;$('notes').value=a.notes;$('flag').checked=a.flag;$('jump').value=index+1;$('jump').max=study.items.length;$('previous').disabled=index===0;
@@ -108,9 +115,38 @@ const basename=study.source.replace(/\.csv$/i,'')+'_'+study.rater.toLowerCase().
 $('rater').textContent=study.rater;$('done-rater').textContent=study.rater;
 function welcome(){show('welcome');$('assignment').textContent=`${study.items.length} paragraphs · 27 labels · ${count()} completed`;$('start').textContent=count()===study.items.length?'View completed study →':Object.keys(answers).length?'Resume labeling →':'Start labeling →';}
 const labelTitles=['Historical wildfire','Wildfire hazard','Exposure','Fuel load assessment','Ecosystem health','Climate change','Suppression','Fuel management: property','Fuel management: wildland','Home hardening & building codes','Firefighting: property','Firefighting: wildland','Infrastructure readiness','Emergency planning','Monitoring & reporting','Hazardous materials','Ignition control','Community education & outreach','Social vulnerability','Land use planning','Organizational collaboration','Economic health','Insurance','Post-fire recovery','Plan development','No relevant label','Bad quality / gibberish'];
+const labelSummaries=[
+'Past fires, historical patterns and fire regimes.',
+'Assessments, ratings or models of wildfire hazard or risk.',
+'People, buildings, assets or places exposed to wildfire.',
+'Assessing forest fuel type, density or moisture.',
+'Forest health: drought, species, soil or water quality.',
+'Human-caused climate change or long-term climate conditions.',
+'Total suppression or elimination of wildfire.',
+'Defensible space and less flammable landscaping around property.',
+'Prescribed burns, thinning and other wildland fuel treatments.',
+'Building practices and materials that resist fire or embers.',
+'Firefighter access to properties and water to protect homes.',
+'Personnel, training, stations and equipment for wildland firefighting.',
+'Readiness of roads, power lines, utilities and water supply.',
+'Evacuation, shelters, escape routes and incident command.',
+'Detecting, forecasting or reporting active or imminent fires.',
+'Controlling hazardous materials.',
+'Preventing ignitions from people, power lines or machinery.',
+'Outreach, education and volunteering for wildfire preparedness.',
+'Vulnerability linked to income, age, disability or ethnicity.',
+'Zoning, permits and rules that guide land development.',
+'Organizations coordinating or sharing firefighting costs.',
+'Wildfire losses with cultural or economic importance.',
+'Insurance coverage against wildfire losses.',
+'Recovery and rehabilitation of towns after wildfire.',
+'Developing and administering a Community Wildfire Protection Plan.',
+'None of the strategy labels applies. Use alone.',
+'No words or unintelligible text. Use alone.'
+];
 function hideTooltip(){ $('label-tooltip').hidden=true; }
 function showTooltip(b,definition){
- const tip=$('label-tooltip');tip.textContent=definition;tip.hidden=false;
+ if(!window.matchMedia('(hover: hover)').matches)return;const tip=$('label-tooltip');tip.textContent=definition;tip.hidden=false;
  const rect=b.getBoundingClientRect();tip.style.width=Math.min(310,window.innerWidth-24)+'px';
  tip.style.left=Math.max(12,Math.min(rect.left,window.innerWidth-tip.offsetWidth-12))+'px';
  tip.style.top=(rect.top>=tip.offsetHeight+12?rect.top-tip.offsetHeight-8:Math.min(rect.bottom+8,window.innerHeight-tip.offsetHeight-12))+'px';
@@ -118,7 +154,7 @@ function showTooltip(b,definition){
 document.addEventListener('keydown',e=>{if(e.key==='Escape')hideTooltip();});
 window.addEventListener('scroll',hideTooltip,true);
 window.addEventListener('resize',hideTooltip);
-for(const label of study.labels){const b=document.createElement('button');b.className='label'+(label.id>=26?' extra':'');b.setAttribute('aria-description',label.definition);b.onmouseenter=()=>showTooltip(b,label.definition);b.onmouseleave=hideTooltip;b.onfocus=()=>showTooltip(b,label.definition);b.onblur=hideTooltip;b.dataset.id=label.id;b.setAttribute('aria-pressed','false');const num=document.createElement('span');num.className='num';num.textContent=String(label.id).padStart(2,'0');const text=document.createElement('span');text.className='label-text';text.textContent=labelTitles[label.id-1];b.append(num,text);b.onclick=()=>{update({labels:toggleLabel(answer().labels,label.id),done:false});refreshLabels();$('position').textContent=`Paragraph ${index+1} of ${study.items.length} · ${count()} completed`;$('progress').value=count();};$('labels').append(b);const li=document.createElement('li');li.textContent=label.definition;$('definitions').append(li);}
+for(const label of study.labels){const b=document.createElement('button');b.className='label'+(label.id>=26?' extra':'');b.setAttribute('aria-description',label.definition);b.onmouseenter=()=>showTooltip(b,label.definition);b.onmouseleave=hideTooltip;b.onfocus=()=>showTooltip(b,label.definition);b.onblur=hideTooltip;b.dataset.id=label.id;b.setAttribute('aria-pressed','false');const num=document.createElement('span');num.className='num';num.textContent=String(label.id).padStart(2,'0');const text=document.createElement('span');text.className='label-text';text.textContent=labelTitles[label.id-1];const copy=document.createElement('span');copy.className='label-copy';const brief=document.createElement('span');brief.className='label-summary';brief.textContent=labelSummaries[label.id-1];copy.append(text,brief);b.append(num,copy);b.onclick=()=>{update({labels:toggleLabel(answer().labels,label.id),done:false});refreshLabels();$('position').textContent=`Paragraph ${index+1} of ${study.items.length} · ${count()} completed`;$('progress').value=count();};$('labels').append(b);const li=document.createElement('li');li.textContent=label.definition;$('definitions').append(li);}
 $('start').onclick=()=>{if(count()===study.items.length)show('complete');else render();};
 $('save-next').onclick=()=>{if(!answer().labels.length)return;update({done:true});const next=nextUnanswered();if(next<0)show('complete');else{index=next;persist();render();}};
 $('previous').onclick=()=>{index=Math.max(0,index-1);persist();render();};
