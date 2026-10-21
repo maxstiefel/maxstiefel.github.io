@@ -42,9 +42,9 @@ body:has(#workspace:not([hidden])) header{padding-bottom:12px;margin-bottom:12px
 <div class="eyebrow">Community Wildfire Protection Plans</div>
 <h1 style="margin-top:16px">Paragraph labeling</h1>
 <p class="lead">Hi <span id="rater"></span>. Read one paragraph at a time and select every label that applies. Take your time, and pause whenever you need.</p>
-<div class="panel"><strong id="assignment"></strong><p class="muted">Use the original definitions in the rating guide. You can select more than one strategy. Labels 26 and 27 must each be used alone.</p><p class="note">Your progress is saved in this browser when available. Download a backup before closing or changing devices. When you finish, download your answers and send the CSV to Max.</p></div>
+<div class="panel"><strong id="assignment"></strong><p class="muted">Use the original definitions in the rating guide. You can select more than one strategy. Labels 26 and 27 must each be used alone.</p><p class="note">Your progress is saved in this browser when available. Download a backup before closing or changing devices. Check the cloud saving status below before closing. Download a backup for your own records.</p></div>
 <div class="actions"><button id="start" class="primary">Start labeling →</button><button class="guide">Read the rating guide</button><label class="file-label">Restore backup<input class="restore sr-only" type="file" accept=".json,application/json"></label></div>
-<p class="note">No account or internet connection needed. Answers are not automatically sent anywhere.</p>
+<p class="note">No sign-in needed. Answers save automatically to Max’s Google account when you are online. Offline changes stay in this browser and upload when you reconnect.</p>
 </section>
 <section id="workspace" hidden>
 <div class="topline"><span class="eyebrow" id="position"></span><button class="guide">? Rating guide</button></div>
@@ -54,13 +54,13 @@ body:has(#workspace:not([hidden])) header{padding-bottom:12px;margin-bottom:12px
 <p class="note">WPS means wildfire protection strategy. Each card gives a short reminder; the rating guide contains the full definitions. On a computer, hover or use Tab for the full definition. Labels 26 and 27 must each be used alone.</p>
 <details class="selection-tray" open><summary id="selection-heading">No codes selected</summary><div id="selection-list" class="selection-list" aria-live="polite"></div></details>
 <div id="labels" class="labels" role="group" aria-label="Paragraph labels"></div>
-<details><summary>Optional note or discussion flag</summary><label for="notes"><p class="note">Optional note for Max</p></label><textarea id="notes" placeholder="Anything unclear about this paragraph?"></textarea>
+<details><summary>Optional note or discussion flag</summary><label for="notes"><p class="note">Optional note for Max</p></label><textarea maxlength="10000" id="notes" placeholder="Anything unclear about this paragraph?"></textarea>
 <p><label><input type="checkbox" id="flag"> Flag this paragraph for discussion</label></p></details>
 <div class="toolbar"><button id="previous">← Previous</button><button id="skip">Skip for now</button><span id="saved" class="status" role="status"></span><button id="save-next" class="primary">Save & next →</button></div>
 <details style="margin-top:24px"><summary>Navigation, downloads & backups</summary><div class="actions"><label>Paragraph <input id="jump" type="number" min="1"></label><button id="go">Go</button><button id="unanswered">Next unanswered</button><button id="home">Pause / overview</button></div><div class="actions"><button class="export">Download answers (CSV)</button><button class="backup">Download backup (JSON)</button><label class="file-label">Restore backup<input class="restore sr-only" type="file" accept=".json,application/json"></label></div><p class="note">CSV contains completed answers only; draft rows remain unmarked. The JSON backup also keeps drafts, notes, and discussion flags.</p></details>
 </section>
-<section id="complete" class="intro" hidden><div class="eyebrow">All paragraphs completed</div><h1 style="margin-top:16px">Thank you, <span id="done-rater"></span>.</h1><p class="lead">Your answers are ready. Download the CSV and send it to Max. Download the JSON backup too if you added notes or flags.</p><p class="note">Nothing has been submitted automatically.</p><div class="actions"><button class="export primary">Download answers (CSV)</button><button class="backup">Download backup (JSON)</button><button id="review">Review answers</button></div></section>
-<aside class="panel" aria-label="Save and return responses"><strong>Keep a copy of your responses</strong><p class="note" id="storage-status">Responses stay in this browser until you share a file with Max.</p><div class="actions"><button class="backup">Download all responses (JSON)</button><button id="share-responses">Share responses with Max…</button><button class="export">Download completed answers (CSV)</button></div><p class="note">The JSON file includes completed answers, drafts, notes and flags. Send it to maximilian.stiefel@kcl.ac.uk. Max can recover the CSV from this file. No automatic submission or cross-device sync.</p></aside><p id="notice" role="alert"></p>
+<section id="complete" class="intro" hidden><div class="eyebrow">All paragraphs completed</div><h1 style="margin-top:16px">Thank you, <span id="done-rater"></span>.</h1><p class="lead">Your answers are complete. Check for “Saved to Max’s Google account” below. You can also download a copy for your records.</p><p class="note">If the cloud status says waiting or failed, stay online and press Retry cloud save.</p><div class="actions"><button class="export primary">Download answers (CSV)</button><button class="backup">Download backup (JSON)</button><button id="review">Review answers</button></div></section>
+<aside class="panel" aria-label="Save and return responses"><strong>Automatic saving</strong><p id="cloud-status" role="status" aria-live="polite">Your responses will save to Max’s Google account as you work.</p><button id="retry-cloud">Retry cloud save</button><p class="note">Private storage belongs to maximilian.stiefel@gmail.com. No Google sign-in is needed for David.</p><strong>Keep a copy of your responses</strong><p class="note" id="storage-status">A browser copy is kept here as well as the automatic cloud backup.</p><div class="actions"><button class="backup">Download all responses (JSON)</button><button id="share-responses">Share responses with Max…</button><button class="export">Download completed answers (CSV)</button></div><p class="note">The JSON file includes completed answers, drafts, notes and flags. Send it to maximilian.stiefel@kcl.ac.uk. Max can recover the CSV from this file. Automatic uploads include drafts, notes and flags. Downloads remain available as a backup. To change devices, restore a JSON backup.</p></aside><p id="notice" role="alert"></p>
 <dialog id="guide"><div class="topline"><h2>Rating guide · frozen v1</h2><button id="close-guide">Close</button></div><p>Classify the paragraph itself. Assign multiple labels when necessary. Do not assign labels 26 or 27 if any other labels are present.</p><ol id="definitions"></ol></dialog>
 </main>
 <div id="label-tooltip" role="tooltip" hidden></div>
@@ -98,7 +98,7 @@ const record=()=>({version:1,study:study.id,rater:study.rater,source_sha256:stud
 function notice(text){$('notice').textContent=text;}
 try{const raw=localStorage.getItem(storageKey);if(raw){const old=validateBackup(JSON.parse(raw),study);answers=old.answers;index=Number.isInteger(old.index)?Math.min(Math.max(old.index,0),study.items.length-1):0;}}
 catch(e){storageOK=false;loadFailed=true;notice('Browser progress could not be loaded. Restore a downloaded backup if you have one. '+e.message);}
-function persist(){try{if(loadFailed)throw Error('Restore a backup before replacing unreadable stored progress.');localStorage.setItem(storageKey,JSON.stringify(record()));storageOK=true;$('storage-status').textContent='Saved on this device at '+new Date().toLocaleTimeString()+'. Download a copy before leaving; send it to Max when finished.';$('saved').textContent='Saved in this browser';}catch(e){storageOK=false;$('storage-status').textContent='Browser saving is unavailable. Download your responses now.';$('saved').textContent='Not saved to browser';notice('Browser storage is unavailable or full. Keep this page open and download a JSON backup before leaving.');}}
+function persist(){scheduleCloud();try{if(loadFailed)throw Error('Restore a backup before replacing unreadable stored progress.');localStorage.setItem(storageKey,JSON.stringify(record()));storageOK=true;$('storage-status').textContent='Saved on this device at '+new Date().toLocaleTimeString()+'. A cloud copy is also queued automatically; check the cloud status.';$('saved').textContent='Saved in this browser';}catch(e){storageOK=false;$('storage-status').textContent='Browser saving is unavailable. Download your responses now.';$('saved').textContent='Not saved to browser';notice('Browser storage is unavailable or full. Keep this page open and download a JSON backup before leaving.');}}
 function answer(){return answers[study.items[index].id]||{labels:[],notes:'',flag:false,done:false};}
 function update(patch){answers[study.items[index].id]={...answer(),...patch,updated_at:new Date().toISOString()};persist();}
 function count(){return study.items.filter(x=>answers[x.id]?.done).length;}
@@ -171,6 +171,27 @@ document.querySelectorAll('.restore').forEach(input=>input.onchange=async()=>{
  try{const file=input.files[0];if(!file)return;if(file.size>10*1024*1024)throw Error('Backup file is too large.');const backup=validateBackup(JSON.parse(await file.text()),study);if(Object.keys(answers).length&&!confirm('Replace progress in this browser with this backup? Download your current backup first if you need to keep it.'))return;loadFailed=false;answers=backup.answers;index=Number.isInteger(backup.index)?Math.max(0,Math.min(backup.index,study.items.length-1)):0;persist();welcome();notice('Backup restored.');}catch(e){notice(e.message);}finally{input.value='';}
 });
 window.addEventListener('beforeunload',e=>{if(!storageOK&&Object.keys(answers).length){e.preventDefault();e.returnValue='';}});
+// Cloud saves are serialized and acknowledged only after both private files are stored.
+const collectorURL='https://teva-response-collector-78869593992.us-central1.run.app';
+let cloudTimer,cloudBusy=false,cloudDirty=false,cloudSession;
+try{cloudSession=localStorage.getItem(storageKey+':session');if(!cloudSession){cloudSession=crypto.randomUUID();localStorage.setItem(storageKey+':session',cloudSession);}}catch(e){cloudSession=crypto.randomUUID();}
+function scheduleCloud(){cloudDirty=true;$('cloud-status').textContent=navigator.onLine?'Waiting to save to Max’s Google account…':'Offline — changes are kept here. Reconnect to upload.';clearTimeout(cloudTimer);cloudTimer=setTimeout(syncCloud,1000);}
+async function syncCloud(){
+ if(cloudBusy||!cloudDirty)return;
+ if(!Object.keys(answers).length){cloudDirty=false;return;}
+ if(!navigator.onLine){$('cloud-status').textContent='Offline — reconnect to save to Max’s Google account.';return;}
+ cloudBusy=true;cloudDirty=false;
+ const payload={...record(),session:cloudSession};
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),30000);
+ $('cloud-status').textContent='Saving to Max’s Google account…';
+ try{const response=await fetch(collectorURL+'/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal,keepalive:false});if(!response.ok)throw Error('Upload failed');const receipt=await response.json();if(receipt.saved!==true)throw Error('No save receipt');$('cloud-status').textContent=cloudDirty?'New changes waiting to upload…':'Saved to Max’s Google account · '+receipt.completed+' completed · '+new Date().toLocaleTimeString();}
+ catch(e){cloudDirty=true;$('cloud-status').textContent='Cloud save failed — your browser copy is still available. Retrying automatically; you can also download a backup.';}
+ finally{clearTimeout(timeout);cloudBusy=false;if(cloudDirty){clearTimeout(cloudTimer);cloudTimer=setTimeout(syncCloud,10000);}}
+}
+$('retry-cloud').onclick=()=>{cloudDirty=true;syncCloud();};
+window.addEventListener('online',()=>{cloudDirty=true;syncCloud();});
+window.addEventListener('pagehide',()=>{if(cloudDirty&&!cloudBusy&&Object.keys(answers).length){try{fetch(collectorURL+'/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...record(),session:cloudSession}),keepalive:true}).catch(()=>{});}catch(e){}}});
 welcome();
+if(Object.keys(answers).length)scheduleCloud();
 </script>
 </html>
