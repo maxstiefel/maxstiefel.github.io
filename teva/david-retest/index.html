@@ -60,7 +60,7 @@ body:has(#workspace:not([hidden])) header{padding-bottom:12px;margin-bottom:12px
 <details style="margin-top:24px"><summary>Navigation, downloads & backups</summary><div class="actions"><label>Paragraph <input id="jump" type="number" min="1"></label><button id="go">Go</button><button id="unanswered">Next unanswered</button><button id="home">Pause / overview</button></div><div class="actions"><button class="export">Download answers (CSV)</button><button class="backup">Download backup (JSON)</button><label class="file-label">Restore backup<input class="restore sr-only" type="file" accept=".json,application/json"></label></div><p class="note">CSV contains completed answers only; draft rows remain unmarked. The JSON backup also keeps drafts, notes, and discussion flags.</p></details>
 </section>
 <section id="complete" class="intro" hidden><div class="eyebrow">All paragraphs completed</div><h1 style="margin-top:16px">Thank you, <span id="done-rater"></span>.</h1><p class="lead">Your answers are ready. Download the CSV and send it to Max. Download the JSON backup too if you added notes or flags.</p><p class="note">Nothing has been submitted automatically.</p><div class="actions"><button class="export primary">Download answers (CSV)</button><button class="backup">Download backup (JSON)</button><button id="review">Review answers</button></div></section>
-<p id="notice" role="alert"></p>
+<aside class="panel" aria-label="Save and return responses"><strong>Keep a copy of your responses</strong><p class="note" id="storage-status">Responses stay in this browser until you share a file with Max.</p><div class="actions"><button class="backup">Download all responses (JSON)</button><button id="share-responses">Share responses with Max…</button><button class="export">Download completed answers (CSV)</button></div><p class="note">The JSON file includes completed answers, drafts, notes and flags. Send it to maximilian.stiefel@kcl.ac.uk. Max can recover the CSV from this file. No automatic submission or cross-device sync.</p></aside><p id="notice" role="alert"></p>
 <dialog id="guide"><div class="topline"><h2>Rating guide · frozen v1</h2><button id="close-guide">Close</button></div><p>Classify the paragraph itself. Assign multiple labels when necessary. Do not assign labels 26 or 27 if any other labels are present.</p><ol id="definitions"></ol></dialog>
 </main>
 <div id="label-tooltip" role="tooltip" hidden></div>
@@ -92,13 +92,13 @@ function validateBackup(value,study){
 // Browser application.
 const study=JSON.parse(document.getElementById('study').textContent);
 const $=id=>document.getElementById(id);
-let answers=Object.create(null),index=0,storageOK=true;
+let answers=Object.create(null),index=0,storageOK=true,loadFailed=false;
 const storageKey='teva-labeler-v1:'+study.id;
 const record=()=>({version:1,study:study.id,rater:study.rater,source_sha256:study.source_sha256,codebook_sha256:study.codebook_sha256,answers,index,exported_at:new Date().toISOString()});
 function notice(text){$('notice').textContent=text;}
 try{const raw=localStorage.getItem(storageKey);if(raw){const old=validateBackup(JSON.parse(raw),study);answers=old.answers;index=Number.isInteger(old.index)?Math.min(Math.max(old.index,0),study.items.length-1):0;}}
-catch(e){storageOK=false;notice('Browser progress could not be loaded. Restore a downloaded backup if you have one. '+e.message);}
-function persist(){try{localStorage.setItem(storageKey,JSON.stringify(record()));storageOK=true;$('saved').textContent='Saved in this browser';}catch(e){storageOK=false;$('saved').textContent='Not saved to browser';notice('Browser storage is unavailable or full. Keep this page open and download a JSON backup before leaving.');}}
+catch(e){storageOK=false;loadFailed=true;notice('Browser progress could not be loaded. Restore a downloaded backup if you have one. '+e.message);}
+function persist(){try{if(loadFailed)throw Error('Restore a backup before replacing unreadable stored progress.');localStorage.setItem(storageKey,JSON.stringify(record()));storageOK=true;$('storage-status').textContent='Saved on this device at '+new Date().toLocaleTimeString()+'. Download a copy before leaving; send it to Max when finished.';$('saved').textContent='Saved in this browser';}catch(e){storageOK=false;$('storage-status').textContent='Browser saving is unavailable. Download your responses now.';$('saved').textContent='Not saved to browser';notice('Browser storage is unavailable or full. Keep this page open and download a JSON backup before leaving.');}}
 function answer(){return answers[study.items[index].id]||{labels:[],notes:'',flag:false,done:false};}
 function update(patch){answers[study.items[index].id]={...answer(),...patch,updated_at:new Date().toISOString()};persist();}
 function count(){return study.items.filter(x=>answers[x.id]?.done).length;}
@@ -110,7 +110,7 @@ function render(){
  $('saved').textContent=a.done?'Completed':(a.labels.length?'Draft — press Save & next':'Not yet labeled');refreshLabels();$('paragraph').focus({preventScroll:true});
 }
 function nextUnanswered(){for(let step=1;step<=study.items.length;step++){const i=(index+step)%study.items.length;if(!answers[study.items[i].id]?.done)return i;}return -1;}
-function download(text,type,name){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function download(text,type,name){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
 const basename=study.source.replace(/\.csv$/i,'')+'_'+study.rater.toLowerCase().replace(/[^a-z0-9_-]/g,'_');
 $('rater').textContent=study.rater;$('done-rater').textContent=study.rater;
 function welcome(){show('welcome');$('assignment').textContent=`${study.items.length} paragraphs · 27 labels · ${count()} completed`;$('start').textContent=count()===study.items.length?'View completed study →':Object.keys(answers).length?'Resume labeling →':'Start labeling →';}
@@ -164,9 +164,11 @@ $('go').onclick=()=>{const n=Number($('jump').value);if(Number.isInteger(n)&&n>=
 $('notes').oninput=()=>update({notes:$('notes').value});$('flag').onchange=()=>update({flag:$('flag').checked});$('home').onclick=welcome;$('review').onclick=()=>{index=0;render();};
 document.querySelectorAll('.guide').forEach(b=>b.onclick=()=>$('guide').showModal());$('close-guide').onclick=()=>$('guide').close();
 document.querySelectorAll('.export').forEach(b=>b.onclick=()=>{download(csvAnswers(study,answers),'text/csv;charset=utf-8',basename+'_answers.csv');notice(`CSV downloaded with ${count()} of ${study.items.length} paragraphs completed. Send it to Max when ready.`);});
-document.querySelectorAll('.backup').forEach(b=>b.onclick=()=>download(JSON.stringify(record(),null,2),'application/json',basename+'_backup_'+new Date().toISOString().replaceAll(':','-')+'.json'));
+function responseFile(){return {text:JSON.stringify(record(),null,2),name:basename+'_backup_'+new Date().toISOString().replaceAll(':','-')+'.json'};}
+document.querySelectorAll('.backup').forEach(b=>b.onclick=()=>{const f=responseFile();download(f.text,'application/json',f.name);notice('Download requested. Check Files or Downloads, then send the JSON file to Max.');});
+$('share-responses').onclick=async()=>{const f=responseFile();try{const file=new File([f.text],f.name,{type:'application/json'});if(navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:'TEVA responses for Max',text:'TEVA coding responses. Please send to maximilian.stiefel@kcl.ac.uk.'});notice('Share dialog closed. Check your chosen app to confirm the file was sent.');}else{download(f.text,'application/json',f.name);notice('File sharing is unavailable here. Attach the downloaded JSON file to an email to maximilian.stiefel@kcl.ac.uk.');}}catch(e){if(e.name!=='AbortError')notice('Sharing failed. Use Download all responses and send the file to Max.');}};
 document.querySelectorAll('.restore').forEach(input=>input.onchange=async()=>{
- try{const file=input.files[0];if(!file)return;if(file.size>10*1024*1024)throw Error('Backup file is too large.');const backup=validateBackup(JSON.parse(await file.text()),study);if(Object.keys(answers).length&&!confirm('Replace progress in this browser with this backup? Download your current backup first if you need to keep it.'))return;answers=backup.answers;index=Number.isInteger(backup.index)?Math.max(0,Math.min(backup.index,study.items.length-1)):0;persist();welcome();notice('Backup restored.');}catch(e){notice(e.message);}finally{input.value='';}
+ try{const file=input.files[0];if(!file)return;if(file.size>10*1024*1024)throw Error('Backup file is too large.');const backup=validateBackup(JSON.parse(await file.text()),study);if(Object.keys(answers).length&&!confirm('Replace progress in this browser with this backup? Download your current backup first if you need to keep it.'))return;loadFailed=false;answers=backup.answers;index=Number.isInteger(backup.index)?Math.max(0,Math.min(backup.index,study.items.length-1)):0;persist();welcome();notice('Backup restored.');}catch(e){notice(e.message);}finally{input.value='';}
 });
 window.addEventListener('beforeunload',e=>{if(!storageOK&&Object.keys(answers).length){e.preventDefault();e.returnValue='';}});
 welcome();
